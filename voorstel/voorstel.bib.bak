@@ -28,14 +28,4 @@
   urldate   = {2016-09-01},
 }
 
-@Article{Chang2014,
-  author       = {Chang, Jae},
-  date         = {2014-08},
-  journaltitle = {Science Editing},
-  title        = {An introduction to using QR codes in scholarly journals},
-  doi          = {10.6087/kcse.2014.1.113},
-  pages        = {113-117},
-  volume       = {1},
-}
-
 @Comment{jabref-meta: databaseType:biblatex;}
