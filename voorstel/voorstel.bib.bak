@@ -1,31 +1,98 @@
 % Encoding: UTF-8
 
-@Article{SabiEtAl2016,
-  author       = {Sabi, Humphrey M. and Uzoka, Faith-Michael E. and Langmia, Kehbuma and Njeh, Felix M.},
-  title        = {Conceptualizing a model for adoption of cloud computing in education},
-  journaltitle = {International Journal of Information Management},
-  year         = {2016},
-  volume       = {36},
-  number       = {2},
-  pages        = {183--191},
-  doi          = {10.1016/j.ijinfomgt.2015.11.010},
-  url          = {http://www.sciencedirect.com/science/article/pii/S0268401215001115},
+@Article{Chang2014,
+  author       = {Chang, Jae},
+  date         = {2014-08},
+  journaltitle = {Science Editing},
+  title        = {An introduction to using QR codes in scholarly journals},
+  doi          = {10.6087/kcse.2014.1.113},
+  pages        = {113-117},
+  volume       = {1},
 }
 
-@Online{LewisFowler2014,
-  author    = {Lewis, James and Fowler, Martin},
-  title     = {Microservices: a definition of this new architectural term},
-  date      = {2014-03-25},
-  url       = {http://martinfowler.com/articles/microservices.html},
-  urldate   = {2016-09-01},
+@WWW{Incorporated2014,
+  author  = {Denso Wave Incorporated},
+  title   = {QRcode.com},
+  url     = {https://www.qrcode.com/},
+  urldate = {2022-12-02},
 }
 
-@Online{Hykes2013,
-  author    = {Solomon Hykes},
-  title     = {The future of Linux Containers (PyCon 2013)},
-  date      = {2013-03-21},
-  url       = {https://www.youtube.com/watch?v=wW9CAH9nSLs},
-  urldate   = {2016-09-01},
+@Article{Walsh2009,
+  author       = {Walsh, Andrew},
+  date         = {2009-06},
+  journaltitle = {Library Hi Tech News},
+  title        = {Quick response codes and libraries},
+  doi          = {10.1108/07419050910985255},
+  pages        = {7-9},
+  volume       = {26},
+}
+
+@Article{Skurowski2022,
+  author = {Skurowski, Przemysław and Nurzynska, Karolina and Pawlyta, Magdalena and Cyran, Krzysztof},
+  date   = {2022-08},
+  title  = {Performance of QR code detectors near Nyquist limits},
+}
+
+@InProceedings{Tamrakar2021,
+  author = {Tamrakar, Rohit and Wani, Niraj},
+  date   = {2021-04},
+  title  = {Design and Development of CHATBOT: A Review},
+}
+
+@InProceedings{Brandtzaeg2017,
+  author    = {Brandtzaeg, Petter Bae and F{\o}lstad, Asbj{\o}rn},
+  booktitle = {Internet Science},
+  date      = {2017},
+  title     = {Why People Use Chatbots},
+  editor    = {Kompatsiaris, Ioannis and Cave, Jonathan and Satsiou, Anna and Carle, Georg and Passani, Antonella and Kontopoulos, Efstratios and Diplaris, Sotiris and McMillan, Donald},
+  isbn      = {978-3-319-70284-1},
+  location  = {Cham},
+  pages     = {377--392},
+  publisher = {Springer International Publishing},
+  abstract  = {There is a growing interest in chatbots, which are machine agents serving as natural language user interfaces for data and service providers. However, no studies have empirically investigated people's motivations for using chatbots. In this study, an online questionnaire asked chatbot users (N = 146, aged 16--55 years) from the US to report their reasons for using chatbots. The study identifies key motivational factors driving chatbot use. The most frequently reported motivational factor is ``productivity''; chatbots help users to obtain timely and efficient assistance or information. Chatbot users also reported motivations pertaining to entertainment, social and relational factors, and curiosity about what they view as a novel phenomenon. The findings are discussed in terms of the uses and gratifications theory, and they provide insight into why people choose to interact with automated agents online. The findings can help developers facilitate better human--chatbot interaction experiences in the future. Possible design guidelines are suggested, reflecting different chatbot user motivations.},
+}
+
+@InProceedings{Adamopoulou2020,
+  author    = {Adamopoulou, Eleni and Moussiades, Lefteris},
+  booktitle = {Artificial Intelligence Applications and Innovations},
+  date      = {2020},
+  title     = {An Overview of Chatbot Technology},
+  editor    = {Maglogiannis, Ilias and Iliadis, Lazaros and Pimenidis, Elias},
+  isbn      = {978-3-030-49186-4},
+  location  = {Cham},
+  pages     = {373--383},
+  publisher = {Springer International Publishing},
+  abstract  = {The use of chatbots evolved rapidly in numerous fields in recent years, including Marketing, Supporting Systems, Education, Health Care, Cultural Heritage, and Entertainment. In this paper, we first present a historical overview of the evolution of the international community's interest in chatbots. Next, we discuss the motivations that drive the use of chatbots, and we clarify chatbots' usefulness in a variety of areas. Moreover, we highlight the impact of social stereotypes on chatbots design. After clarifying necessary technological concepts, we move on to a chatbot classification based on various criteria, such as the area of knowledge they refer to, the need they serve and others. Furthermore, we present the general architecture of modern chatbots while also mentioning the main platforms for their creation. Our engagement with the subject so far, reassures us of the prospects of chatbots and encourages us to study them in greater extent and depth.},
+}
+
+@InProceedings{Tiwari2016,
+  author = {Tiwari, Sumit},
+  date   = {2016-12},
+  title  = {An Introduction to QR Code Technology},
+  doi    = {10.1109/ICIT.2016.021},
+  pages  = {39-44},
+}
+
+@Article{Shin2012,
+  author       = {Dong-Hee Shin and Jaemin Jung and Byeng-Hee Chang},
+  date         = {2012},
+  journaltitle = {Computers in Human Behavior},
+  title        = {The psychology behind QR codes: User experience perspective},
+  doi          = {https://doi.org/10.1016/j.chb.2012.03.004},
+  issn         = {0747-5632},
+  number       = {4},
+  pages        = {1417-1426},
+  url          = {https://www.sciencedirect.com/science/article/pii/S0747563212000702},
+  volume       = {28},
+  abstract     = {QR codes, 2-D bar codes that can be read by special software on a smartphone, have been undergoing rapid development. This study examines how a Technology Acceptance Model could predict users’ intentions to continue using QR codes by integrating interactivity and quality motivations as primary determining factors. Although studies have shown interactivity is important to users, not many study have analyzed the mediating influence of interactivity within interactive marketing context. Therefore, the original TAM was expanded to encompass user perceptions of interactivity and quality. The results of this study show that user intentions and behaviors are largely influenced by the perception of the quality of QR codes. In addition, the results of the model show that interactivity is a key behavioral antecedent to the use of QR codes. In the extended model, the moderating and mediating effects of the perceived interactivity on relationships among the variables were found to be significant. The new set of variables is QR code-specific, acting as factors that enhance attitudes and behavioral intentions. Implications of the findings are discussed in terms of construction of a theory of interactivity and provision of practical insights into development of user-centered QR codes.},
+  keywords     = {QR code, Interactive marketing, Adoption, Mediating effects, Moderating effects},
+}
+
+@Article{Girisha2022,
+  author = {Girisha, Dr and Kumar, A and Singh, Atithi and Deepak, and Bahadur, Rao and Mahabaleswarappa, Y and Hang, Sum},
+  date   = {2022-06},
+  title  = {QR Code Detection},
+  pages  = {2581-9429},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

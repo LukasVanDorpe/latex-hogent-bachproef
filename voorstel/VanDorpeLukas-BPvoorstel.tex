@@ -59,7 +59,7 @@
 \begin{document}
 
 \begin{abstract}
-  Dankzij nieuwe technologieën is het huren van een locker op festivals eenvoudig. Bij de locker units van het bedrijf Lockit Rentals kunnen lockers geopend worden met behulp van QR-codes, deze worden voor aanvang van het evenement online verkocht. QR-codes zijn zo ontworpen dat deze niet kunnen onthouden worden. Wanneer de QR-code scanner moeite heeft met het symbool uit te lezen of bezoekers verliezen hun QR-code, spelen ze hierdoor de toegang tot hun locker kwijt. Implementatie van nieuwe technologieën kan ervoor zorgen dat de QR-code scanners geoptimaliseerd worden. Bij verlies van de toegangscode, kan de huurder rekenen op een geautomatiseerde help chatbot die hun assisteert om verloren QR-codes opnieuw te genereren. Dit resulteert in meer gebruiksgemak naar de klanten toe en minder moeilijkheden tijdens uitbating van lockers.
+  Dankzij nieuwe technologieën is het huren van een locker op festivals eenvoudig. Bij de locker units van het bedrijf Lockit Rentals kunnen lockers geopend worden met behulp van QR-codes, deze worden voor aanvang van het evenement online verkocht. QR-codes zijn zo ontworpen dat deze niet kunnen onthouden worden. Wanneer de QR-code scanner moeite heeft met het symbool uit te lezen of bezoekers hun QR-code verliezen, spelen ze hierdoor de toegang tot hun locker kwijt. Implementatie van nieuwe technologieën kan ervoor zorgen dat de QR-code scanners geoptimaliseerd worden. Bij verlies van de toegangscode, kan de huurder rekenen op een geautomatiseerde help chatbot die hun assisteert om verloren QR-codes opnieuw te genereren. Dit resulteert in meer gebruiksgemak naar de klanten toe en minder moeilijkheden tijdens uitbating van lockers.
   
 \end{abstract}
 
@@ -72,12 +72,16 @@
 
 \section{Introductie}%
 \label{sec:introductie}
+%TODO toegangsticket op andere lijn kijken om volgende lijn te zetten ja of nee
 
-Tegenwoordig staan festivals en evenementen heel ver op het vlak van technologie. Toegangstickets zijn voorzien van QR-codes en kunnen online gekocht worden, geld opladen op festival bandje, bezoekers kunnen hiermee overal contactloos betalen met NFC chips, … De innovatie om de lockerverhuur op evenementen te digitaliseren en te moderniseren komt vanuit de veranderde noden en behoeften van festivalgangers. Onderzoek zal doeltreffend zijn voor de implementatie van gebruiksvriendelijke technieken bij de verhuur van lockers.
+%TODO oplijsting van festival bandjes veranderen
+Tegenwoordig staan festivals en evenementen heel ver op het vlak van technologie. Toegangstickets zijn voorzien van QR-codes en kunnen online gekocht worden, geld opladen op festival bandjes, bezoekers kunnen hiermee overal contactloos betalen met NFC chips,\dots De innovatie om de lockerverhuur op evenementen te digitaliseren en te moderniseren komt vanuit de veranderde noden en behoeften van festivalgangers. Onderzoek zal doeltreffend zijn voor de implementatie van gebruiksvriendelijke technieken bij de verhuur van lockers.
 
 Begin 2022 kwamen de oprichters van Lockit Rentals, Wannes Van Dorpe en Sebastien Vandenhouten, op de markt met nieuwe QR-units. Bij het huren van een locker ontvangt de klant een QR-code die als toegangscode dient voor het openen van een kluisje. Met die unieke QR-code kunnen klanten hun persoonlijke spullen veilig opbergen en de locker onbeperkt openen voor een vaste opgelegde periode. 
 
-Bij Lockit Rentals zijn er twee opties om lockers te verhuren. De eerste mogelijkheid is het verkopen van gedrukte kaartjes met QR-codes aan de kassa. Dit brengt echter hoge personeelskosten met zich mee. Daarnaast kan men ook kiezen om de QR-units standalone uit te baten. Dit houdt in dat Lockit Rentals de units op locatie levert en vanop afstand alles monitort. Hierbij worden de QR-codes online verkocht. De problemen ontstaan als de QR-codes niet meer uitgelezen kunnen worden of wanneer de klant zijn/haar QR-code verliest. Deze problemen kunnen zowel gebaseerd zijn op een fout in de hardware als software. Vanuit deze probleemstelling formuleert dit onderzoek een oplossing.  
+%TODO in de hardware als in de software
+
+Bij Lockit Rentals zijn er twee opties om lockers te verhuren. De eerste mogelijkheid is het verkopen van gedrukte kaartjes met QR-codes aan de kassa. Dit brengt echter hoge personeelskosten met zich mee. Daarnaast kan men ook kiezen om de QR-units standalone uit te baten. Dit houdt in dat Lockit Rentals de units op locatie levert en vanop afstand alles monitort. Hierbij worden de QR-codes online verkocht. De problemen ontstaan als de QR-codes niet meer uitgelezen kunnen worden of wanneer de klant zijn/haar QR-code verliest. Deze problemen kunnen zowel gebaseerd zijn op een fout in de hardware als in de software. Vanuit deze probleemstelling formuleert dit onderzoek een oplossing.  
 
 
 %---------- Stand van zaken ---------------------------------------------------
@@ -89,7 +93,7 @@ Bij lockerverhuur bestaan er drie verschillende sloten: digitale pincodes, sleut
 
 De meest eenvoudige manier om persoonlijke bezittingen veilig op te bergen is het kluisje vastmaken met een sleutel. Deze manier van lockeruitbating wordt minder vaak gebruikt op festivals, aangezien het mogelijk is om de sleutel te verliezen. Daarbovenop bestaat er geen mogelijkheid om de locker units standalone te laten draaien wanneer men kiest voor sleutelsloten. 
 
-De laatste jaren zijn nieuwe technologieën op de markt gekomen voor het openen van een kluisje. Eén van deze technologieën is het openen van een locker met een vooraf aangemaakte QR-code.
+De laatste jaren zijn nifDeuwe technologieën op de markt gekomen voor het openen van een kluisje. Eén van deze technologieën is het openen van een locker met een vooraf aangemaakte QR-code.
 
 
 \subsection{QR-codes}}%
@@ -109,7 +113,8 @@ Verder speelt de soort camera een enorme rol bij het uitlezen van gegevens \auto
 
 Aangezien het lezen van een QR-code onmogelijk is met het menselijk oog kan deze niet gememoriseerd worden \autocite{Walsh2009}. Als men de QR-code kwijt raakt, vervalt de mogelijkheid om het gehuurde kluisje te openen. Met dit probleem kreeg Lockit Rentals veel te maken tijdens de zomermaanden van 2022. Om dit probleem te onderzoeken, zal er een oplossing moeten komen om vanop afstand de mensen hun aangekochte QR-code terug te laten genereren. Het gebruik van een chatbot kan hierbij helpen \autocite{Brandtzaeg2017}. 
 
-Er bestaan verschillende soorten chatbots \autocite{Tamrakar2021}. In dit onderzoek ligt de focus op het gebruik van een task based chatbot die, net zoals een frequently asked questions (FAQ) bot, met een databank werkt \autocite{Tamrakar2021}. De chatbot legt vooropgestelde onderwerpen voor \autocite{Adamopoulou2020} om zo het best passend antwoord te geven. De chatbot voert gevraagde acties uit en haalt gewenste informatie op uit de databank \autocite{Adamopoulou2020}. Deze informatie zal de toegangscode zijn van de gebruiker van zijn gehuurde locker.
+Er bestaan verschillende soorten chatbots \autocite{Tamrakar2021}. In dit onderzoek ligt de focus op het gebruik van een task based chatbot die, net zoals een frequently asked questions (FAQ) bot, met een databank werkt \autocite{Tamrakar2021}. De chatbot legt vooropgestelde onderwerpen voor \autocite{Adamopoulou2020} om zo het best passend antwoord te geven. De chatbot voert gevraagde acties uit en haalt gewenste informatie op uit de databank \autocite{Adamopoulou2020}. Deze informatie zal de toegangscode zijn van de gebruiker van zijn gehuurde locker. 
+
 
 
 
@@ -117,10 +122,10 @@ Er bestaan verschillende soorten chatbots \autocite{Tamrakar2021}. In dit onderz
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Afgelopen zomer ondervond Lockit Rentals dat de snelheid bij het lezen van QR-codes problematisch kan zijn. Zeker wanneer dit probleem veroorzaakt wordt door er onveranderbare factoren, zoals hevige zon of felle regen \autocite{Dr2022}.
+Afgelopen zomer ondervond Lockit Rentals dat de snelheid bij het lezen van QR-codes problematisch kan zijn. Zeker wanneer dit probleem veroorzaakt wordt door er onveranderbare factoren, zoals hevige zon of felle regen \autocite{Girisha2022}.
 Deze hinderpaal zal onderzocht worden door simulaties op te stellen \autocite{Skurowski2022}. Hieruit kunnen conclusies genomen worden om zo de functionaliteit te verbeteren voor effectieve doeleinden van de QR-Units. 
 
-Door een aanpassing van attributen in de simulaties zoals soorten camera’s of een andere opstelling van het scansysteem, kan het algoritme beelden anders gaan filteren \autocite{Dr2022}. De snelheid bij het uitlezen van gemaakte QR-codes kan hierin ook positief beïnvloed worden. Daardoor zou de communicatie tussen hardwaren en software vlotter kunnen verlopen.
+Door een aanpassing van attributen in de simulaties zoals soorten camera’s of een andere opstelling van het scansysteem, kan het algoritme beelden anders gaan filteren \autocite{Girisha2022}. De snelheid bij het uitlezen van gemaakte QR-codes kan hierin ook positief beïnvloed worden. Daardoor zou de communicatie tussen hardware en software vlotter kunnen verlopen.
 
 Het kwijtspelen van een gekregen QR-code is problematisch bij standalone uitbatingen, omdat er niemand aanwezig is om de kwijtgespeelde QR-code opnieuw te laten genereren. Dit belemmert de toegang van mensen tot hun persoonlijke spullen. Een implementatie en een proof of concept van een geautomatiseerde chatbot zal kunnen aantonen dat het eenvoudig is om uw verloren QR-code terug op te halen.
 
@@ -136,7 +141,7 @@ Volgend festivalseizoen wil LockIt-Rentals uitpakken met een volledig vernieuwd 
 
 Voor de huurder zullen de aangepaste technologieën een verbetering zijn op vlak van gebruiksvriendelijkheid. Ook de manier van klantenservice wordt veranderd omwille van de technologische chatbot. Deze zal snel antwoorden bieden als de gebruiker problemen ondervindt. Het verliezen van de toegangscode voor het openen van een locker is hiervan een voorbeeld.
 
-Het doel van dit onderzoek is het verbeteren van gebruikt technologieën, waardoor Lockit Rentals in de toekomst minder bemande uitbatingen zal moeten organiseren. Als gevolg daarvan zullen de verkoop, populariteit, omzet en winst van het bedrijf groeien.
+Het doel van dit onderzoek is het verbeteren van gebruikte technologieën, waardoor Lockit Rentals in de toekomst minder bemande uitbatingen zal moeten organiseren. Als gevolg daarvan zullen de verkoop, populariteit, omzet en winst van het bedrijf groeien.
 
 
 \printbibliography[heading=bibintoc]
