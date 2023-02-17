@@ -95,4 +95,10 @@
   pages  = {2581-9429},
 }
 
+@WWW{Cloud,
+  author = {Google},
+  title  = {Documentation Dialogflow},
+  url    = {https://cloud.google.com/dialogflow},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

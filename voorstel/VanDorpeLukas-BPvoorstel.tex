@@ -121,9 +121,15 @@ Er bestaan verschillende soorten chatbots \autocite{Tamrakar2021}. In dit onderz
 Afgelopen zomer ondervond Lockit Rentals dat de snelheid bij het lezen van QR-codes problematisch kan zijn. Zeker wanneer dit probleem veroorzaakt wordt door onveranderbare factoren, zoals hevige zon of felle regen \autocite{Girisha2022}.
 Deze hinderpaal wordt onderzocht door simulaties op te stellen \autocite{Skurowski2022}. Hieruit kunnen conclusies genomen worden om zo de functionaliteit te verbeteren voor effectieve doeleinden van de QR-Units. 
 
-Door een aanpassing van attributen in de simulaties zoals soorten camera’s of een andere opstelling van het scansysteem, kan het algoritme beelden anders gaan filteren \autocite{Girisha2022}. De snelheid bij het uitlezen van gemaakte QR-codes kan hierin ook positief beïnvloed worden. Daardoor zou de communicatie tussen hardware en software vlotter kunnen verlopen.
+Door een aanpassing van attributen in de simulaties zoals soorten camera’s of een andere opstelling van het scansysteem, kan het algoritme beelden anders gaan filteren \autocite{Girisha2022}. De attributen die in opstellingen gewijzigd worden zijn de soort QR-code scanner, keuze van juiste belichting, alsook de instellingen van de scanners, zoals scherpte of dieptezicht. Waardoor de snelheid bij het uitlezen van gemaakte QRcodes positief beïnvloed kan worden. Daardoor zal de communicatie tussen hardware en software vlotter verlopen. 
 
-Het kwijtspelen van een gekregen QR-code is problematisch bij standalone uitbatingen, omdat er niemand aanwezig is om de kwijtgespeelde QR-code opnieuw te laten genereren. Dit belemmert de toegang van mensen tot hun persoonlijke spullen. Een implementatie en een Proof-of-Concept van een geautomatiseerde chatbot zal kunnen aantonen dat het eenvoudig is om een verloren QR-code terug op te halen.
+Het kwijtspelen van een gekregen QR-code is problematisch bij standalone uitbatingen, omdat er niemand aanwezig is om de kwijtgespeelde QR-code opnieuw te laten genereren. Dit belemmert de toegang van mensen tot hun persoonlijke spullen. Een implementatie van een geautomatiseerde chatbot zal kunnen aantonen dat het eenvoudig is om een verloren QR-code terug op te halen. De Proof of concept zal nauw samenwerken/geintegreerd worden met de daadwerkelijke software die op de QR-units draaien.
+
+Bij het maken van de daadwerkelijke chatbot applicatie zullen Python en Javascript aan bod komen. De nodige informatie wordt uit de database gehaald. Ik zal hierbij gebruik maken van een Firebase databank, aangezien deze ook uitgebreid gebruikt wordt in de daadwerkelijke software. Ook bestaan er goede platformen die het back-end gedeelte, inclusief het AI gedeelte, van een chatbot op zich nemen. Een voorbeeld hiervan is Dialogflow. \autocite{Cloud} Het voordeel is dat dit platform nauw samenwerkt met Firebase.
+
+Indien dit een te uitgebreide en te verfijnde manier van werken blijkt te zijn, zal er overgeschakeld worden naar een vast vragen principe. De klant kan kiezen tussen enkele mogelijke vragen waarop de chatbot zich vervolgens aanpast en de klant van een passend antwoord voorziet.
+
+Het visueel maken van de chatbot kan met aangepaste tools, ofwel door het zelf programmeren van visuele componenten. Indien dit het geval is, zal ik dit schrijven in Angular.
 
 
 
