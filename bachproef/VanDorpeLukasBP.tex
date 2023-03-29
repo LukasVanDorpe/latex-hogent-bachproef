@@ -1,0 +1,262 @@
+%===============================================================================
+% LaTeX sjabloon voor de bachelorproef toegepaste informatica aan HOGENT
+% Meer info op https://github.com/HoGentTIN/latex-hogent-report
+%===============================================================================
+
+\documentclass[dutch,dit,thesis]{hogentreport}
+
+% TODO:
+% - If necessary, replace the option `dit`' with your own department!
+%   Valid entries are dbo, dbt, dgz, dit, dlo, dog, dsa, soa
+% - If you write your thesis in English (remark: only possible after getting
+%   explicit approval!), remove the option "dutch," or replace with "english".
+
+\usepackage{lipsum} % For blind text, can be removed after adding actual content
+\usepackage{comment} 
+%% Pictures to include in the text can be put in the graphics/ folder
+\graphicspath{{graphics/}}
+
+%% For source code highlighting, requires pygments to be installed
+%% Compile with the -shell-escape flag!
+\usepackage[section]{minted}
+\usemintedstyle{solarized-light}
+\definecolor{bg}{RGB}{253,246,227} %% Set the background color of the codeframe
+
+\usepackage[printonlyused]{acronym}
+
+%% Change this line to edit the line numbering style:
+\renewcommand{\theFancyVerbLine}{\ttfamily\scriptsize\arabic{FancyVerbLine}}
+
+%% Macro definition to load external java source files with \javacode{filename}:
+\newmintedfile[javacode]{java}{
+    bgcolor=bg,
+    fontfamily=tt,
+    linenos=true,
+    numberblanklines=true,
+    numbersep=5pt,
+    gobble=0,
+    framesep=2mm,
+    funcnamehighlighting=true,
+    tabsize=4,
+    obeytabs=false,
+    breaklines=true,
+    mathescape=false
+    samepage=false,
+    showspaces=false,
+    showtabs =false,
+    texcl=false,
+}
+
+% Other packages not already included can be imported here
+
+%%---------- Document metadata -------------------------------------------------
+% TODO: Replace this with your own information
+\author{Lukas Van Dorpe}
+\supervisor{Dhr. L. Blondeel}
+\cosupervisor{Dhr. S. Vandenhoutem}
+\title[Optionele ondertitel]%
+    {Ontwikkeling van gebruiksvriendelijke technologieën in het optimaliseren van lockerverhuur.}
+\academicyear{\advance\year by -1 \the\year--\advance\year by 1 \the\year}
+\examperiod{1}
+\degreesought{\IfLanguageName{dutch}{Professionele bachelor in de toegepaste informatica}{Bachelor of applied computer science}}
+\partialthesis{false} %% To display 'in partial fulfilment'
+%\institution{Internshipcompany BVBA.}
+
+%% Add global exceptions to the hyphenation here
+\hyphenation{back-slash}
+
+%% The bibliography (style and settings are  found in hogentthesis.cls)
+\addbibresource{bachproef.bib}            %% Bibliography file
+\addbibresource{../voorstel/voorstel.bib} %% Bibliography research proposal
+\defbibheading{bibempty}{}
+
+%% Prevent empty pages for right-handed chapter starts in twoside mode
+\renewcommand{\cleardoublepage}{\clearpage}
+
+\renewcommand{\arraystretch}{1.2}
+
+%% Content starts here.
+\begin{document}
+
+%---------- Front matter -------------------------------------------------------
+
+\frontmatter
+
+\hypersetup{pageanchor=false} %% Disable page numbering references
+%% Render a Dutch outer title page if the main language is English
+\IfLanguageName{english}{%
+    %% If necessary, information can be changed here
+    \degreesought{Professionele Bachelor toegepaste informatica}%
+    \begin{otherlanguage}{dutch}%
+       \maketitle%
+    \end{otherlanguage}%
+}{}
+
+%% Generates title page content
+\maketitle
+\hypersetup{pageanchor=true}
+
+\input{voorwoord}
+\input{samenvatting}
+
+%---------- Inhoud, lijst figuren, ... -----------------------------------------
+
+\tableofcontents
+
+% In a list of figures, the complete caption will be included. To prevent this,
+% ALWAYS add a short description in the caption!
+%
+%  \caption[short description]{elaborate description}
+%
+% If you do, only the short description will be used in the list of figures
+
+\listoffigures
+
+% If you included tables and/or source code listings, uncomment the appropriate
+% lines.
+%\listoftables
+%\listoflistings
+
+% Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
+% hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
+% https://www.overleaf.com/learn/latex/Glossaries
+
+\chapter{Lijst van afkortingen}
+\begin{acronym}
+    \acro{QR}{Quick response}
+    \acro{NFC}{Near-field communication}
+\end{acronym}
+
+%---------- Kern ---------------------------------------------------------------
+
+\mainmatter{}
+
+% De eerste hoofdstukken van een bachelorproef zijn meestal een inleiding op
+% het onderwerp, literatuurstudie en verantwoording methodologie.
+% Aarzel niet om een meer beschrijvende titel aan deze hoofdstukken te geven of
+% om bijvoorbeeld de inleiding en/of stand van zaken over meerdere hoofdstukken
+% te verspreiden!
+
+\input{inleiding}
+\input{standvanzaken}
+\input{methodologie}
+
+% Voeg hier je eigen hoofdstukken toe die de ``corpus'' van je bachelorproef
+% vormen. De structuur en titels hangen af van je eigen onderzoek. Je kan bv.
+% elke fase in je onderzoek in een apart hoofdstuk bespreken.
+
+
+
+%\input{...}
+%\input{...}
+%...
+
+\input{conclusie}
+
+%---------- Bijlagen -----------------------------------------------------------
+
+\appendix
+
+\chapter{Onderzoeksvoorstel}
+
+Het onderwerp van deze bachelorproef is gebaseerd op een onderzoeksvoorstel dat vooraf werd beoordeeld door de promotor. Dat voorstel is opgenomen in deze bijlage.
+
+% TODO: 
+\section*{Samenvatting}
+  Dankzij nieuwe technologieën is het huren van een locker op festivals eenvoudig. Bij de locker units van het bedrijf Lockit Rentals kunnen lockers geopend worden met behulp van QR-codes. Deze worden voor aanvang van het evenement online verkocht. QR-codes zijn zo ontworpen dat deze niet kunnen onthouden worden. Wanneer de QR-code scanner moeite heeft met het symbool uit te lezen of bezoekers hun QR-code verliezen, spelen ze hierdoor de toegang tot hun locker kwijt. Implementatie van nieuwe technologieën kan ervoor zorgen dat de QR-code scanners geoptimaliseerd worden. Bij verlies van de toegangscode, kan de huurder rekenen op een geautomatiseerde support chatbot die hun assisteert om verloren QR-codes opnieuw te genereren. Dit resulteert in meer gebruiksgemak naar de klanten toe en minder moeilijkheden tijdens uitbating van lockers.
+
+
+% Verwijzing naar het bestand met de inhoud van het onderzoeksvoorstel
+%\input{../voorstel/VanDorpeLukas-BPvoorstel}
+% door foute aanmaak voorstel moet ik het manueel doen
+
+\section{Introductie}%
+\label{sec:introductie}
+
+Tegenwoordig staan festivals en evenementen heel ver op het vlak van technologie. Toegangstickets zijn voorzien van QR-codes en kunnen online gekocht worden, geld opladen op festival bandjes waarmee bezoekers overal contactloos kunnen betalen, etc. De innovatie om de lockerverhuur op evenementen te digitaliseren en te moderniseren komt vanuit de veranderde noden en behoeften van festivalgangers. Onderzoek gaat doeltreffend zijn voor de implementatie van gebruiksvriendelijke technieken bij de verhuur van lockers.
+
+Begin 2022 kwamen de oprichters van Lockit Rentals, Wannes Van Dorpe en Sebastien Vandenhouten, op de markt met nieuwe QR-units. Bij het huren van een locker ontvangt de klant een QR-code die als toegangscode dient voor het openen van een kluisje. Met die unieke QR-code kunnen klanten hun persoonlijke spullen veilig opbergen en de locker onbeperkt openen voor een vaste opgelegde periode. 
+
+Bij Lockit Rentals zijn er twee opties om lockers te verhuren. De eerste mogelijkheid is het verkopen van gedrukte kaartjes met QR-codes aan de kassa. Dit brengt echter hoge personeelskosten met zich mee. Daarnaast kan men ook kiezen om de QR-units standalone uit te baten. Dit houdt in dat Lockit Rentals de units op locatie levert en vanop afstand alles monitort. Hierbij worden de QR-codes online verkocht. De problemen ontstaan als de QR-codes niet meer uitgelezen kunnen worden of wanneer de klant zijn/haar QR-code verliest. Deze problemen kunnen zowel gebaseerd zijn op een fout in de hardware als in de software. Vanuit deze probleemstelling formuleert dit onderzoek een oplossing.  
+
+
+%---------- Stand van zaken ---------------------------------------------------
+
+\section{State-of-the-art}%
+\label{sec:state-of-the-art}
+
+Bij lockerverhuur bestaan er drie verschillende sloten: digitale pincodes, sleutelsloten en vernieuwde technologieën. Als eerste zijn er sloten met een digitale pincode, eventueel gedrukt op een kaartje. Deze zijn erg populair bij festivalgangers aangezien deze makkelijk te onthouden zijn, net zoals een pincode van een smartphone.
+
+De meest eenvoudige manier om persoonlijke bezittingen veilig op te bergen is het kluisje vastmaken met een sleutel. Deze manier van lockeruitbating wordt minder vaak gebruikt op festivals, aangezien het mogelijk is om de sleutel te verliezen. Daarbovenop bestaat er geen mogelijkheid om de locker units standalone te laten draaien wanneer men kiest voor sleutelsloten. 
+
+De laatste jaren zijn nieuwe technologieën op de markt gekomen voor het openen van een kluisje. Eén van deze technologieën is het openen van een locker met een vooraf aangemaakte QR-code.
+
+
+\subsection{QR-codes}}%
+\label{sec:QR-codes}
+
+Een QR-code is een machinaal leesbaar optisch label met informatie over het bijhorend product \autocite{Chang2014}. In dit onderzoek is het product de toegangscode voor het openen van een locker. QR-code staat voor \textit{Quick Response code} en is een soort matrix streepjes code \autocite{Tiwari2016}. Het is een tweedimensionale code die informatie, zoals tekst, URL of andere data bevat \autocite{Shin2012}. De QR-codes zijn zodanig ontworpen dat ze door een smartphone uitgelezen kunnen worden aan een hoge snelheid \autocite{Tiwari2016}. De grootte van de QR-code kan aangepast worden naarmate de hoeveelheid data die hierin gestockeerd moet worden \autocite{Tiwari2016}. Deze eigenschappen zijn voordelig bij het geven van dergelijke QR-codes die dienen als toegangscode.
+
+Het gebruik van QR-codes als toegangscode kan leiden tot enkele risico’s. Zo is het bijvoorbeeld onmogelijk om een QR-code te onthouden. Daarnaast kan de scanner van een QR-unit beschadigd of defect raken. Het is noodzakelijk dat de informatie die ze bevatten snel kan worden uitgelezen, ook al zijn bepaalde delen van het symbool beschadigd. Hierbij hebben QR-codes het voordeel dat ze een foutcorrectiefunctie bevatten zodat een QR-code die 30\% beschadigd of bevlekt is nog steeds kan worden uitgelezen \autocite{Tiwari2016}. QR-codes zijn ook ontworpen zodanig dat ze vanuit elke hoek scanbaar zijn. Dit is één van de voordelen van de tweedimensionale eigenschap van de QR-code \autocite{Incorporated2014}. 
+
+De reden van QR-code gebruik is dat de gegenereerde code grote hoeveelheden data bevat die niet onthouden hoeft te worden door de huurder. QR-codes bevatten tien keer meer informatie dan een barcode bij eenzelfde grootte \autocite{Chang2014}. Met deze data kan elk kluisje gelinkt worden aan de persoon die de locker heeft gehuurd op een specifiek evenement.
+
+Verder speelt de soort camera een enorme rol bij het uitlezen van gegevens \autocite{Skurowski2022}. De plaatsing hiervan is eveneens van cruciaal belang. Lichtinval op de camera vormt één van de grootste problemen, waardoor het systeem snelheid kan verliezen bij het uitlezen. Dit kan ook nadelige gevolgen hebben voor het gebruiksgemak van de huurder. Deze probleemstelling is tot op de dag van vandaag nog steeds relevant bij Lockit Rentals.
+
+
+\subsection{Chatbot}}%
+\label{sec:Chatbot}
+
+Aangezien het lezen van een QR-code onmogelijk is met het menselijk oog kan deze niet gememoriseerd worden \autocite{Walsh2009}. Als men de QR-code kwijtraakt, vervalt de mogelijkheid om het gehuurde kluisje te openen. Met dit probleem kreeg Lockit Rentals veel te maken tijdens de zomermaanden van 2022. Om dit probleem te onderzoeken, zal er een oplossing moeten komen om vanop afstand de mensen hun aangekochte QR-code terug te laten genereren. Het gebruik van een chatbot kan hierbij helpen \autocite{Brandtzaeg2017}. 
+
+Er bestaan verschillende soorten chatbots \autocite{Tamrakar2021}. In dit onderzoek ligt de focus op het gebruik van een task based chatbot die, net zoals een frequently asked questions (FAQ) bot, met een databank werkt \autocite{Tamrakar2021}. De chatbot legt vooropgestelde onderwerpen voor om zo het best passend antwoord te geven \autocite{Adamopoulou2020}. De chatbot voert gevraagde acties uit en haalt gewenste informatie op uit de databank \autocite{Adamopoulou2020}. Deze informatie zal de toegangscode zijn van de gebruiker van zijn gehuurde locker. 
+
+
+
+
+%---------- Methodologie ------------------------------------------------------
+\section{Methodologie}%
+\label{sec:methodologie}
+
+Afgelopen zomer ondervond Lockit Rentals dat de snelheid bij het lezen van QR-codes problematisch kan zijn. Zeker wanneer dit probleem veroorzaakt wordt door onveranderbare factoren, zoals hevige zon of felle regen \autocite{Girisha2022}.
+Deze hinderpaal wordt onderzocht door simulaties op te stellen \autocite{Skurowski2022}. Hieruit kunnen conclusies genomen worden om zo de functionaliteit te verbeteren voor effectieve doeleinden van de QR-Units. 
+
+Door een aanpassing van attributen in de simulaties zoals soorten camera’s of een andere opstelling van het scansysteem, kan het algoritme beelden anders gaan filteren \autocite{Girisha2022}. De attributen die in opstellingen gewijzigd worden zijn de soort QR-code scanner, keuze van juiste belichting, alsook de instellingen van de scanners, zoals scherpte of dieptezicht. Waardoor de snelheid bij het uitlezen van gemaakte QRcodes positief beïnvloed kan worden. Daardoor zal de communicatie tussen hardware en software vlotter verlopen. 
+
+Het kwijtspelen van een gekregen QR-code is problematisch bij standalone uitbatingen, omdat er niemand aanwezig is om de kwijtgespeelde QR-code opnieuw te laten genereren. Dit belemmert de toegang van mensen tot hun persoonlijke spullen. Een implementatie van een geautomatiseerde chatbot zal kunnen aantonen dat het eenvoudig is om een verloren QR-code terug op te halen. De Proof of concept zal nauw samenwerken/geintegreerd worden met de daadwerkelijke software die op de QR-units draaien.
+
+Bij het maken van de daadwerkelijke chatbot applicatie zullen Python en Javascript aan bod komen. De nodige informatie wordt uit de database gehaald. Ik zal hierbij gebruik maken van een Firebase databank, aangezien deze ook uitgebreid gebruikt wordt in de daadwerkelijke software. Ook bestaan er goede platformen die het back-end gedeelte, inclusief het AI gedeelte, van een chatbot op zich nemen. Een voorbeeld hiervan is Dialogflow. \autocite{Cloud} Het voordeel is dat dit platform nauw samenwerkt met Firebase.
+
+Indien dit een te uitgebreide en te verfijnde manier van werken blijkt te zijn, zal er overgeschakeld worden naar een vast vragen principe. De klant kan kiezen tussen enkele mogelijke vragen waarop de chatbot zich vervolgens aanpast en de klant van een passend antwoord voorziet.
+
+Het visueel maken van de chatbot kan met aangepaste tools, ofwel door het zelf programmeren van visuele componenten. Indien dit het geval is, zal ik dit schrijven in Angular.
+
+
+
+
+
+%---------- Verwachte resultaten ------------------------------x----------------
+\section{Verwacht resultaat, conclusie}%
+\label{sec:verwachte_resultaten}
+
+Volgend festivalseizoen wil Lockit Rentals uitpakken met een volledig vernieuwd systeem, zodat de lockers grotendeels standalone kunnen draaien. Het innovatieve systeem moet ook een verbetering zijn op vlak van leessnelheid van de QR-codes. Hierbij zullen plaatsing en soort van de camera cruciaal zijn. 
+
+Voor de huurder zullen de aangepaste technologieën een verbetering zijn op vlak van gebruiksvriendelijkheid. Ook de manier van klantenservice wordt veranderd omwille van de technologische chatbot. Deze zal snel antwoorden bieden als de gebruiker problemen ondervindt. Het verliezen van de toegangscode voor het openen van een locker is hiervan een voorbeeld.
+
+Het doel van dit onderzoek is het verbeteren van gebruikte technologieën, waardoor Lockit Rentals in de toekomst minder bemande uitbatingen zal moeten organiseren. Als gevolg daarvan zal de verkoop, populariteit, omzet en winst van het bedrijf groeien.
+
+
+
+%%---------- Andere bijlagen --------------------------------------------------
+% TODO: Voeg hier eventuele andere bijlagen toe. Bv. als je deze BP voor de
+% tweede keer indient, een overzicht van de verbeteringen t.o.v. het origineel.
+%\input{...}
+
+%%---------- Backmatter, referentielijst ---------------------------------------
+
+\backmatter{}
+
+\setlength\bibitemsep{2pt} %% Add Some space between the bibliograpy entries
+\printbibliography[heading=bibintoc]
+
+\end{document}
