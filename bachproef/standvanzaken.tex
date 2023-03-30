@@ -116,17 +116,92 @@ De reservatie en tot stand brengen van een QR-code zijn twee aparte concepten. H
 
 \textit {De toelichting die hieronder weergeven wordt, is een vereenvoudigde voorstelling van de effectieve implementatie. Dit onderdeel van de toepassing is niet het hoofdonderwerp van deze bachelorproef, op deze analogie wordt niet verder ingegaan.}
 
-De gegevens van de klant worden opgevraagd als hij/zij een QR-code wenst te kopen. Aan de hand van deze gegevens wordt er een gebruikersaccount automatisch aangemaakt en worden de gegevens bijgehouden. Deze aanpak maakt het mogelijk om nadien een koppeling te leggen tussen lockernummer en gebruiker. 
+\vspace{7}
+De gegevens van de klant worden opgevraagd als hij/zij een QR-code wenst te kopen. Aan de hand van deze gegevens wordt er een gebruikersaccount automatisch aangemaakt en worden de gegevens bijgehouden \ref{lst:ophalenUser}. Deze aanpak maakt het mogelijk om nadien een koppeling te leggen tussen lockernummer en gebruiker.
 
-\begin{listing}[!ht]
-    \begin{minted}{c}
-        #include <stdio.h>
-        int main() {
-            printf("Hello, World!"); /*printf() outputs the quoted string*/
-            return 0;
-        }
-    \end{minted}
-    \caption{Hello World in C}
-    \label{listing:2}
-\end{listing}
+\begin{lstlisting}[caption={Ophalen de zopas aangemaakte gebruiker zijn gegevens indien hij in het huur proces terecht gekomen is.}, label={lst:ophalenUser}]
+    /**
+    * Get the user auth uid
+    */
+    const userAuthUid: string | undefined = context.auth?.uid;
+    
+    if (!userAuthUid) {
+        functions.logger.error('No authenticated user was found', { data: data });
+        throw new functions.https.HttpsError(
+        'invalid-argument',
+        'Something went wrong authenticating your device.'
+        );
+    }
+    
+    /**
+    * If this user is registerd, get his info
+    */
+    let user: User;
+    if (context?.auth?.token.email) {
+        const userd = await db.collection('users').doc(userAuthUid).get();
+        user = userd.data() as User;
+    }
+\end{lstlisting}
+
+Bij het huurproces van een locker moet een huurder het festival aanduiden waar hij/zij de locker wil huren. Niets sluit uit dat de lockers operationeel zijn op twee verschillende locaties. Daarna heeft de huurder de keuze om het formaat te selecteren en als deze optie beschikbaar is hoelang de huurtijd zal zijn. Echter is het verstrijken van deze details over het geselecteerde evenement noodzakelijk voor de opbouw van de QR-code. De QR-code wordt gegenereerd op basis van de beschikbare lockers die aanwezig zijn op het geselecteerde evenement. De verwijzing naar  implementatie \ref{lst:ophalenEventInfo}.
+
+\begin{lstlisting}[caption={Het informatie ophalen van de geselecteerde locatie. Aan de hand van geselecteerde evenement kan er gegevens uit de databank gehaald worden.}, label={lst:ophalenEventInfo}]
+    /**
+    * Get more info about the shop
+    */
+    const shopSnap = await db.collection('shop').doc(data.shopId).get();
+    const shop: Shop = shopSnap.data() as Shop;
+    
+    /**
+    * Check if selected option is active in shop
+    */
+    if (!shop.activeOptions?.find((o) => o.optionId === data.optionId)) {
+        functions.logger.error(
+        'Attempting reservation creation for non-active option',
+        { data: data }
+        );
+        throw new functions.https.HttpsError(
+        'invalid-argument',
+        'This option is not yet active.'
+        );
+    }
+    
+    /**
+    * Get more info about the option and location
+    */
+    const optionSnap = await db
+    .collection('shop')
+    .doc(data.shopId)
+    .collection('options')
+    .doc(data.optionId)
+    .get();
+    const option: ShopOption = optionSnap.data() as ShopOption;
+    
+    if (!option) {
+        functions.logger.error('Can not find option for id', { data: data });
+        throw new functions.https.HttpsError(
+        'invalid-argument',
+        'Something went wrong.'
+        );
+    }
+    
+    const locationSnap = await db
+    .collection('shop')
+    .doc(data.shopId)
+    .collection('locations')
+    .doc(option.location)
+    .get();
+    const location: ShopLocation = locationSnap.data() as ShopLocation;
+    
+    if (!location) {
+        functions.logger.error('Can not find location for id', { data: data });
+        throw new functions.https.HttpsError(
+        'invalid-argument',
+        'Something went wrong.'
+        );
+    }
+\end{lstlisting}
+
+
+
 
