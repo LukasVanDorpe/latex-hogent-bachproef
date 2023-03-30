@@ -343,7 +343,7 @@ De tool Mollie is een online betalingsservice deze wordt gehanteerd om de betali
     }
     \end{lstlisting}
 
-Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde locker nummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevind word aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is. \ref{lst:voltooidebetaling}.
+Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde locker nummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevind word aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is \ref{lst:voltooidebetaling}.
 
 
 \begin{lstlisting}[caption={Voltooide betaling roept de creatie QR-code methode op. Hierbij gebeurt een status update van de vooraf aangemaakte reservatie.}, label={lst:voltooidebetaling}]
@@ -397,5 +397,202 @@ Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiem
 \end{lstlisting}
 
 
+\subsubsection{Creatie QR-code na succesvolle betaling.}%
+\label{sec:opbouwQR-codeVerkoop123}
+
+Om de QR-code te tonen op de mobiele applicatie hebben we componenten nodig om de gegenereerde QR-code visueel te tonen \ref{fig:qrCodeGebruiker} \ref{fig:qrCodeAdmin}. Hierdoor kan de koper zowel de code scannen op zijn/haar telefoon als op een afgedrukt kaartje \autocite{Chow2016}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F5_qrcodeKoper.png}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{Een voorbeeld van een QR-code die gekocht is door een gebruiker voor specifieke lockertoegang op een evenement.}
+    \label{fig:qrCodeGebruiker}
+\end{figure}}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F6_qrcodeAdmin.png}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{Een voorbeeld van een QR-code die gegeneerd is door een logistieke medewerker met de juiste bevoegdheden voor specifieke lockertoegang op een evenement.}
+    \label{fig:qrCodeAdmin}
+\end{figure}}
+
+\newpage
+Aangezien de generatie van een QR-code dat voorgesteld is als afbeelding wat front-end matige materie is, zal onderstaande code de werking weergeven \ref{lst:qrComponent}. 
+
+\begin{lstlisting}[caption={Typescript code voor een visuele QR-code aan te maken}, label={lst:qrComponent}]
+    await db.runTransaction(async (transaction) => {
+        export class QrcodeViewerComponent implements OnInit {
+            activeQrCode: string = 'EjIQT51wpdf6Is1r+R5+mt8aU0waHVKVK9lzvhXRV4w=';
+            
+            @Input() data: string = '';
+            @Input() deCryptedData: QrCodeData = QrCodeData.createEmptyQrCodeData();
+            
+            secondsLeft$: Observable<number> = new BehaviorSubject(0);
+            
+            private qr_opts = {
+                errorCorrectionLevel: 'H',
+                type: 'image/jpeg',
+                quality: 1,
+                margin: 10,
+                color: {
+                    dark: '#3880ff',
+                },
+            };
+            
+            constructor(private modalController: ModalController) {
+                this.secondsLeft$ = interval(1000).pipe(
+                filter(
+                () => !!this.deCryptedData.validFrom && !!this.deCryptedData.validTo
+                ),
+                map(() => this.deCryptedData.getSecondsLeftUntilEnd())
+                );
+            }
+            
+            ngOnInit(): void {
+                qrcode
+                .toDataURL(this.data, this.qr_opts as QRCodeToDataURLOptions)
+                .then((qr) => {
+                    this.activeQrCode = qr;
+                });
+            }
+            
+            dismissModal() {
+                this.modalController.dismiss();
+            }
+        }
+    \end{lstlisting}
+
+Lijn 3: De variabele ‘activeQrCode’ van type string is de publieke sleutel die wordt gebruikt om de QR-code te ontcijferen. \\
+Lijn 10 – 18: De ingestelde eigenschappen die gedefinieerd zijn om de QR-code aan te maken. Men kan de code naar zijn behoefte configureren \autocite{Sutheebanjard2010}. Een belangrijke waarde is hierbij de ‘ErrorCorrectionLevel’, deze veranderd doorheen de applicatie op basis waar de QR-code afgebeeld moet worden. Hierdoor mag de QR-code voor 30\% beschadigd of gescheurd zijn. De scanner zal alsnog de afbeelding succesvol kunnen detecteren \autocite{Tiwari2016}. \\
+Lijn 29– 35: De tool die gehanteerd wordt om de QR-code te genereren is de bibliotheek ‘qrcode’ \autocite{pypi2023}. 
+
+\newpage
+\section{Het incrypteren en decrypteren van QR-codes is een QR-code opgebouwd?}%
+\label{sec:encryptQR-code}
+
+Eerder in de werking van de QR-units is de validatie NaCL genaamd ‘Networking And Cryptography Library’ aan bod gekomen \autocite{Bernstein}. De hoofdfunctionaliteit van de recente software bibliotheek is het vercijferen en ontcijferen van bestanden. Het biedt alle kernbewerkingen aan die betrekking hebben om cartografische benodigdheden op hoger niveau te bouwen \autocite{Bernsteina}.
+
+In de applicatie van Lockit Rentals is er gebruik gemaakt van TweetNaCl.js. TweetNaCl is een compacte versie van de implementatie bibliotheek NaCL \autocite{Bernstein2014} \autocite{Bernsteinb}. Deze bevat verschillende encryptie en onderteken algoritmes op basis van ed25519 \autocite{Bernstein2011}. Ed25519 gebruikt het onderliggende algoritme Curve25519. Curve25519 is vooral ontworpen om snel, efficiënt en op een effectieve manier sleutelwisseling te gaan uitvoeren. Zo worden beide partijen op de hoogte gesteld van hun gezamenlijke sleutel \autocite{Bernstein2006}. Ed25519 aan de andere kant heeft andere prioriteiten. Deze zal op een betere en sneller manier algoritmen uitvoeren specifiek voor digitale ondertekeningen gaan uitvoeren. \autocite{Bernstein2011}. In het kader van smart locker systemen wordt de encryptie gebruikt om de QR-codes digitaal te ondertekenen. De reden van gebruik ligt bij een voordeel van TweetNaCL.js die heel voordelig uitkomt bij de gegeven implementatie. Het heeft namelijk als voordeel dat deze beschikt over kleine onderteken sleutels ook wel ‘signatures’ genoemd \autocite{Bernstein2011}. Hoe minder gestockeerde data in de QR-code kleiner de afdruk is van de code \autocite{Chow2016}.
+
+Deze term van algoritme wordt ‘signing’ genoemd. Het algoritme zal verifiëren of de data in de QR-code onveranderd blijft gedurende het gehele proces \autocite{Bernsteinb}. Het proces begint bij het tot stand brengen van een QR-code tot aan het scannen ervan.
+
+De documentatie website van TweetNaCl.js laat de verschillende encryptie tool gratis uitproberen \autocite{Bernsteinb}. Een concreet voorbeeld hieronder geeft duiding hoe je een specifiek bericht kan ondertekenen. Hieruit kan aangetoond worden of het bericht al dan niet is aangepast na de creatie \autocite{Bernstein2014}.
+
+\subsubsection{Uitgewerkt voorbeeld van digitale ondertekening op een standaard bericht.}%
+\label{sec:voorbeeldDigitaleSigning}
+
+Bij het ondertekenen van een bericht heeft het algoritme nood aan één geheime sleutel evenals één publieke sleutel
+\ref{fig:privatePublicKey}. De geheime sleutel wordt gebruikt om nadien de versleutelde code te decrypteren.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F7_privatePublicKeys.png}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{De publieke en private sleutel voor encryptie aan de hand van TweetNaCL.js.}
+    \label{fig:privatePublicKey}
+\end{figure}}
+ \newpage
+In deze illustratie wordt een bericht dat afgebeeld staat hieronder \ref{fig:encryptionBericht} meegeven met de functie van TweetNaCl. Met als doel dit bericht te laten ondertekenen aan de hand van de geheime sleutel.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F8_messageEncryption.png}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{Het bericht dat ondertekend moet worden encryptie aan de hand van TweetNaCL.js.}
+    \label{fig:encryptionBericht}
+\end{figure}}
+
+Bij ondertekening van dit bericht ontstaat er een unieke handtekening  \ref{fig:signatureQrcode} als zijnde een tekenreeks. Aan de hand van deze code kan de ontvanger verifiëren dat het bericht gedurende de transactie niet gewijzigd is.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F9_signature.png}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{De gegenereerde digitale handtekening aan de hand van TweetNaCL.js}
+    \label{fig:signatureQrcode}
+\end{figure}}
+
+Om na te gaan of dit bericht zijn oorspronkelijke data bevat zal de functie ‘verify’ opgeroepen worden. In het geval dat dit bericht niet in oorspronkelijke status bevindt, zal de functie een foutboodschap retourneren \ref{fig:verifyFailed} . Als de methode geen foutboodschap weergeeft, kan men concluderen dat deze data origineel is \autocite{Bernstein2014}. Zoals word weergegeven in figuur \ref{fig:verified}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F10_verified.png}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{Bewijs dat bericht zich in originele  staat bevindt.}
+    \label{fig:verified}
+\end{figure}}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F11_failedVerify.png}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{Bewijs dat bericht zich in geen originele  staat bevindt.}
+    \label{fig:verifyFailed}
+\end{figure}}
+\\
+\newpage
+\newpage
+\subsubsection{Uitgewerkt voorbeeld van digitale ondertekening op een aangemaakte QR-Code.}%
+\label{sec:voorbeeldDigitaleSigningQRCode}
+
+Bij de implementatie van deze smart locker technologie is het bericht dat standaard meegegeven wordt de QR-code data van type JSON object. Deze kan niet ondertekend worden zolang het niet geconverteerd wordt naar een tekstueel gegeven. De omvorming van een JSON object naar een string wordt verwerkt door de functie ‘deCodeBase64’. Deze functie zal de reeks decoderen terug naar het oorspronkelijke binair formaat \autocite{Josefsson2006}.
+
+De functie ‘NaCL. Sign()’ aanvaardt twee parameters \ref{lst:encryptionCode}. In de eerste plaats nemen we de locker informatie op. Deze informatie beschikt over de locker nummer, creatiedatum QR-code en verval datum QR-code \ref{lst:essentieleQrdata}. Vervolgens heeft de functie een geheime sleutel nodig om de ondertekening te kunnen uitvoeren.
+
+\begin{lstlisting}[caption={Data object met de naam smallItem bevat de essentiele data om een locker te openen.}, label={lst:essentieleQrdata}]
+    export async function generateQrCodeWithRecord(qrData: {
+        lockerNumber: any;
+        start: number;
+        end: number;
+        color: string;
+        image: string;
+        location: string;
+        name: string;
+        periodName: string;
+    }) {
+        const smallItem = convertToSmallPayload(
+        qrData.lockerNumber,
+        qrData.start,
+        qrData.end
+        );
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Digitale ondertekening van QR-code data.}, label={lst:encryptionCode}]
+    const data = nacl.sign.detached(
+    decodeUTF8(JSON.stringify(smallItem)),
+    decodeBase64(
+    'Hier komt de private key'
+    )
+    );
+    \end{lstlisting}
 
 
+Door de twee gecreëerde objecten, QR-data en de digitale handtekening samen te voegen ontstaat er een JSON object genaamd ‘createdCode’ \ref{lst:createCode}. De code wordt achteraf omgevormd naar een tekstueel formaat.
+
+\begin{lstlisting}[caption={Samenstellen van object, locker informatie en verificatie code.}, label={lst:createCode}]
+    const createdCode = Buffer.from(
+    JSON.stringify({ d: smallItem, v: encodeBase64(data) })
+    ).toString('base64');
+\end{lstlisting}
+
+Als illustratie maken we een QR-code aan op de applicatie die bestemd is voor locker nummer één. De geldigheidsduur van de code is tien minuten. Het request kan onderschept worden om zo de data te analyseren. We beelden het object af in figuur \ref{fig:dataobjectQR}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F12_requestQrCode.png}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{Het data object bij de creatie van locker nummer 1 als logistieke medewerker. Deze heeft een tijdspanne van tien minuten.}
+    \label{fig:dataobjectQR}
+\end{figure}}
+
+\newpage
+Als we dieper in de materie duiken is de aangemaakte code zichtbaar als antwoord op het creatieverzoek. De tekstuele code voorgesteld als base64 string ziet er als volgt uit: \\
+ “eyJkIjp7Im4iOiIxIiwiZiI6MTY3OTc0MzIyMSwidCI6MTY3OTc0Mzg4MX0sInYiOiJLYT
+ cwTmg4WUo3RlY0NmNiKythNlN3b21vczFFVURiQlpxajl2ZDhpNlNUWGZHU003eVN
+ 2ZGw0ZEs5WGp3clpyVnNV RlpHR3E3RVJGSlJQR09HTkxEdz09In0=".
+ 
+\vspace{7}
+
+Deze code wordt achter een vaste ingestelde URL geplaatst zodanig dat de QR-code gemakkelijk gedeeld kan worden. Het delen of doorsturen van een QR-code is een eenvoudig proces voor de huurder. Als de QR-code gedeeld wordt een link gecreëerd dat verwijst naar de web applicatie van Lockit Rentals. De applicatie zal de base64 string die meegegeven wordt in de link ontcijferen en een afbeelding van de QR-code genereren.

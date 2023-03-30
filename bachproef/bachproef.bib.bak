@@ -104,4 +104,79 @@
   urldate = {2023-03-30},
 }
 
+@SoftwareModule{docs2023,
+  author = {Mollie docs},
+  url    = {https://docs.mollie.com/reference/v2/payments-api/create-payment},
+  year   = {2023},
+}
+
+@Article{Sutheebanjard2010,
+  author = {Sutheebanjard, P. and Premchaiswadi, Wichian},
+  date   = {2010-11},
+  title  = {QR-code generator},
+  doi    = {10.1109/ICTKE.2010.5692920},
+  pages  = {89-92},
+}
+
+@SoftwareModule{pypi2023,
+  author   = {pypi},
+  subtitle = {QR-code generator},
+  url      = {https://pypi.org/project/qrcode/},
+  year     = {2023},
+}
+
+@SoftwareModule{Bernstein,
+  author   = {Daniel J. Bernstein},
+  subtitle = {NaCl: Networking and Cryptography library},
+  url      = {https://nacl.cr.yp.to/index.html},
+  urldate  = {2023-03-28},
+}
+
+@Article{Bernsteina,
+  author       = {Bernstein, Daniel J},
+  journaltitle = {Networking and Cryptography library},
+  title        = {Cryptography in nacl},
+  number       = {385},
+  pages        = {62},
+  volume       = {3},
+}
+
+@InProceedings{Bernstein2014,
+  author    = {Daniel J. Bernstein and Bernard van Gastel and Wesley Janssen and Tanja Lange and Peter Schwabe and Sjaak Smetsers},
+  booktitle = {International Conference on Cryptology and Information Security in Latin America},
+  date      = {2014},
+  title     = {TweetNaCl: A Crypto Library in 100 Tweets},
+}
+
+@WWW{Bernsteinb,
+  author  = {Daniel J. Bernstein},
+  title   = {tweetnacl-js},
+  url     = {https://github.com/dchest/tweetnacl-js/blob/master/README.md#documentation},
+  urldate = {2023-03-25},
+}
+
+@InProceedings{Bernstein2011,
+  author       = {Bernstein, Daniel and Duif, Niels and Lange, Tanja and Schwabe, Peter and Yang, Bo-Yin},
+  date         = {2011-09},
+  title        = {High-Speed High-Security Signatures},
+  doi          = {10.1007/978-3-642-23951-9_9},
+  isbn         = {978-3-642-23950-2},
+  pages        = {124-142},
+  volume       = {2},
+  journaltitle = {Journal of Cryptographic Engineering},
+}
+
+@InProceedings{Bernstein2006,
+  author    = {Bernstein, Daniel J.},
+  booktitle = {Public Key Cryptography - PKC 2006},
+  date      = {2006},
+  title     = {Curve25519: New Diffie-Hellman Speed Records},
+  editor    = {Yung, Moti and Dodis, Yevgeniy and Kiayias, Aggelos and Malkin, Tal},
+  isbn      = {978-3-540-33852-9},
+  location  = {Berlin, Heidelberg},
+  pages     = {207--228},
+  publisher = {Springer Berlin Heidelberg},
+  abstract  = {This paper explains the design and implementation of a high-security elliptic-curve-Diffie-Hellman function achieving record-setting speeds: e.g., 832457 Pentium III cycles (with several side benefits: free key compression, free key validation, and state-of-the-art timing-attack protection), more than twice as fast as other authors' results at the same conjectured security level (with or without the side benefits).},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
