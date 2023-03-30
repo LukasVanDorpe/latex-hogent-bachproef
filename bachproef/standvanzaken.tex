@@ -111,7 +111,7 @@ Hoewel een QR-code een standaard grafische voorstelling is, kan de grootte van e
 
 De reservatie en tot stand brengen van een QR-code zijn twee aparte concepten. Het systeem is geschreven op basis van flexibiliteit en uitbreidbaarheid.
 
-\subsubsection{Aanmaken reservatie en betalingsverzoek voor verkoop}%
+\subsubsection{De reservatie voor een toegangscode van een locker}%
 \label{sec:opbouwQR-codeVerkoop1}
 
 \textit {De toelichting die hieronder weergeven wordt, is een vereenvoudigde voorstelling van de effectieve implementatie. Dit onderdeel van de toepassing is niet het hoofdonderwerp van deze bachelorproef, op deze analogie wordt niet verder ingegaan.}
@@ -201,6 +201,107 @@ Bij het huurproces van een locker moet een huurder het festival aanduiden waar h
         );
     }
 \end{lstlisting}
+
+Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschikbaar is, zal er een reservatie aangemaakt worden en meteen bewaard worden in een databank. Het code die hiervoor verantwoordelijk is kan je terugvinden hieronder \ref{lst:aanmakenReservatie}.
+
+\begin{lstlisting}[caption={De creatie van een reservatie voor het huren van een locker. Deze reservatie wordt bijgehouden in de databank}, label={lst:aanmakenReservatie}]
+    /**
+    * Create the reservation
+    */
+    const createdReservationRef = db
+    .collection('shop')
+    .doc(data.shopId)
+    .collection('reservations')
+    .withConverter(converter<ShopReservation>())
+    .doc();
+    
+    await transaction.set(createdReservationRef, {
+        id: createdReservationRef.id,
+        /**
+        * Here we decide if the reservation should be filled asap without payment or if a payment is needed
+        */
+        status: determineReservationStatus(option, data, context, user),
+        customerAuthId: userAuthUid,
+        customerOrigin: context.rawRequest.headers.referer,
+        customerEmail: data.customerEmail,
+        customerName: data.customerName,
+        customerPhone: data.customerPhone,
+        lockerType: data.lockerType,
+        shopId: shopSnap.id,
+        shopName: shop.name,
+        shopAvatar: shop.avatar,
+        optionColor: option.color,
+        optionId: optionSnap.id,
+        optionLocationId: locationSnap.id,
+        optionLocationName: location.name,
+        optionName: option.name,
+        optionPeriodFrom: option.periodFrom,
+        optionPeriodTo: option.periodTo,
+        optionType: option.optionType,
+        priceToPay: option.pricePerType[data.lockerType],
+        manual: !!data.manual,
+        reservationCreated: moment().unix(),
+    });
+    
+    return Promise.resolve(createdReservationRef);
+});
+\end{lstlisting}
+
+\subsubsection{Het betalingsverzoek voor een toegangscode van een locker}%
+\label{sec:opbouwQR-codeVerkoop12}
+
+Wanneer de databank een nieuwe reservatie constateert, word er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen het betalingsverzoek gecreëerd mag worden. 
+De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard beschadigd is of als ze hun toegangscode tot de locker verloren zijn. Bij het aanmaken van toegangscodes bij logistieke medewerkers verloopt het proces op een alternatieve wijze.  Deze springen over het betalingsproces en verwerven direct een geldige QR-code. Zonder de aangemaakte betaling veld in de databank op te slaan.  \ref{lst:aanmakenBetaling}
+
+\begin{lstlisting}[caption={Valideerd of er een betaling van toepassing is. Indien nodig creëert het een betaling en bewaard deze in de databank}, label={lst:aanmakenBetaling}]
+    /**
+    * No action is needed but to move the status along
+    */
+    if (createdReservation.status === ReservationStatus.NO_PROVIDER_NEEDED) {
+        await snap.ref.update({
+            status: ReservationStatus.OPEN,
+        });
+    }
+    
+    /**
+    * A payment is needed
+    */
+    if (createdReservation.status === ReservationStatus.WAITING_FOR_PROVIDER) {
+        const mollieApiKey = process.env.MOLLIE_API_KEY || '';
+        
+        const mollie = await createMolliePayment(mollieApiKey, createdReservation);
+        
+        /**
+        * Create the payment
+        */
+        const paymentRef = db
+        .collection('shop')
+        .doc(createdReservation.shopId)
+        .collection('payments')
+        .withConverter(converter<ShopPayment>())
+        .doc();
+        
+        await paymentRef.set({
+            id: paymentRef.id,
+            reservationId: createdReservation.id,
+            customerEmail: createdReservation.customerEmail,
+            customerName: createdReservation.customerName,
+            customerPhone: createdReservation.customerPhone,
+            lockerType: createdReservation.lockerType,
+            optionColor: createdReservation.optionColor,
+            optionId: createdReservation.optionId,
+            optionLocationName: createdReservation.optionLocationName,
+            optionName: createdReservation.optionName,
+            priceToPay: createdReservation.priceToPay,
+            shopName: createdReservation.shopName,
+            status: ShopPaymentStatus.PENDING,
+            provider: PaymentProvider.MOLLIE,
+            mollieData: {
+                id: mollie.id,
+            },
+        });
+\end{lstlisting}
+
 
 
 
