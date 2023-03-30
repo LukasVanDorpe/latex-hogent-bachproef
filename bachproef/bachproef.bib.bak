@@ -97,4 +97,11 @@
   volume = {9722},
 }
 
+@WWW{documentation,
+  author  = {Oracle Documentation},
+  title   = {Oracle7 Server Concepts Manual - Database Triggers},
+  url     = {https://docs.oracle.com/cd/A57673_01/DOC/server/doc/SCN73/ch15.htm},
+  urldate = {2023-03-30},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

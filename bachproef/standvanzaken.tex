@@ -302,6 +302,99 @@ De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard besc
         });
 \end{lstlisting}
 
+De tool Mollie is een online betalingsservice deze wordt gehanteerd om de betalingen succesvol af te ronden \autocite{docs2023}. Gelijktijdig met de betaling wordt er een interne teller bijgehouden zodat deze locker geblokkeerd wordt voor andere kopers. Als de betaling niet succesvol is, wordt de locker terug vrijgegeven na een bepaalde periode. De betaling word aangemaakt met de gekende informatie over de gewilde locker \ref{lst:aanmakenBetalingMollie}.
+
+\begin{lstlisting}[caption={Mollie betaling aanmaken met nodige data.}, label={lst:aanmakenBetalingMollie}]
+    async function createMolliePayment(
+    mollieApiKey: string,
+    reservation: ShopReservation
+    ): Promise<Payment> {
+        const mollieClient = createMollieClient({
+            apiKey: mollieApiKey,
+        });
+        return mollieClient.payments.create({
+            amount: {
+                value: reservation.priceToPay.toFixed(2),
+                currency: 'EUR',
+            },
+            description:
+            reservation.shopName +
+            ' | ' +
+            reservation.optionName +
+            ' | ' +
+            reservation.lockerType,
+            redirectUrl: reservation.customerOrigin + 'reservations/' + reservation.id,
+            webhookUrl:
+            reservation.customerOrigin?.includes('localhost') ||
+            reservation.customerOrigin?.includes('test')
+            ? 'https://europe-west2-lockit-testing.cloudfunctions.net/mollieWebhook'
+            : 'https://europe-west2-lockit-435cd.cloudfunctions.net/mollieWebhook',
+            metadata: {
+                shop: reservation.shopName,
+                reservation: reservation.id,
+                option: reservation.optionName,
+                location: reservation.optionLocationName,
+                lockerType: reservation.lockerType,
+                customer: reservation.customerName,
+                customerEmail: reservation.customerEmail,
+                customerPhone: reservation.customerPhone,
+            },
+        });
+    }
+    \end{lstlisting}
+
+Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde locker nummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevind word aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is. \ref{lst:voltooidebetaling}.
+
+
+\begin{lstlisting}[caption={Voltooide betaling roept de creatie QR-code methode op. Hierbij gebeurt een status update van de vooraf aangemaakte reservatie.}, label={lst:voltooidebetaling}]
+    await db.runTransaction(async (transaction) => {
+        /**
+        * Find a valid available locker
+        * Because we can only compare 10 units with the firestore "IN" clause we have to split up
+        */
+        
+        if (!location?.units) {
+            throw new Error('No units assigned');
+        }
+        
+        const availableLockerSnap = await getRandomLockerAvailable(
+        transaction,
+        db,
+        reservation.lockerType,
+        location?.units
+        );
+        if (!availableLockerSnap) {
+            logger.error('no-open-locker-found', {
+                reservation: reservation,
+                option: option,
+                location: location,
+            });
+            throw new Error('NO Open lockers found');
+        }
+        
+        const generatedCode = await generateQrCodeWithRecordOnTransaction(
+        transaction,
+        {
+            lockerNumber: availableLockerSnap.data().number,
+            start: option?.periodFrom as number,
+            end: option?.periodTo as number,
+            color: option?.color as string,
+            image: reservation?.shopAvatar,
+            location: location?.name,
+            periodName: option?.name as string,
+            name: reservation?.shopName,
+        }
+        );
+        
+        /**
+        * update current reservation
+        */
+        await transaction.update(reservationSnap.ref, {
+            status: ReservationStatus.FILLED,
+            accessCode: generatedCode,
+            lockerNumber: availableLockerSnap.data().number,
+        });
+\end{lstlisting}
 
 
 
