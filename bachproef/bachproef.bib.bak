@@ -87,14 +87,4 @@
   volume       = {6},
 }
 
-@InProceedings{Chow2016,
-  author = {Chow, Yang-Wai and Susilo, Willy and Yang, Guomin and Phillips, James and Pranata, Ilung and Barmawi, Ari},
-  date   = {2016-07},
-  title  = {Exploiting the Error Correction Mechanism in QR Codes for Secret Sharing},
-  doi    = {10.1007/978-3-319-40253-6_25},
-  isbn   = {978-3-319-40252-9},
-  pages  = {409-425},
-  volume = {9722},
-}
-
 @Comment{jabref-meta: databaseType:biblatex;}
