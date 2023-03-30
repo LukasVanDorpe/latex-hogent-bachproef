@@ -1,0 +1,203 @@
+% Encoding: UTF-8
+
+@Article{Belle2023,
+  author = {QRTIGER - Belle},
+  date   = {2023-02-21},
+  title  = {QR Code Forecase 2023: Are QR Codes Here To Stay?},
+  url    = {https://www.qrcode-tiger.com/qr-code-forecast},
+}
+
+@Article{Lo2014,
+  author       = {Lo, Hui-Yi},
+  date         = {2014-02},
+  journaltitle = {Journal of Electronic Commerce Research},
+  title        = {Quick response codes around us: Personality traits, attitudes toward innovation, and acceptance},
+  pages        = {25-39},
+  volume       = {15},
+}
+
+@InProceedings{Jadhav2016,
+  author = {Subhash H. Jadhav and Sanjay Agrawal},
+  date   = {2016},
+  title  = {Smart Bank Locker Security System Using Biometric Fingerprint and GSM Technology},
+}
+
+@InProceedings{Baharav2013,
+  author    = {Baharav, Zachi and Kakarala, Ramakrishna},
+  booktitle = {2013 IEEE International Conference on Multimedia and Expo (ICME)},
+  date      = {2013},
+  title     = {Visually significant QR codes: Image blending and statistical analysis},
+  doi       = {10.1109/ICME.2013.6607571},
+  pages     = {1-6},
+}
+
+@Article{Narang2012,
+  author       = {Narang, S. and Jain, Varsha and Roy, Subhadip},
+  date         = {2012-01},
+  journaltitle = {International Journal of Mobile Marketing.},
+  title        = {Effect of QR Codes on Consumer Attitudes},
+  pages        = {52-64},
+  volume       = {7},
+}
+
+@InProceedings{Fujita2011,
+  author = {Kazuaki Fujita and Minoru Kuribayashi and Masakatu Morii},
+  date   = {2011},
+  title  = {Expansion of Image Displayable Area in Design QR Code and Its Applications},
+}
+
+@InProceedings{Wang2015,
+  author = {Wang, Sibing and Yang, Tao and Li, Jing and Yao, Bowei and Zhang, Yanning},
+  date   = {2015-12},
+  title  = {Does a QR code must be black and white?},
+  doi    = {10.1109/ICOT.2015.7498513},
+  pages  = {161-164},
+}
+
+@InProceedings{Petrova2016,
+  author = {Petrova, Krassie and Romaniello, Beatriz and Medlin, B. and Vannoy, Sandra},
+  date   = {2016-01},
+  title  = {QR Codes Advantages and Dangers},
+  doi    = {10.5220/0005993101120115},
+  pages  = {112-115},
+}
+
+@Article{Li2018,
+  author       = {Li, Shiren and Shang, Jiayu and Duan, Zhikui and Huang, Junwei},
+  date         = {2018},
+  journaltitle = {IET Image Processing},
+  title        = {Fast detection method of quick response code based on run-length coding},
+  doi          = {https://doi.org/10.1049/iet-ipr.2017.0677},
+  eprint       = {https://ietresearch.onlinelibrary.wiley.com/doi/pdf/10.1049/iet-ipr.2017.0677},
+  number       = {4},
+  pages        = {546-551},
+  url          = {https://ietresearch.onlinelibrary.wiley.com/doi/abs/10.1049/iet-ipr.2017.0677},
+  volume       = {12},
+  abstract     = {Quick response (QR) code, one of the two-dimensional barcodes, is now being widely used in all fields. The effectiveness of decoding, however, needs to be improved in real-time application. In most cases, the decoding procedure is time consuming, in which the detection of QR code plays an essential part. Therefore, this study proposes a fast detection method of QR code based on run-length coding: firstly, a novel approach is proposed to detect the minimum region containing position detection pattern (PDP) in QR code. Second, coordinates of central PDP in QR code are calculated by using run-length coding. The highlight in this step is the calculation, which utilises modified Knuth–Morris–Pratt algorithm. By this means, the computational complexity can be reduced tremendously. Finally, QR code can be detected successfully with the coordinates. The experimental results show that the proposed method is time saving and suitable for real-time application.},
+  keywords     = {QR codes, bar codes, runlength codes, fast detection method, quick response code, run-length coding, QR code, PDP, position detection pattern, modified Knuth-Morris-Pratt algorithm, computational complexity, two-dimensional barcodes},
+}
+
+@Article{Karrach2020,
+  author       = {Karrach, Ladislav and Pivarciova, Elena and Božek, Pavol},
+  date         = {2020-07},
+  journaltitle = {Journal of Imaging},
+  title        = {Identification of QR Code Perspective Distortion Based on Edge Directions and Edge Projections Analysis},
+  doi          = {10.3390/jimaging6070067},
+  pages        = {67},
+  volume       = {6},
+}
+
+@InProceedings{Chow2016,
+  author = {Chow, Yang-Wai and Susilo, Willy and Yang, Guomin and Phillips, James and Pranata, Ilung and Barmawi, Ari},
+  date   = {2016-07},
+  title  = {Exploiting the Error Correction Mechanism in QR Codes for Secret Sharing},
+  doi    = {10.1007/978-3-319-40253-6_25},
+  isbn   = {978-3-319-40252-9},
+  pages  = {409-425},
+  volume = {9722},
+}
+
+@WWW{documentation,
+  author  = {Oracle Documentation},
+  title   = {Oracle7 Server Concepts Manual - Database Triggers},
+  url     = {https://docs.oracle.com/cd/A57673_01/DOC/server/doc/SCN73/ch15.htm},
+  urldate = {2023-03-30},
+}
+
+@SoftwareModule{docs2023,
+  author = {Mollie docs},
+  url    = {https://docs.mollie.com/reference/v2/payments-api/create-payment},
+  year   = {2023},
+}
+
+@Article{Sutheebanjard2010,
+  author = {Sutheebanjard, P. and Premchaiswadi, Wichian},
+  date   = {2010-11},
+  title  = {QR-code generator},
+  doi    = {10.1109/ICTKE.2010.5692920},
+  pages  = {89-92},
+}
+
+@SoftwareModule{pypi2023,
+  author   = {pypi},
+  subtitle = {QR-code generator},
+  url      = {https://pypi.org/project/qrcode/},
+  year     = {2023},
+}
+
+@SoftwareModule{Bernstein,
+  author   = {Daniel J. Bernstein},
+  subtitle = {NaCl: Networking and Cryptography library},
+  url      = {https://nacl.cr.yp.to/index.html},
+  urldate  = {2023-03-28},
+}
+
+@Article{Bernsteina,
+  author       = {Bernstein, Daniel J},
+  journaltitle = {Networking and Cryptography library},
+  title        = {Cryptography in nacl},
+  number       = {385},
+  pages        = {62},
+  volume       = {3},
+}
+
+@InProceedings{Bernstein2014,
+  author    = {Daniel J. Bernstein and Bernard van Gastel and Wesley Janssen and Tanja Lange and Peter Schwabe and Sjaak Smetsers},
+  booktitle = {International Conference on Cryptology and Information Security in Latin America},
+  date      = {2014},
+  title     = {TweetNaCl: A Crypto Library in 100 Tweets},
+}
+
+@WWW{Bernsteinb,
+  author  = {Daniel J. Bernstein},
+  title   = {tweetnacl-js},
+  url     = {https://github.com/dchest/tweetnacl-js/blob/master/README.md#documentation},
+  urldate = {2023-03-25},
+}
+
+@InProceedings{Bernstein2011,
+  author       = {Bernstein, Daniel and Duif, Niels and Lange, Tanja and Schwabe, Peter and Yang, Bo-Yin},
+  date         = {2011-09},
+  title        = {High-Speed High-Security Signatures},
+  doi          = {10.1007/978-3-642-23951-9_9},
+  isbn         = {978-3-642-23950-2},
+  pages        = {124-142},
+  volume       = {2},
+  journaltitle = {Journal of Cryptographic Engineering},
+}
+
+@InProceedings{Bernstein2006,
+  author    = {Bernstein, Daniel J.},
+  booktitle = {Public Key Cryptography - PKC 2006},
+  date      = {2006},
+  title     = {Curve25519: New Diffie-Hellman Speed Records},
+  editor    = {Yung, Moti and Dodis, Yevgeniy and Kiayias, Aggelos and Malkin, Tal},
+  isbn      = {978-3-540-33852-9},
+  location  = {Berlin, Heidelberg},
+  pages     = {207--228},
+  publisher = {Springer Berlin Heidelberg},
+  abstract  = {This paper explains the design and implementation of a high-security elliptic-curve-Diffie-Hellman function achieving record-setting speeds: e.g., 832457 Pentium III cycles (with several side benefits: free key compression, free key validation, and state-of-the-art timing-attack protection), more than twice as fast as other authors' results at the same conjectured security level (with or without the side benefits).},
+}
+
+@Report{Josefsson2006,
+  author = {Josefsson, Simon},
+  date   = {2006-10},
+  title  = {The base16, base32, and base64 data encodings},
+}
+
+@Online{base64decode,
+  author  = {base64decode},
+  title   = {Base 64 decode and encode},
+  url     = {https://www.base64decode.org/},
+  urldate = {2023-03-24},
+}
+
+@Online{Concept,
+  author  = {Curious Concept},
+  title   = {Json Formatter & Validator},
+  url     = {https://jsonformatter.curiousconcept.com/},
+  urldate = {2023-03-20},
+}
+
+@Book{Richardson2013,
+  author  = {Matt Richardson a

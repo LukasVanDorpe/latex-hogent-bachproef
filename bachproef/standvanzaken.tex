@@ -50,7 +50,7 @@ Er zijn verschillende manieren om smart lockers systemen te gaan produceren. Hie
 Uit deze korte opsomming van eigenschappen heeft Lockit Rentals besloten om zich te richten op het maken van lockers die openen op basis van een correcte QR code. Het gebruik van een QR code is vandaag de dag ook geen onbekend terrein. Door het mainstream maken van QR codes in betalingen, doorlinken van websites, covidsafe app, etc. zijn veel mensen al eens in aanraking gekomen met een QR-code \autocite{Belle2023}. Het gebruik van een QR code voor het openen van lockers is de logische stap voorwaarts \autocite{Lo2014}.
 Uiteraard zijn ze niet de enige die smart locker systemen op de markt hebben. Enkele bedrijven die hier ook bij aanschuiven zijn, mobile lockers, LockerKing en Rental Group.
 
-\section{Hoe zijn de QR-units opgebouwd?}%
+\section{Hoe zijn de QR-units opgebouwd}%
 \label{sec:QR-units}
 De smart locker systemen zijn toegankelijk met een geldige toegangscode die voorgesteld wordt als een QR-code. Het systeem bestaat uit verschillende soorten technologieën en elektronische componenten. De combinatie van hardware en software die nauw met elkaar samenwerken, vormen gezamenlijk één QR-unit \autocite{Jadhav2016} . De units hebben enkel 230 volt nodig om volledig operationeel te zijn. 
 
@@ -82,7 +82,7 @@ Elke unit bevat 128 lockers verspreid over 4 kasten zoals te zien op figuur \ref
     \label{fig:lockerUnit2}
 \end{figure}}
 
-\section{Hoe is een QR-code opgebouwd?}%
+\section{Hoe is een QR-code opgebouwd}%
 \label{sec:opbouwQR-code}
 
 Een QR-code is een machinaal leesbaar optisch label met informatie over het bijhorende product \autocite{Chang2014}. In deze context wordt het product als toegangscode gebruikt. QR-code staat voor Quick Response code en is een matrix van de welbekende streepjes code \autocite{Tiwari2016}. Het is een tweedimensionale code die informatie zoals tekst, URL of andere data bevat  \autocite{Shin2012} \autocite{Baharav2013}. In ons geval is het dus informatie die toebehoort bij een overeenkomstige locker. De QR-code is zodanig ontworpen dat ze door een smartphone uitgelezen kan worden aan hoge snelheden \autocite{Tiwari2016}. Dit maakt het optimaal als de QR-code gebruikt wordt als toegangscode \autocite{Narang2012}. De grootte van de QR-code kan aangepast worden naarmate de hoeveelheid data die hierin gestockeerd moet worden \autocite{Tiwari2016}. 
@@ -469,7 +469,7 @@ Lijn 10 – 18: De ingestelde eigenschappen die gedefinieerd zijn om de QR-code 
 Lijn 29– 35: De tool die gehanteerd wordt om de QR-code te genereren is de bibliotheek ‘qrcode’ \autocite{pypi2023}. 
 
 \newpage
-\section{Het incrypteren en decrypteren van QR-codes is een QR-code opgebouwd?}%
+\section{Het incrypteren en decrypteren van QR-codes is een QR-code opgebouwd}%
 \label{sec:encryptQR-code}
 
 Eerder in de werking van de QR-units is de validatie NaCL genaamd ‘Networking And Cryptography Library’ aan bod gekomen \autocite{Bernstein}. De hoofdfunctionaliteit van de recente software bibliotheek is het vercijferen en ontcijferen van bestanden. Het biedt alle kernbewerkingen aan die betrekking hebben om cartografische benodigdheden op hoger niveau te bouwen \autocite{Bernsteina}.
@@ -537,7 +537,7 @@ Om na te gaan of dit bericht zijn oorspronkelijke data bevat zal de functie ‘v
 \subsubsection{Uitgewerkt voorbeeld van digitale ondertekening op een aangemaakte QR-Code.}%
 \label{sec:voorbeeldDigitaleSigningQRCode}
 
-Bij de implementatie van deze smart locker technologie is het bericht dat standaard meegegeven wordt de QR-code data van type JSON object. Deze kan niet ondertekend worden zolang het niet geconverteerd wordt naar een tekstueel gegeven. De omvorming van een JSON object naar een string wordt verwerkt door de functie ‘deCodeBase64’. Deze functie zal de reeks decoderen terug naar het oorspronkelijke binair formaat \autocite{Josefsson2006}.
+Bij de implementatie van deze smart locker technologie is het bericht dat standaard meegegeven wordt de QR-code data van type \ac{JSON} object. Deze kan niet ondertekend worden zolang het niet geconverteerd wordt naar een tekstueel gegeven. De omvorming van een \ac{JSON} object naar een string wordt verwerkt door de functie ‘deCodeBase64’. Deze functie zal de reeks decoderen terug naar het oorspronkelijke binair formaat \autocite{Josefsson2006}.
 
 De functie ‘NaCL. Sign()’ aanvaardt twee parameters \ref{lst:encryptionCode}. In de eerste plaats nemen we de locker informatie op. Deze informatie beschikt over de locker nummer, creatiedatum QR-code en verval datum QR-code \ref{lst:essentieleQrdata}. Vervolgens heeft de functie een geheime sleutel nodig om de ondertekening te kunnen uitvoeren.
 
@@ -569,7 +569,7 @@ De functie ‘NaCL. Sign()’ aanvaardt twee parameters \ref{lst:encryptionCode}
     \end{lstlisting}
 
 
-Door de twee gecreëerde objecten, QR-data en de digitale handtekening samen te voegen ontstaat er een JSON object genaamd ‘createdCode’ \ref{lst:createCode}. De code wordt achteraf omgevormd naar een tekstueel formaat.
+Door de twee gecreëerde objecten, QR-data en de digitale handtekening samen te voegen ontstaat er een \ac{JSON} object genaamd ‘createdCode’ \ref{lst:createCode}. De code wordt achteraf omgevormd naar een tekstueel formaat.
 
 \begin{lstlisting}[caption={Samenstellen van object, locker informatie en verificatie code.}, label={lst:createCode}]
     const createdCode = Buffer.from(
@@ -588,11 +588,319 @@ Als illustratie maken we een QR-code aan op de applicatie die bestemd is voor lo
 \end{figure}}
 
 \newpage
+
 Als we dieper in de materie duiken is de aangemaakte code zichtbaar als antwoord op het creatieverzoek. De tekstuele code voorgesteld als base64 string ziet er als volgt uit: \\
- “eyJkIjp7Im4iOiIxIiwiZiI6MTY3OTc0MzIyMSwidCI6MTY3OTc0Mzg4MX0sInYiOiJLYT
- cwTmg4WUo3RlY0NmNiKythNlN3b21vczFFVURiQlpxajl2ZDhpNlNUWGZHU003eVN
+ “eyJkIjp7Im4iOiIxIiwiZiI6MTY3OTc0MzIyMSwidCI6MTY3OTc0Mzg4MX0sInYiOiJLYT\\
+ cwTmg4WUo3RlY0NmNiKythNlN3b21vczFFVURiQlpxajl2ZDhpNlNUWGZHU003eVN\\
  2ZGw0ZEs5WGp3clpyVnNV RlpHR3E3RVJGSlJQR09HTkxEdz09In0=".
  
 \vspace{7}
 
-Deze code wordt achter een vaste ingestelde URL geplaatst zodanig dat de QR-code gemakkelijk gedeeld kan worden. Het delen of doorsturen van een QR-code is een eenvoudig proces voor de huurder. Als de QR-code gedeeld wordt een link gecreëerd dat verwijst naar de web applicatie van Lockit Rentals. De applicatie zal de base64 string die meegegeven wordt in de link ontcijferen en een afbeelding van de QR-code genereren.
+Deze code wordt achter een vaste ingestelde URL geplaatst zodanig dat de QR-code gemakkelijk gedeeld kan worden. Het delen of doorsturen van een QR-code is een eenvoudig proces voor de huurder \ref{lst:shareQR}. Als de QR-code gedeeld wordt een link gecreëerd dat verwijst naar de web applicatie van Lockit Rentals \ref{lst:createQRLink}. De applicatie zal de base64 string die meegegeven wordt in de link ontcijferen en een afbeelding van de QR-code genereren.
+
+\begin{lstlisting}[caption={Het doorsturen van een QR-code in de vorm van een link.}, label={lst:shareQR}]
+    handler: async () => {  
+        await Share.share({
+            title: 'Have access to my locker',
+            text: 'Hi there, I want to share my locker with you. Open this link!',
+            url: this.constructQRCodeData(qrData as string),
+            dialogTitle: 'Share your locker with friends',
+        });
+\end{lstlisting}
+
+\begin{lstlisting}[caption={De manier hoe de link van de QR-code is gestructureerd.}, label={lst:createQRLink}]
+    constructQRCodeData(encryptedPart: string): string {
+        return location.protocol + '//' + location.host + '/?code=' + encryptedPart;
+    }
+\end{lstlisting}
+
+Op de figuur \ref{fig:decoderBase64ToJson} wordt een base64 van het type string omgevormd en ontcijferd  naar een tekstuele vorm. Hiervoor kan er gebruik gemaakt worden van gratis online tools. Om het base64 formaat te ontcijferen bestaat er een online decoder \autocite{base64decode}. 
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F13_decoderbase64.png}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{De manier waarop een base64 string geconverteerd word naar een \ac{JSON} aan de hand van een online decoder.}
+    \label{fig:decoderBase64ToJson}
+\end{figure}}
+
+Voor eenvoud van het illustratief voorbeeld vormen we dit om naar een gestandaardiseerd \ac{JSON} object \autocite{Concept}. Het geformatteerd \ac{JSON} object geeft een visueel beeld van de twee variabelen in de genereerde QR-code. Het visueel beeld word afgedrukt in de figuur \ref{fig:formattedJsonData}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F14_formattedJsonData.png}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{Het JSON object converteren naar een gestandaardiseerde vorm.}
+    \label{fig:formattedJsonData}
+\end{figure}
+
+\newpage
+Om de data te controleren wordt de functie ‘verify’ aangeroepen \ref{fig:verifyMethode}, deze heeft 3 parameters nodig. Als eerste het object waarin de QR-code data zit. Vervolgens geven we de verificatie code mee. De publieke sleutel is de laatste parameter om te decrypteren.
+
+
+\begin{lstlisting}[caption={De controle van QR-code data met de TweetNaCL.js verifieer functie.}, label={lst:verifyMethode}]
+    // Check if the object validates
+    if (
+    !nacl.sign.detached.verify(
+    decodeUTF8(JSON.stringify(obj.d)),
+    decodeBase64(obj.v),
+    decodeBase64(publicKey)
+    )
+    ) {
+        return new Error();
+    }
+\end{lstlisting}
+
+Als data zijn originele vorm heeft aangehouden, zal de functie geen foutboodschap geven zoals in figuur \ref{fig:qrdataVerified}. Bij onveranderlijke data kan er van uitgegaan worden dat de QR-code informatie niet aangepast is doorheen het proces \autocite{Bernsteinb}. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F15_qrcodeVerified.png}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{De QR-code data dat vanaf de aanmaak tot de verifieer  functie ongewijzigd is gebleven.}
+    \label{fig:qrdataVerified}
+\end{figure}
+
+\section{De werking van een smart locker systeem.}%
+\label{sec:WerkingUnits}
+
+Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het volledige business model op draait. Figuur \ref{fig:schemaWerkingUnit} is een schematische voorstelling hoe de software in aanraking komt met de hardware. Dit door middel van de QR-code die dient als toegangscode.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F16_schemaWerking.png}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{Een schematische voorstelling  hoe een QR-unit operationeel te werk gaat.}
+    \label{fig:schemaWerkingUnit}
+\end{figure}
+
+\begin{enumerate}
+    \item De QR-code die alvorens is aangemaakt wordt uitgelezen met een USB camera. De software van de camera draait rechtstreeks op de Rasberry PI. Een Raspberry PI is een kleine maar krachtige mini computer die allerlei berekeningen kan uitvoeren \autocite{Richardson2013}. De aangesloten USB camera zal de afbeeldingen renderen en opslaan in zijn geheugen.
+    \item Bij het scannen van de QR-code identificeert de Raspberry PI de URL van de QR-code \autocite{Weir2012}. De applicatie heeft enkel nood aan de parameter ‘code’. Die base64 string wordt uit de link gefilterd door de URL op te splitsen \ref{lst:pythonLinkSplitting}. Eenmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naar een \ac{JSON} object. Hieruit kunnen 3 drie elementen uitgehaald worden: het lockernummer alsook het begin en eind tijdstip dat de QR-code geldig is. Deze tijdstippen worden beide voorgesteld als type Unix. Unix stelt tijdstippen op een correcte en eenvoudige wijze voor. Deze zorgen voor een makkelijke conversie tussen verschillende tijdzones en formaten \autocite{Ritchie1978}.
+
+        \begin{lstlisting}[language=Python, caption={Python script om parameter code uit de link te halen.}, label=lst:pythonLinkSplitting, numbers=left]
+            if (!url) {
+                return new Error();
+            }
+            const data = url.split("code=")[1]
+            const obj = JSON.parse(Buffer.from(data, 'base64').toString('utf8')); 
+        \end{lstlisting}
+
+    
+    \item 
+    De Raspberry PI is het hart van de hardware installatie (TODO: foto), hier bevindt zich alle logica die uitgevoerd wordt na het scannen van de QR-code. Hieronder volgt de Python implementatie dat actief is op de Raspberry PI \ref{lst: pythonPrimary}.
+    
+    \begin{lstlisting}[language=Python, caption={Het primaire uitvoerbare script van de QR-unit.}, label=lst:pythonPrimary, numbers=left]
+        import cv2
+        import pyzbar.pyzbar as pyzbar
+        from datetime import datetime, timedelta
+        import requests
+        import time
+        
+        #width = 2592
+        #height = 1944
+        
+        camera = cv2.VideoCapture(0)
+        #camera.set(3,width)
+        #camera.set(4,height)
+        
+        
+        def decodeCam(image):
+            try:
+                gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+                barcodes = pyzbar.decode(gray, symbols=[pyzbar.ZBarSymbol.QRCODE])
+                global data
+                global stamp
+                for barcode in barcodes:
+                barcodeData = barcode.data.decode()
+                barcodeType = barcode.type
+                if barcodeData != data or stamp + timedelta(days=0, seconds=5) < datetime.now():
+                print("["+str(datetime.now())+"] Type:{} | Data: {}".format(barcodeType, barcodeData))
+                res = requests.post('http://localhost:5000/qr-code', json = {'tag': barcodeData })
+                print(res)
+                data = barcodeData
+                stamp = datetime.now()
+                return image
+            except Exception as e:
+                print(e)
+        
+        try:
+        global data
+        data = ""
+        global stamp
+        stamp = datetime.now()
+        print('reading camera...', end='\r')
+        frame_rate = 3
+        prev = 0
+        while True:
+        # Read current frame
+        if camera.isOpened():
+            time_elapsed = time.time() - prev
+            ret, frame = camera.read()
+            if time_elapsed > 1./frame_rate:
+                prev = time.time()
+                im=decodeCam(frame)
+        except KeyboardInterrupt:
+        print('interrupted!')
+        
+    \end{lstlisting}
+    Lijn 10: Het definiëren van de camera zodat hij kan gebruikt worden om de QR-code waar te nemen. \\
+    Lijn 34 – 41: Een oneindige lus waarin de camera constant probeert om QR-codes te scannen. Als hij een QR-code opmerkt, zal hij deze vertalen en zal de methode ‘decodeCam’ opgeroepen worden. De gescande afbeelding die voorgesteld wordt als QR-code zal hierin meegegeven worden.\\
+    
+    Lijn 17: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Bij deze code het pakket de resulterende grijsvariabelen verwijdert die in de invoerafbeelding zitten. Dit betekent dat als je een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.
+    Lijn 18: PyZbar is een andere bibliotheek die instaat om de QR-codes te gaan detecteren van de grijswaardenafbeelding die zonet met Cv2 bekend zijn gemaakt \autocite{Huang2022}\\
+    Lijn 21 – 30: Hierin gebeurt de decoding van de parameter code in de URL. Maar uiteraard wordt dit niet rechtstreeks gedaan. Het moet eerst nog gedecodeerd worden, aangezien de QR-code versleuteld is met encryptie. \\
+    Lijn 26: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. Deze code kan je vinden hieronder \ref{lst:pytho}. Deze server ontvangt een parameter waarin de QR-code data zit.\\
+    
+    \newpage
+    
+     \begin{lstlisting}[language=Python, caption={De node.js server die de nodige validatie zal uitvoeren en de verdere communicatie afronden.}, label=lst:pytho, numbers=left]
+        router.post('/qr-code', (request, response) => {
+            try {
+                const decryptedData = decryptor.decrypt(request.body.tag);
+                console.log(decryptedData);
+                const hasErrors = validator.validate(decryptedData, Number(config.unit));
+                if (hasErrors) {
+                    displayError(hasErrors.errorMessage);
+                    return;
+                }
+                expressWs.getWss('/updates').clients.forEach(function (client) {
+                    client.send(JSON.stringify(decryptedData));
+                });
+                if (decryptedData.n) {
+                    pinController.openLock(calculateExactLock(Number(decryptedData.n), Number(config.unit)));
+                } else if(decryptedData.r) {
+                    pinController.openRange(decryptedData.r.map(l => calculateExactLock(Number(l), Number(config.unit))))
+                } else if(decryptedData.u) {
+                    //universal key scanned
+                    
+                    .......
+        
+    \end{lstlisting}
+
+    Lijn 32: Het aanroepen van een voor gedefinieerd ‘decryptor’ script. Zie code in listing \ref{lst:function} De validatie hierbij zal uitmaken of de data die in de QR-code is geplaatst nog steeds correct is.    \begin{lstlisting}[language=Python, caption={ De parameter genaamd ‘code’ wordt verwerkt en ontcijferd, indien de QR-data is aangepast zal het een error terug geven.}, label=lst:function, numbers=left]
+        decrypt: function(url) {
+            if (!url) {
+                return new Error();
+            }
+            const data = url.split("code=")[1]
+            const obj = JSON.parse(Buffer.from(data, 'base64').toString('utf8'));
+            
+            // Check if the object validates
+            if (!nacl.sign.detached.verify(decodeUTF8(JSON.stringify(obj.d)), decodeBase64(obj.v), decodeBase64(publicKey))) {
+                return new Error();
+            }
+            
+            
+            return obj.d;
+        }
+                    
+                \end{lstlisting}
+   
+        Validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het aangemaakt \ac{JSON} object. Met deze techniek kan bekeken worden of de gescande QR-code binnen een correcte tijdspanne ligt. Niet enkel controleert hij op correcte geldigheid, ook voert de code hieronder \ref{lst:data-validator} een controle uit of de QR-code wel bij de bijpassende QR-unit hoort.
+        
+        \begin{lstlisting}[language=Python, caption={ Valideer functie van de gescande QR-data op geldigheid en controle om na te gaan of gescande lockernummer in QR-unit zit.}, label=lst:data-validator, numbers=left]
+            const moment = require('moment');
+            
+            module.exports = {
+                validate: function(data, unit) {
+                    const now = moment(); // create a moment with the current time
+                    const then = moment.unix(data.t); // create a moment with the other time timestamp in seconds
+                    const delta = now.diff(then, 'milliseconds'); // get the millisecond difference
+                    console.log("diff to " + delta)
+                    // Check if number is in range for this unit (number is not mandatory)
+                    if (data.n && (data.n < getFirstLockerNumber(unit) || data.n > getLastLockerNumber(unit))) {
+                        return {errorMessage: 'Locker not in this unit'}
+                    }
+                    // Check if after start time
+                    if (moment().isBefore(moment.unix(data.f))) {
+                        return {errorMessage: "This code is not yet valid"}
+                    }
+                    
+                    // Check if before end time
+                    if (moment().isAfter(moment.unix(data.t))) {
+                        return {errorMessage: "This code is expired"}
+                    }
+                    return false;
+                }
+            }
+            
+            
+            function getFirstLockerNumber(unit) {
+                return ((unit - 1) * 128) + 1;
+            }
+            
+            function getLastLockerNumber(unit) {
+                return ((unit - 1) * 128) + 128;
+            }
+            
+        \end{lstlisting}
+        
+        
+    Lijn 42 – 62: Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor een aantal verschillende sloten aan te spreken. 
+    
+    
+\end{enumerate}
+
+\section{Wat is een chatbot}%
+\label{sec:chatbot}
+
+De term chatbot is heel snel geëvolueerd doorheen voorbije jaren. Een chatbot is een "online mens-computer dialoogsysteem met natuurlijke taal" \autocite{Jia2003}. Deze worden gebruikt om veel systemen te ondersteunen voor vragen van klanten automatische te laten beantwoorden \autocite{Adamopoulou2020}. Ze maken gebruik van artificiële intelligentie die van de vraagstelling de klanten analyseren. Op basis van de benodigdheden probeert de chatbot zo goed mogelijk te helpen \autocite{Khanna2015}. Dit concept waarbij de mens de computer om een gunst vraag wordt ‘Human-computer interaction’ (HCI) genoemd \autocite{Adamopoulou2020}. Chatbots zijn niet enkel gebouwd om conversaties op te vangen of om mensen te entertainen. Deze zijn ook ontworpen voor leer, informatie en bedrijf doeleinden \autocite{Shawar2007}. 
+
+\subsection{Historie van een chatbot}%
+\label{sec:chatbotHistorie}
+
+De idee van een chatbot was het eerste gepubliceerd in 1950 \autocite{Turing2009}. Echter bestaat de eerste chatbot genaamd Eliza nog maar sinds 1966 \autocite{Weizenbaum1966}. Deze is ontworpen aan de hand van een simpel patronen matching en een vooraf aangemaakt antwoorden patroon.  Vanaf dit moment in de geschiedenis begon de functionaliteit en de ontwikkelen van chatbot als maar groter te worden \autocite{Brandtzaeg2017}. Zoals getoond in de figuur \ref{fig:graphDocusChatbotAYear} volgens Scopus \autocite{Elsevier2004}, was een grote en snelle groei van interesse in chatbots, zeker na het jaar 2016 \autocite{Adamopoulou2020}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F17_grafiekChatbotSearches.png}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{Zoek resultaten in scopus voor de termen ‘chatbot’ of ‘conversation agent’ of ‘conversational interface’ vanaf 2000 tot 2019.}
+    \label{fig:graphDocusChatbotAYear}
+\end{figure}
+
+
+\subsection{Architectuur  van een chatbot}%
+\label{sec:chatbotArchitectuur}
+
+Start van de menselijke vraag tot een gegenereerde chatbot antwoord wordt voorgesteld als de architectuur van een chatbot. Als illustrerend voorbeeld vragen we als chatbot zijn/haar verloren QR-code op. De huurder heeft een specifieke vraag die de chatbot kan verwerken. Na het krijgen van de huurder zijn bericht zal de ‘Natural Language Understanding’ (NLUs) \autocite{Khanna2015} component de vraag analyseren en classificeren wat de gebruiker zijn intenties zijn \autocite{Tamrakar2021}. Wanneer er een duidelijke geformuleerd is en de vraag bevat geen onduidelijkheden kan de chatbot acties ondernemen. In het geval met de verloren QR-code zal hij een API call aanspreken voor externe informatie op te vragen. Nadien kan de data worden vrijgegeven aan de gebruiker indien de huurder zich juist kan identificeren als het gaat om gevoelige informatie \autocite{Adamopoulou2020}. De architectuur kan voorgesteld worden op figuur \ref{fig:chatbotArchitectuur}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F18_chatbotArchitectuur.png}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{Standaard architectuur van een chatbot.}
+    \label{fig:chatbotArchitectuur}
+\end{figure}
+
+\subsection{Classificatie chatbots}%
+\label{sec:chatbotTypes}
+
+Chatbots kunnen geclassificeerd worden door middel van aantal eigenschappen \ref{fig:chatbotTypes}. Zoals het interactie level en hoe de antwoorden gegeneerd worden \autocite{Nimavat2017}.
+Een schematische voorstelling van de classificatie tussen soorten chatbots worden weergegeven in figuur \ref{fig:chatbotTypes} \autocite{Tamrakar2021}.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{F19_chatbotClassificatie.png}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{Classificaties en soorten van een chatbot.}
+    \label{fig:chatbotTypes}
+\end{figure}
+
+Chatbots worden onderverdeeld in categorieën gebruik maken van enkele parameters. Voorbeelden van parameters zijn het kennis domein, dienstverlening aangeboden, de methode voor het verwerken van de input en het genereren van de respons, menselijke hulp en bouwmethode \autocite{Adamopoulou2020}. 
+
+Twee grote categorieën waarin de soort chatbot verschillen zijn open domeinen en gesloten domeinen. Open domein chatbots vertellen ons meer over algemene onderwerpen die een zo goed mogelijk antwoord geven op de gebruiker zijn vraag. Gesloten domein chatbots werken aan de hand van algemene domein kennis van de chatbot \autocite{Adamopoulou2020}. Nadelig hieraan is dat niet alle vragen even goed kunnen beantwoord worden \autocite{Kucherbaev2018}.
+
+Een verdere onderscheidt van chatbots zijn de soorten aangeboden diensten: ‘Interpersonal, ‘Intrapersonal en ‘Inter-agent’. Met een ‘Intrapersonal’ service communiceren hij de gekende informatie zoals openingsuren van een winkel, of trein boekingen met de eindgebruiker \autocite{Adamopoulou2020}. ‘Intrapersonal’ bots proberen de gebruiker te verstaan en te helpen zoals een echte mens. Deze gaan opzoek naar persoonlijke domein data van de gebruiker. Als laatste onderverdeling van dienst verlening bestaat de ‘Inter-agent’ chatbot. Deze bots communiceren met andere bots om hun informatie te delen. Op deze manier kunnen ze het best passende antwoorden schenken \autocite{Nimavat2017}.
+
+De bots hebben altijd een specifiek doel hiervoor word er gekeken naar wat de chatbot wil bereiken. Wil de chatbot informatie verschaffen aan de gebruiker aan de hand van vast middelen dan spreken we over informatieve chatbots. Bij het geval van ‘Task based’ zal de chatbot effectief een taak uitvoeren aan de hand van specifieke eisen. Als meest gebruikte vorm van chatbot is er de chat gebaseerde of conversatie chatbot. Deze is puur gericht op het juiste antwoord te verschaffen op de zopas gestelde vraag (\autocite{Nimavat2017} \autocite{Adamopoulou2020}. 
+
+De drie modellen geklasseerd onder ‘respons en generation method’ stellen methode voor die de vraagstelling in achting neem en geneert op basis van dit een gepast antwoord. Als eerst bestaat er de ‘Rule based’ model. Deze bots worden zo getrainde en geprogrammeerd om op specifieke zoektermen de juiste vooraf gedefinieerde antwoorden te verschaffen. De toepassing van \ac{FAQ} bot is hiervan een voorbeeld. Deze bot verschil maar nauwelijk ten opzichte van een ‘Retrieval based model, wat meer flexibiliteit geeft. Het analyseert verschillende mogelijk bronnen aan de hand van ‘APIs’. Het laatste model is ‘Generative’ dit model gebaseerd op vorige berichten een antwoord voorzien. Dit is het meest krachtigste model maar complex om te programmeren en te trainen \autocite{Adamopoulou2020} \autocite{Hien2018}.
+
+\subsection{Platformen om chatbots te bouwen}%
+\label{sec:chatbotBouwen}
+
+
