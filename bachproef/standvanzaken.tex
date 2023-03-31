@@ -250,7 +250,7 @@ Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschik
 Wanneer de databank een nieuwe reservatie constateert, word er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen om het betalingsverzoek te gecreëeren. 
 De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard beschadigd is of als ze hun toegangscode tot de locker verloren zijn. Bij het aanmaken van toegangscodes bij logistieke medewerkers verloopt het proces op een alternatieve wijze.  Deze springen over het betalingsproces en verwerven direct een geldige QR-code. Zonder de aangemaakte betaling veld in de databank op te slaan.  \ref{lst:aanmakenBetaling}
 
-\begin{lstlisting}[caption={Valideerd of er een betaling van toepassing is. Indien nodig creëert het een betaling en bewaard deze in de databank}, label={lst:aanmakenBetaling}]
+\begin{lstlisting}[caption={Valideert of er een betaling van toepassing is. Indien nodig creëert het een betaling en bewaard deze in de databank}, label={lst:aanmakenBetaling}]
     /**
     * No action is needed but to move the status along
     */
@@ -477,7 +477,7 @@ In het kader van smart locker systemen wordt de encryptie gebruikt om de QR-code
 
 Deze term van algoritme wordt ‘signing’ genoemd. Het algoritme zal verifiëren of de data in de QR-code onveranderd blijft gedurende het gehele proces \autocite{Bernsteinb}. Het proces begint bij het tot stand brengen van een QR-code tot aan het scannen ervan.
 
-De documentatie website van TweetNaCl.js laat de verschillende encryptie tool gratis uitproberen \autocite{Bernsteinb}. Een concreet voorbeeld hieronder geeft duiding hoe je een specifiek bericht kan ondertekenen. Hieruit kan aangetoond worden of het bericht al dan niet is aangepast na de creatie \autocite{Bernstein2014}.
+De documentatie website van TweetNaCl.js laat de verschillende encryptie tool gratis uitproberen \autocite{Bernsteinb}. Een concreet voorbeeld hieronder geeft duiding hoe een specifiek bericht ondertekend kan worden. Hieruit kan aangetoond worden of het bericht al dan niet is aangepast na de creatie \autocite{Bernstein2014}.
 
 \subsubsection{Uitgewerkt voorbeeld van digitale ondertekening op een standaard bericht.}%
 \label{sec:voorbeeldDigitaleSigning}
@@ -754,10 +754,10 @@ Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het
     \end{lstlisting}
     Lijn 10 \ref{lst:pythonPrimary}: Het definiëren van de camera zodat hij kan gebruikt worden om de QR-code waar te nemen. \\
     Lijn 34 – 41 \ref{lst:pythonPrimary}: Een oneindige lus waarin de camera constant probeert om QR-codes te scannen. Als hij een QR-code opmerkt, zal hij deze vertalen en zal de methode ‘decodeCam’ opgeroepen worden. De gescande afbeelding die voorgesteld wordt als QR-code zal hierin meegegeven worden.\\
-    Lijn 17 \ref{lst:pythonPrimary}: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Het pakket de resulterende grijsvariabelen verwijderen die in de invoerafbeelding zitten. Dit betekent dat als je een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.\\
+    Lijn 17 \ref{lst:pythonPrimary}: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Het pakket de resulterende grijsvariabelen verwijderen die in de invoerafbeelding zitten. Dit betekent dat als de huurder een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.\\
     Lijn 18 \ref{lst:pythonPrimary}: PyZbar is een andere bibliotheek die instaat om de QR-codes te gaan detecteren van de grijswaardenafbeelding die zonet met Cv2 bekend zijn gemaakt \autocite{Huang2022}\\
     Lijn 21 – 30 \ref{lst:pythonPrimary}: Hierin gebeurt de decoding van de parameter code in de URL. Maar uiteraard wordt dit niet rechtstreeks gedaan. Het moet eerst nog gedecodeerd worden, aangezien de QR-code versleuteld is met encryptie. \\
-    Lijn 26 \ref{lst:pythonPrimary}: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. Deze code kan je vinden hieronder \ref{lst:pytho}. Deze server ontvangt een parameter waarin de QR-code data zit.\\
+    Lijn 26 \ref{lst:pythonPrimary}: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. De bijhorende code wordt hieronder \ref{lst:pytho} getoont. Deze server ontvangt een parameter waarin de QR-code data zit.\\
     
     
      \begin{lstlisting}[language=Python, caption={De node.js server die de nodige validatie zal uitvoeren en de verdere communicatie afronden.}, label=lst:pytho, numbers=left]
