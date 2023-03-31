@@ -87,7 +87,7 @@ Elke unit bevat 128 lockers verspreid over 4 kasten zoals te zien op figuur \ref
 
 Een QR-code is een machinaal leesbaar optisch label met informatie over het bijhorende product \autocite{Chang2014}. In deze context wordt het product als toegangscode gebruikt. QR-code staat voor Quick Response code en is een matrix van de welbekende streepjes code \autocite{Tiwari2016}. Het is een tweedimensionale code die informatie zoals tekst, URL of andere data bevat  \autocite{Shin2012} \autocite{Baharav2013}. In ons geval is het dus informatie die toebehoort bij een overeenkomstige locker. De QR-code is zodanig ontworpen dat ze door een smartphone uitgelezen kan worden aan hoge snelheden \autocite{Tiwari2016}. Dit maakt het optimaal als de QR-code gebruikt wordt als toegangscode \autocite{Narang2012}. De grootte van de QR-code kan aangepast worden naarmate de hoeveelheid data die hierin gestockeerd moet worden \autocite{Tiwari2016}. 
 \\
-Een QR-code wordt opgebouwd en voorgesteld als een vierkant \autocite{Fujita2011}. Hierrond bevindt zich een witte omranding. Dit vormt een contrast zodat de QR-scanner minder moeite heeft om de oppervlakte uit te lezen \autocite{Wang2015}. Dit is 1 van de 7 cruciale eigenschappen. Plaats markeringen zijn aanwezig om de scanner een duiding te geven hoe de code is gepositioneerd. Uitlijnmarkeringen hebben eveneens dezelfde functie maar deze zijn meer van toepassing bij grote QR-codes. De QR-code bevat timing patronen, dit zijn lijnen die de scanner vertellen hoe groot de data matrix is. De twee belangrijkste elementen van een QR-code zijn gegevens en foutcorrectiesleutels. Hierin zit de data gecapteerd inclusief de informatie hoe het algoritme moet omgaan met fouttolerantie \autocite{Tiwari2016}  \autocite{Petrova2016}  \autocite{Li2018}). Een visuele weergave is tezien op \ref{fig:voorstellingQR}. 
+Een QR-code wordt opgebouwd en voorgesteld als een vierkant \autocite{Fujita2011}. Hierrond bevindt zich een witte omranding. Dit vormt een contrast zodat de QR-scanner minder moeite heeft om de oppervlakte uit te lezen \autocite{Wang2015}. Dit is 1 van de 7 cruciale eigenschappen. Plaats markeringen zijn aanwezig om de scanner een duiding te geven hoe de code is gepositioneerd. Uitlijnmarkeringen hebben eveneens dezelfde functie maar deze zijn meer van toepassing bij grote QR-codes. De QR-code bevat timing patronen, dit zijn lijnen die de scanner vertellen hoe groot de data matrix is. De twee belangrijkste elementen van een QR-code zijn gegevens en foutcorrectiesleutels. Hierin zit de data gecapteerd inclusief de informatie hoe het algoritme moet omgaan met fouttolerantie \autocite{Tiwari2016}  \autocite{Petrova2016}  \autocite{Li2018}). Op figuur \ref{fig:voorstellingQR} zie je een visuele weergave. 
 De fouttolerantie is doorslaggevend indien de QR-code gebruikt wordt als toegangscode \autocite{Tiwari2016}.  De fouttolerantie kan ingesteld worden door configuratie toe te passen. Het kan ingesteld worden op vier levels beginnend bij fouttolerantie van 7\% tot 30\% \autocite{Tiwari2016}.
 
 \begin{figure}[h]
@@ -202,7 +202,7 @@ Bij het huurproces van een locker moet een huurder het festival aanduiden waar h
     }
 \end{lstlisting}
 
-Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschikbaar is, zal er een reservatie aangemaakt worden en meteen bewaard worden in een databank. Het code die hiervoor verantwoordelijk is kan je terugvinden hieronder \ref{lst:aanmakenReservatie}.
+Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschikbaar is, zal er een reservatie aangemaakt worden en meteen bewaard worden in een databank. Het code die hiervoor verantwoordelijk wordt afgebeeld in listing \ref{lst:aanmakenReservatie}.
 
 \begin{lstlisting}[caption={De creatie van een reservatie voor het huren van een locker. Deze reservatie wordt bijgehouden in de databank}, label={lst:aanmakenReservatie}]
     /**
@@ -500,7 +500,7 @@ In deze illustratie wordt een bericht dat afgebeeld staat hieronder \ref{fig:enc
     \centering
     \includegraphics{F8_messageEncryption.png}
     \captionsetup{justification=centering, singlelinecheck=false}    
-    \caption{Het bericht dat ondertekend moet worden encryptie aan de hand van TweetNaCL.js.}
+    \caption{Het bericht dat cryptisch ondertekend moet worden aan de hand van TweetNaCL.js.}
     \label{fig:encryptionBericht}
 \end{figure}}
 
@@ -846,12 +846,12 @@ Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het
 \section{Wat is een chatbot}%
 \label{sec:chatbot}
 
-De term chatbot is heel snel geëvolueerd doorheen voorbije jaren. Een chatbot is een "online mens-computer dialoogsysteem met natuurlijke taal" \autocite{Jia2003}. Deze worden gebruikt om veel systemen te ondersteunen voor vragen van klanten automatische te laten beantwoorden \autocite{Adamopoulou2020}. Ze maken gebruik van artificiële intelligentie die van de vraagstelling de klanten analyseren. Op basis van de benodigdheden probeert de chatbot zo goed mogelijk te helpen \autocite{Khanna2015}. Dit concept waarbij de mens de computer om een gunst vraag wordt ‘Human-computer interaction’ (HCI) genoemd \autocite{Adamopoulou2020}. Chatbots zijn niet enkel gebouwd om conversaties op te vangen of om mensen te entertainen. Deze zijn ook ontworpen voor leer, informatie en bedrijf doeleinden \autocite{Shawar2007}. 
+De term chatbot is heel snel geëvolueerd doorheen de voorbije jaren. Een chatbot is een "online mens-computer dialoogsysteem met natuurlijke taal" \autocite{Jia2003}. Dit wordt gebruikt om veel systemen te ondersteunen om vragen van klanten automatische te laten beantwoorden \autocite{Adamopoulou2020}. Ze maken gebruik van artificiële intelligentie die de vraagstelling van klanten analyseren. Op basis van de benodigdheden probeert de chatbot zo goed mogelijk te helpen \autocite{Khanna2015}. Dit concept waarbij de mens de computer om een gunst vraagt, wordt ‘Human-computer interaction’ (HCI) genoemd \autocite{Adamopoulou2020}. Chatbots zijn niet enkel gebouwd om conversaties op te vangen of om mensen te entertainen. Deze zijn ook ontworpen voor leer-, informatie- en bedrijfsdoeleinden \autocite{Shawar2007}. 
 
 \subsection{Historie van een chatbot}%
 \label{sec:chatbotHistorie}
 
-De idee van een chatbot was het eerste gepubliceerd in 1950 \autocite{Turing2009}. Echter bestaat de eerste chatbot genaamd Eliza nog maar sinds 1966 \autocite{Weizenbaum1966}. Deze is ontworpen aan de hand van een simpel patronen matching en een vooraf aangemaakt antwoorden patroon.  Vanaf dit moment in de geschiedenis begon de functionaliteit en de ontwikkelen van chatbot als maar groter te worden \autocite{Brandtzaeg2017}. Zoals getoond in de figuur \ref{fig:graphDocusChatbotAYear} volgens Scopus \autocite{Elsevier2004}, was een grote en snelle groei van interesse in chatbots, zeker na het jaar 2016 \autocite{Adamopoulou2020}.
+Het idee van een chatbot werd het eerst gepubliceerd in 1950 \autocite{Turing2009}. Echter bestaat de eerste chatbot genaamd Eliza nog maar sinds 1966 \autocite{Weizenbaum1966}. Deze is ontworpen aan de hand van een simpel patronen overeenkomst en een vooraf aangemaakt antwoorden patroon.  Vanaf dit moment in de geschiedenis begon de functionaliteit en de ontwikkeling van chatbot alsmaar groter te worden \autocite{Brandtzaeg2017}. Zoals getoond in de figuur \ref{fig:graphDocusChatbotAYear} volgens Scopus \autocite{Elsevier2004}, was er grote en snelle groei van interesse in chatbots, zeker na het jaar 2016 \autocite{Adamopoulou2020}.
 
 \begin{figure}[h]
     \centering
@@ -865,7 +865,7 @@ De idee van een chatbot was het eerste gepubliceerd in 1950 \autocite{Turing2009
 \subsection{Architectuur  van een chatbot}%
 \label{sec:chatbotArchitectuur}
 
-Start van de menselijke vraag tot een gegenereerde chatbot antwoord wordt voorgesteld als de architectuur van een chatbot. Als illustrerend voorbeeld vragen we als chatbot zijn/haar verloren QR-code op. De huurder heeft een specifieke vraag die de chatbot kan verwerken. Na het krijgen van de huurder zijn bericht zal de ‘Natural Language Understanding’ (NLUs) \autocite{Khanna2015} component de vraag analyseren en classificeren wat de gebruiker zijn intenties zijn \autocite{Tamrakar2021}. Wanneer er een duidelijke geformuleerd is en de vraag bevat geen onduidelijkheden kan de chatbot acties ondernemen. In het geval met de verloren QR-code zal hij een API call aanspreken voor externe informatie op te vragen. Nadien kan de data worden vrijgegeven aan de gebruiker indien de huurder zich juist kan identificeren als het gaat om gevoelige informatie \autocite{Adamopoulou2020}. De architectuur kan voorgesteld worden op figuur \ref{fig:chatbotArchitectuur}.
+De start van de menselijke vraag tot een gegenereerde chatbot antwoord wordt voorgesteld als de architectuur van een chatbot. Als illustrerend voorbeeld vragen we als chatbot zijn/haar verloren QR-code op. De huurder heeft een specifieke vraag die de chatbot kan verwerken. Na het krijgen van de huurder zijn bericht zal de ‘Natural Language Understanding’ (NLUs) \autocite{Khanna2015} component de vraag analyseren en classificeren wat de gebruiker zijn intenties zijn \autocite{Tamrakar2021}. Wanneer er een duidelijk geformuleerde vraag gesteld is, kan de chatbot acties ondernemen. In het geval met de verloren QR-code zal hij een API oproep aanspreken om externe informatie op te vragen. Nadien kan de data worden vrijgegeven aan de gebruiker indien de huurder zich juist kan identificeren als het gaat om gevoelige informatie \autocite{Adamopoulou2020}. De architectuur kan voorgesteld worden op figuur \ref{fig:chatbotArchitectuur}.
 
 \begin{figure}[h]
     \centering
@@ -878,8 +878,8 @@ Start van de menselijke vraag tot een gegenereerde chatbot antwoord wordt voorge
 \subsection{Classificatie chatbots}%
 \label{sec:chatbotTypes}
 
-Chatbots kunnen geclassificeerd worden door middel van aantal eigenschappen \ref{fig:chatbotTypes}. Zoals het interactie level en hoe de antwoorden gegeneerd worden \autocite{Nimavat2017}.
-Een schematische voorstelling van de classificatie tussen soorten chatbots worden weergegeven in figuur \ref{fig:chatbotTypes} \autocite{Tamrakar2021}.
+Chatbots kunnen geclassificeerd worden door middel van een aantal eigenschappen \ref{fig:chatbotTypes} zoals het interactie level en op welke manier de antwoorden gegenereerd worden \autocite{Nimavat2017}.
+Een schematische voorstelling van de classificatie tussen soorten chatbots wordt weergegeven in figuur \ref{fig:chatbotTypes} \autocite{Tamrakar2021}.
 
 
 \begin{figure}[h]
@@ -890,15 +890,15 @@ Een schematische voorstelling van de classificatie tussen soorten chatbots worde
     \label{fig:chatbotTypes}
 \end{figure}
 
-Chatbots worden onderverdeeld in categorieën gebruik maken van enkele parameters. Voorbeelden van parameters zijn het kennis domein, dienstverlening aangeboden, de methode voor het verwerken van de input en het genereren van de respons, menselijke hulp en bouwmethode \autocite{Adamopoulou2020}. 
+Chatbots worden onderverdeeld in categorieën door gebruik te maken van enkele parameters. Voorbeelden van parameters zijn het kennisdomein, dienstverlening, de methode voor het verwerken van de input en het genereren van een antwoord en menselijke hulp en bouwmethode \autocite{Adamopoulou2020}. 
 
-Twee grote categorieën waarin de soort chatbot verschillen zijn open domeinen en gesloten domeinen. Open domein chatbots vertellen ons meer over algemene onderwerpen die een zo goed mogelijk antwoord geven op de gebruiker zijn vraag. Gesloten domein chatbots werken aan de hand van algemene domein kennis van de chatbot \autocite{Adamopoulou2020}. Nadelig hieraan is dat niet alle vragen even goed kunnen beantwoord worden \autocite{Kucherbaev2018}.
+Twee grote categorieën waarin de soort chatbot verschillen zijn open domeinen en gesloten domeinen. Open domein chatbots vertellen ons meer over algemene onderwerpen die een zo goed mogelijk antwoord geven op de vraag van de gebruiker. Gesloten domein chatbots werken aan de hand van algemene domein kennis van de chatbot \autocite{Adamopoulou2020}. Nadelig hieraan is dat niet alle vragen even goed kunnen beantwoord worden \autocite{Kucherbaev2018}.
 
-Een verdere onderscheidt van chatbots zijn de soorten aangeboden diensten: ‘Interpersonal, ‘Intrapersonal en ‘Inter-agent’. Met een ‘Intrapersonal’ service communiceren hij de gekende informatie zoals openingsuren van een winkel, of trein boekingen met de eindgebruiker \autocite{Adamopoulou2020}. ‘Intrapersonal’ bots proberen de gebruiker te verstaan en te helpen zoals een echte mens. Deze gaan opzoek naar persoonlijke domein data van de gebruiker. Als laatste onderverdeling van dienst verlening bestaat de ‘Inter-agent’ chatbot. Deze bots communiceren met andere bots om hun informatie te delen. Op deze manier kunnen ze het best passende antwoorden schenken \autocite{Nimavat2017}.
+Een verdere onderscheid van chatbots zijn de soorten aangeboden diensten: ‘Interpersonal, ‘Intrapersonal en ‘Inter-agent’. Met een ‘Intrapersonal’ service communiceert hij de gekende informatie zoals openingsuren van een winkel, of trein boekingen met de eindgebruiker \autocite{Adamopoulou2020}. ‘Intrapersonal’ bots proberen de gebruiker te verstaan en te helpen zoals een echte mens. Deze gaan opzoek naar persoonlijke domein data van de gebruiker. Als laatste onderverdeling van dienstverlening bestaat de ‘Inter-agent’ chatbot. Deze bots communiceren met andere bots om hun informatie te delen. Op deze manier kunnen ze het best passende antwoorden schenken \autocite{Nimavat2017}.
 
-De bots hebben altijd een specifiek doel hiervoor word er gekeken naar wat de chatbot wil bereiken. Wil de chatbot informatie verschaffen aan de gebruiker aan de hand van vast middelen dan spreken we over informatieve chatbots. Bij het geval van ‘Task based’ zal de chatbot effectief een taak uitvoeren aan de hand van specifieke eisen. Als meest gebruikte vorm van chatbot is er de chat gebaseerde of conversatie chatbot. Deze is puur gericht op het juiste antwoord te verschaffen op de zopas gestelde vraag (\autocite{Nimavat2017} \autocite{Adamopoulou2020}. 
+De bots hebben altijd een specifiek doel. Daarvoor wordt er gekeken naar wat de chatbot wil bereiken. Wil de chatbot informatie verschaffen aan de gebruiker aan de hand van vaste middelen dan spreken we over informatieve chatbots. Bij het geval van ‘Task based’ zal de chatbot effectief een taak uitvoeren aan de hand van specifieke eisen. Als meest gebruikte vorm van chatbot is er de chat gebaseerde of conversatie chatbot. Deze is puur gericht om het juiste antwoord te verschaffen op de gestelde vraag (\autocite{Nimavat2017} \autocite{Adamopoulou2020}. 
 
-De drie modellen geklasseerd onder ‘respons en generation method’ stellen methode voor die de vraagstelling in achting neem en geneert op basis van dit een gepast antwoord. Als eerst bestaat er de ‘Rule based’ model. Deze bots worden zo getrainde en geprogrammeerd om op specifieke zoektermen de juiste vooraf gedefinieerde antwoorden te verschaffen. De toepassing van \ac{FAQ} bot is hiervan een voorbeeld. Deze bot verschil maar nauwelijk ten opzichte van een ‘Retrieval based model, wat meer flexibiliteit geeft. Het analyseert verschillende mogelijk bronnen aan de hand van ‘APIs’. Het laatste model is ‘Generative’ dit model gebaseerd op vorige berichten een antwoord voorzien. Dit is het meest krachtigste model maar complex om te programmeren en te trainen \autocite{Adamopoulou2020} \autocite{Hien2018}.
+De drie modellen die geklasseerd onder ‘respons en generation method’ stellen methodes voor die de vraagstelling in acht neemt en genereert een gepast antwoord. Als eerste bestaat er de ‘Rule based’ model. Deze bots worden zo getraind en geprogrammeerd om op specifieke zoektermen de juiste vooraf gedefinieerde antwoorden te verschaffen. De toepassing van \ac{FAQ} bot is hiervan een voorbeeld. Deze bot verschilt maar nauwelijks ten opzichte van een ‘Retrieval based model, wat meer flexibiliteit geeft. Het analyseert verschillende mogelijke bronnen aan de hand van ‘APIs’. Het laatste model is ‘Generative’.  Dit model is gebaseerd om op vorige berichten een antwoord te voorzien. Dit is het meest krachtigste model en het meest complexe om te programmeren en te trainen \autocite{Adamopoulou2020} \autocite{Hien2018}.
 
 \subsection{Platformen om chatbots te bouwen}%
 \label{sec:chatbotBouwen}
