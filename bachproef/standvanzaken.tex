@@ -109,16 +109,13 @@ De applicatie kan meerdere versies van QR-codes genereren elk met hun eigen doel
 
 Hoewel een QR-code een standaard grafische voorstelling is, kan de grootte van een code verschillen. Wanneer een code groter is, ontstaat er meer witruimte tussen de pixels \autocite{Li2018}. Hierdoor kan de camera de code makkelijker en sneller scannen \autocite{Karrach2020}. Ook de foutcorrectie zorgt ervoor dat de resolutie vergroot zal worden. Hoe groter de resolutie van de QR-code hoe meer data gestockeerd kan worden \autocite{Chow2016}. 
 
-De reservatie en tot stand brengen van een QR-code zijn twee aparte concepten. Het systeem is geschreven op basis van flexibiliteit en uitbreidbaarheid.
-
 \subsubsection{De reservatie voor een toegangscode van een locker}%
 \label{sec:opbouwQR-codeVerkoop1}
 
 \textit {De toelichting die hieronder weergeven wordt, is een vereenvoudigde voorstelling van de effectieve implementatie. Dit onderdeel van de toepassing is niet het hoofdonderwerp van deze bachelorproef, op deze analogie wordt niet verder ingegaan.}
 
 \vspace{7}
-De gegevens van de klant worden opgevraagd als hij/zij een QR-code wenst te kopen. Aan de hand van deze gegevens wordt er een gebruikersaccount automatisch aangemaakt en worden de gegevens bijgehouden \ref{lst:ophalenUser}. Deze aanpak maakt het mogelijk om nadien een koppeling te leggen tussen lockernummer en gebruiker.
-
+De gegevens van de klant worden opgevraagd als hij/zij een QR-code wenst te kopen. Aan de hand van deze gegevens wordt er een gebruikersaccount automatisch aangemaakt en worden de gegevens bijgehouden \ref{lst:ophalenUser}. Deze aanpak maakt het mogelijk om nadien een koppeling te leggen tussen lockernummer en gebruiker. De reservatie en tot stand brengen van een QR-code zijn twee aparte concepten.
 \begin{lstlisting}[caption={Ophalen de zopas aangemaakte gebruiker zijn gegevens indien hij in het huur proces terecht gekomen is.}, label={lst:ophalenUser}]
     /**
     * Get the user auth uid
@@ -143,7 +140,7 @@ De gegevens van de klant worden opgevraagd als hij/zij een QR-code wenst te kope
     }
 \end{lstlisting}
 
-Bij het huurproces van een locker moet een huurder het festival aanduiden waar hij/zij de locker wil huren. Niets sluit uit dat de lockers operationeel zijn op twee verschillende locaties. Daarna heeft de huurder de keuze om het formaat te selecteren en als deze optie beschikbaar is hoelang de huurtijd zal zijn. Echter is het verstrijken van deze details over het geselecteerde evenement noodzakelijk voor de opbouw van de QR-code. De QR-code wordt gegenereerd op basis van de beschikbare lockers die aanwezig zijn op het geselecteerde evenement. De verwijzing naar  implementatie \ref{lst:ophalenEventInfo}.
+Bij het huurproces van een locker moet een huurder het festival aanduiden waar hij/zij de locker wil huren. Niets sluit uit dat de lockers operationeel zijn op twee verschillende locaties. Daarna heeft de huurder de keuze om het formaat te selecteren en als deze optie beschikbaar is hoelang de huurtijd zal zijn. Echter is het verstrijken van deze details over het geselecteerde evenement noodzakelijk voor de opbouw van de QR-code. De QR-code wordt gegenereerd op basis van de beschikbare lockers die aanwezig zijn op het geselecteerde evenement \ref{lst:ophalenEventInfo}.
 
 \begin{lstlisting}[caption={Het informatie ophalen van de geselecteerde locatie. Aan de hand van geselecteerde evenement kan er gegevens uit de databank gehaald worden.}, label={lst:ophalenEventInfo}]
     /**
@@ -202,7 +199,7 @@ Bij het huurproces van een locker moet een huurder het festival aanduiden waar h
     }
 \end{lstlisting}
 
-Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschikbaar is, zal er een reservatie aangemaakt worden en meteen bewaard worden in een databank. Het code die hiervoor verantwoordelijk wordt afgebeeld in listing \ref{lst:aanmakenReservatie}.
+Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschikbaar is, zal er een reservatie aangemaakt worden en meteen bewaard worden in een databank. Het code die hiervoor verantwoordelijk is wordt afgebeeld in listing \ref{lst:aanmakenReservatie}.
 
 \begin{lstlisting}[caption={De creatie van een reservatie voor het huren van een locker. Deze reservatie wordt bijgehouden in de databank}, label={lst:aanmakenReservatie}]
     /**
@@ -250,7 +247,7 @@ Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschik
 \subsubsection{Het betalingsverzoek voor een toegangscode van een locker}%
 \label{sec:opbouwQR-codeVerkoop12}
 
-Wanneer de databank een nieuwe reservatie constateert, word er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen het betalingsverzoek gecreëerd mag worden. 
+Wanneer de databank een nieuwe reservatie constateert, word er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen om het betalingsverzoek te gecreëeren. 
 De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard beschadigd is of als ze hun toegangscode tot de locker verloren zijn. Bij het aanmaken van toegangscodes bij logistieke medewerkers verloopt het proces op een alternatieve wijze.  Deze springen over het betalingsproces en verwerven direct een geldige QR-code. Zonder de aangemaakte betaling veld in de databank op te slaan.  \ref{lst:aanmakenBetaling}
 
 \begin{lstlisting}[caption={Valideerd of er een betaling van toepassing is. Indien nodig creëert het een betaling en bewaard deze in de databank}, label={lst:aanmakenBetaling}]
@@ -343,7 +340,7 @@ De tool Mollie is een online betalingsservice deze wordt gehanteerd om de betali
     }
     \end{lstlisting}
 
-Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde locker nummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevind word aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is \ref{lst:voltooidebetaling}.
+Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde locker nummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevindt word aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is \ref{lst:voltooidebetaling}.
 
 
 \begin{lstlisting}[caption={Voltooide betaling roept de creatie QR-code methode op. Hierbij gebeurt een status update van de vooraf aangemaakte reservatie.}, label={lst:voltooidebetaling}]
@@ -400,7 +397,7 @@ Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiem
 \subsubsection{Creatie QR-code na succesvolle betaling.}%
 \label{sec:opbouwQR-codeVerkoop123}
 
-Om de QR-code te tonen op de mobiele applicatie hebben we componenten nodig om de gegenereerde QR-code visueel te tonen \ref{fig:qrCodeGebruiker} \ref{fig:qrCodeAdmin}. Hierdoor kan de koper zowel de code scannen op zijn/haar telefoon als op een afgedrukt kaartje \autocite{Chow2016}.
+Om de QR-code te tonen op de mobiele applicatie hebben we componenten nodig om de gegenereerde QR-code visueel te tonen zoals op figuur \ref{fig:qrCodeGebruiker} of figuur \ref{fig:qrCodeAdmin}. Hierdoor kan de koper zowel de code scannen op zijn/haar telefoon als op een afgedrukt kaartje \autocite{Chow2016}.
 
 \begin{figure}[h]
     \centering
@@ -474,7 +471,9 @@ Lijn 29– 35: De tool die gehanteerd wordt om de QR-code te genereren is de bib
 
 Eerder in de werking van de QR-units is de validatie NaCL genaamd ‘Networking And Cryptography Library’ aan bod gekomen \autocite{Bernstein}. De hoofdfunctionaliteit van de recente software bibliotheek is het vercijferen en ontcijferen van bestanden. Het biedt alle kernbewerkingen aan die betrekking hebben om cartografische benodigdheden op hoger niveau te bouwen \autocite{Bernsteina}.
 
-In de applicatie van Lockit Rentals is er gebruik gemaakt van TweetNaCl.js. TweetNaCl is een compacte versie van de implementatie bibliotheek NaCL \autocite{Bernstein2014} \autocite{Bernsteinb}. Deze bevat verschillende encryptie en onderteken algoritmes op basis van ed25519 \autocite{Bernstein2011}. Ed25519 gebruikt het onderliggende algoritme Curve25519. Curve25519 is vooral ontworpen om snel, efficiënt en op een effectieve manier sleutelwisseling te gaan uitvoeren. Zo worden beide partijen op de hoogte gesteld van hun gezamenlijke sleutel \autocite{Bernstein2006}. Ed25519 aan de andere kant heeft andere prioriteiten. Deze zal op een betere en sneller manier algoritmen uitvoeren specifiek voor digitale ondertekeningen gaan uitvoeren. \autocite{Bernstein2011}. In het kader van smart locker systemen wordt de encryptie gebruikt om de QR-codes digitaal te ondertekenen. De reden van gebruik ligt bij een voordeel van TweetNaCL.js die heel voordelig uitkomt bij de gegeven implementatie. Het heeft namelijk als voordeel dat deze beschikt over kleine onderteken sleutels ook wel ‘signatures’ genoemd \autocite{Bernstein2011}. Hoe minder gestockeerde data in de QR-code kleiner de afdruk is van de code \autocite{Chow2016}.
+In de applicatie van Lockit Rentals is er gebruik gemaakt van TweetNaCl.js. TweetNaCl is een compacte versie van de implementatie bibliotheek NaCL \autocite{Bernstein2014} \autocite{Bernsteinb}. Deze bevat verschillende encryptie en onderteken algoritmes op basis van ed25519 \autocite{Bernstein2011}. \\
+Ed25519 gebruikt het onderliggende algoritme Curve25519. Curve25519 is vooral ontworpen om snel, efficiënt en op een effectieve manier sleutelwisseling te gaan uitvoeren. Zo worden beide partijen op de hoogte gesteld van hun gezamenlijke sleutel \autocite{Bernstein2006}. Ed25519 aan de andere kant heeft andere prioriteiten. Deze zal op een betere en sneller manier algoritmen uitvoeren specifiek voor digitale ondertekeningen gaan uitvoeren. \autocite{Bernstein2011}. \\
+In het kader van smart locker systemen wordt de encryptie gebruikt om de QR-codes digitaal te ondertekenen. De reden van gebruik ligt bij een voordeel van TweetNaCL.js die heel voordelig uitkomt bij de gegeven implementatie. Het heeft namelijk als voordeel dat deze beschikt over kleine onderteken sleutels ook wel ‘signatures’ genoemd \autocite{Bernstein2011}. Hoe minder gestockeerde data in de QR-code kleiner de afdruk is van de code \autocite{Chow2016}.
 
 Deze term van algoritme wordt ‘signing’ genoemd. Het algoritme zal verifiëren of de data in de QR-code onveranderd blijft gedurende het gehele proces \autocite{Bernsteinb}. Het proces begint bij het tot stand brengen van een QR-code tot aan het scannen ervan.
 
@@ -504,7 +503,7 @@ In deze illustratie wordt een bericht dat afgebeeld staat hieronder \ref{fig:enc
     \label{fig:encryptionBericht}
 \end{figure}}
 
-Bij ondertekening van dit bericht ontstaat er een unieke handtekening  \ref{fig:signatureQrcode} als zijnde een tekenreeks. Aan de hand van deze code kan de ontvanger verifiëren dat het bericht gedurende de transactie niet gewijzigd is.
+Bij ondertekening van dit bericht ontstaat er een unieke handtekening  \ref{fig:signatureQrcode} als zijnde een tekenreeks. Aan de hand van deze code kan de ontvanger verifiëren dat het bericht gedurende het proces niet gewijzigd is.
 
 \begin{figure}[h]
     \centering
@@ -514,7 +513,7 @@ Bij ondertekening van dit bericht ontstaat er een unieke handtekening  \ref{fig:
     \label{fig:signatureQrcode}
 \end{figure}}
 
-Om na te gaan of dit bericht zijn oorspronkelijke data bevat zal de functie ‘verify’ opgeroepen worden. In het geval dat dit bericht niet in oorspronkelijke status bevindt, zal de functie een foutboodschap retourneren \ref{fig:verifyFailed} . Als de methode geen foutboodschap weergeeft, kan men concluderen dat deze data origineel is \autocite{Bernstein2014}. Zoals word weergegeven in figuur \ref{fig:verified}.
+Om na te gaan of dit bericht zijn oorspronkelijke data bevat zal de functie ‘verify’ opgeroepen worden. In het geval dat dit bericht niet in oorspronkelijke status bevindt, zal de functie een foutboodschap retourneren \ref{fig:verifyFailed}. Als de methode geen foutboodschap weergeeft, kan men concluderen dat deze data origineel is \autocite{Bernstein2014}. Zoals word weergegeven in figuur \ref{fig:verified}.
 
 \begin{figure}[h]
     \centering
@@ -539,7 +538,7 @@ Om na te gaan of dit bericht zijn oorspronkelijke data bevat zal de functie ‘v
 
 Bij de implementatie van deze smart locker technologie is het bericht dat standaard meegegeven wordt de QR-code data van type \ac{JSON} object. Deze kan niet ondertekend worden zolang het niet geconverteerd wordt naar een tekstueel gegeven. De omvorming van een \ac{JSON} object naar een string wordt verwerkt door de functie ‘deCodeBase64’. Deze functie zal de reeks decoderen terug naar het oorspronkelijke binair formaat \autocite{Josefsson2006}.
 
-De functie ‘NaCL. Sign()’ aanvaardt twee parameters \ref{lst:encryptionCode}. In de eerste plaats nemen we de locker informatie op. Deze informatie beschikt over de locker nummer, creatiedatum QR-code en verval datum QR-code \ref{lst:essentieleQrdata}. Vervolgens heeft de functie een geheime sleutel nodig om de ondertekening te kunnen uitvoeren.
+
 
 \begin{lstlisting}[caption={Data object met de naam smallItem bevat de essentiele data om een locker te openen.}, label={lst:essentieleQrdata}]
     export async function generateQrCodeWithRecord(qrData: {
@@ -559,11 +558,15 @@ De functie ‘NaCL. Sign()’ aanvaardt twee parameters \ref{lst:encryptionCode}
         );
 \end{lstlisting}
 
+Lijn 11 - 15 \ref{lst:essentieleQrdata} :  De data die essentieel is om toegang te hebben tot de locker wordt gedefinieerd als de variabele ‘smallItem’. Aangezien de eigenschappen zoals kleur, locatie en afbeelding niets te maken heeft met de scanfunctie van de QR-unit. Word deze informatie hiervan gescheiden.
+
+De functie ‘NaCL. Sign()’ aanvaardt twee parameters \ref{lst:encryptionCode}. In de eerste plaats nemen we de locker informatie op. Deze informatie beschikt over de locker nummer, creatiedatum QR-code en verval datum QR-code \ref{lst:essentieleQrdata}. Het is noodzakelijk dat het tekstbericht het juiste type is daarom wordt ‘smallItem’ omgezet naar een JSON object en daarna geconverteerd naar byte door de functie ‘decodeUTF8()’. Vervolgens heeft de functie een geheime sleutel nodig om de ondertekening te kunnen uitvoeren.
+
 \begin{lstlisting}[caption={Digitale ondertekening van QR-code data.}, label={lst:encryptionCode}]
     const data = nacl.sign.detached(
     decodeUTF8(JSON.stringify(smallItem)),
     decodeBase64(
-    'Hier komt de private key'
+    'Hier komt de private key.'
     )
     );
     \end{lstlisting}
@@ -577,7 +580,11 @@ Door de twee gecreëerde objecten, QR-data en de digitale handtekening samen te 
     ).toString('base64');
 \end{lstlisting}
 
-Als illustratie maken we een QR-code aan op de applicatie die bestemd is voor locker nummer één. De geldigheidsduur van de code is tien minuten. Het request kan onderschept worden om zo de data te analyseren. We beelden het object af in figuur \ref{fig:dataobjectQR}
+\newpage
+\subsubsection{Uitgewerkt voorbeeld van de verifieer functie op de een aangemaakte QR-Code.}%
+\label{sec:controleaangemaakteQRcode}
+
+Als illustratie maken we een QR-code aan op de applicatie die bestemd is voor locker nummer één. De geldigheidsduur van de code is tien minuten. Het request kan onderschept worden om zo de data te analyseren. We beelden het object af in figuur \ref{fig:dataobjectQR}.
 
 \begin{figure}[h]
     \centering
@@ -587,8 +594,6 @@ Als illustratie maken we een QR-code aan op de applicatie die bestemd is voor lo
     \label{fig:dataobjectQR}
 \end{figure}}
 
-\newpage
-
 Als we dieper in de materie duiken is de aangemaakte code zichtbaar als antwoord op het creatieverzoek. De tekstuele code voorgesteld als base64 string ziet er als volgt uit: \\
  “eyJkIjp7Im4iOiIxIiwiZiI6MTY3OTc0MzIyMSwidCI6MTY3OTc0Mzg4MX0sInYiOiJLYT\\
  cwTmg4WUo3RlY0NmNiKythNlN3b21vczFFVURiQlpxajl2ZDhpNlNUWGZHU003eVN\\
@@ -596,7 +601,7 @@ Als we dieper in de materie duiken is de aangemaakte code zichtbaar als antwoord
  
 \vspace{7}
 
-Deze code wordt achter een vaste ingestelde URL geplaatst zodanig dat de QR-code gemakkelijk gedeeld kan worden. Het delen of doorsturen van een QR-code is een eenvoudig proces voor de huurder \ref{lst:shareQR}. Als de QR-code gedeeld wordt een link gecreëerd dat verwijst naar de web applicatie van Lockit Rentals \ref{lst:createQRLink}. De applicatie zal de base64 string die meegegeven wordt in de link ontcijferen en een afbeelding van de QR-code genereren.
+Deze code wordt achter een vaste ingestelde URL geplaatst zodanig dat de QR-code gemakkelijk gedeeld kan worden. Het delen of doorsturen van een QR-code is een eenvoudig proces voor de huurder \ref{lst:shareQR}. Bij het delen van een QR-code wordt er een link gecreëerd dat verwijst naar de web applicatie van Lockit Rentals \ref{lst:createQRLink}. De applicatie zal de base64 string ontvangen en de link ontcijferen om zo een afbeelding van de QR-code genereren.
 
 \begin{lstlisting}[caption={Het doorsturen van een QR-code in de vorm van een link.}, label={lst:shareQR}]
     handler: async () => {  
@@ -636,7 +641,7 @@ Voor eenvoud van het illustratief voorbeeld vormen we dit om naar een gestandaar
 \end{figure}
 
 \newpage
-Om de data te controleren wordt de functie ‘verify’ aangeroepen \ref{fig:verifyMethode}, deze heeft 3 parameters nodig. Als eerste het object waarin de QR-code data zit. Vervolgens geven we de verificatie code mee. De publieke sleutel is de laatste parameter om te decrypteren.
+Om de data te controleren wordt de functie ‘verify’ aangeroepen \ref{lst:verifyMethode}, deze heeft 3 parameters nodig. Als eerste het object waarin de QR-code data zit. Vervolgens geven we de verificatie code mee. De publieke sleutel is de laatste parameter om te decrypteren.
 
 
 \begin{lstlisting}[caption={De controle van QR-code data met de TweetNaCL.js verifieer functie.}, label={lst:verifyMethode}]
@@ -662,6 +667,8 @@ Als data zijn originele vorm heeft aangehouden, zal de functie geen foutboodscha
     \label{fig:qrdataVerified}
 \end{figure}
 
+\newpage
+
 \section{De werking van een smart locker systeem.}%
 \label{sec:WerkingUnits}
 
@@ -679,7 +686,7 @@ Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het
     \item De QR-code die alvorens is aangemaakt wordt uitgelezen met een USB camera. De software van de camera draait rechtstreeks op de Rasberry PI. Een Raspberry PI is een kleine maar krachtige mini computer die allerlei berekeningen kan uitvoeren \autocite{Richardson2013}. De aangesloten USB camera zal de afbeeldingen renderen en opslaan in zijn geheugen.
     \item Bij het scannen van de QR-code identificeert de Raspberry PI de URL van de QR-code \autocite{Weir2012}. De applicatie heeft enkel nood aan de parameter ‘code’. Die base64 string wordt uit de link gefilterd door de URL op te splitsen \ref{lst:pythonLinkSplitting}. Eenmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naar een \ac{JSON} object. Hieruit kunnen 3 drie elementen uitgehaald worden: het lockernummer alsook het begin en eind tijdstip dat de QR-code geldig is. Deze tijdstippen worden beide voorgesteld als type Unix. Unix stelt tijdstippen op een correcte en eenvoudige wijze voor. Deze zorgen voor een makkelijke conversie tussen verschillende tijdzones en formaten \autocite{Ritchie1978}.
 
-        \begin{lstlisting}[language=Python, caption={Python script om parameter code uit de link te halen.}, label=lst:pythonLinkSplitting, numbers=left]
+        \begin{lstlisting}[language=Python, caption={Python script om parameter code uit de link te halen.}, label={lst:pythonLinkSplitting}, numbers=left]
             if (!url) {
                 return new Error();
             }
@@ -689,9 +696,9 @@ Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het
 
     
     \item 
-    De Raspberry PI is het hart van de hardware installatie (TODO: foto), hier bevindt zich alle logica die uitgevoerd wordt na het scannen van de QR-code. Hieronder volgt de Python implementatie dat actief is op de Raspberry PI \ref{lst: pythonPrimary}.
+    De Raspberry PI is het hart van de hardware installatie, hier bevindt zich alle logica die uitgevoerd wordt na het scannen van de QR-code. Hieronder volgt de Python implementatie dat actief is op de Raspberry PI \ref{lst:pythonPrimary}.
     
-    \begin{lstlisting}[language=Python, caption={Het primaire uitvoerbare script van de QR-unit.}, label=lst:pythonPrimary, numbers=left]
+    \begin{lstlisting}[language=Python, caption={Het primaire uitvoerbare script van de QR-unit.}, label={lst:pythonPrimary}, numbers=left]
         import cv2
         import pyzbar.pyzbar as pyzbar
         from datetime import datetime, timedelta
@@ -745,15 +752,13 @@ Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het
         print('interrupted!')
         
     \end{lstlisting}
-    Lijn 10: Het definiëren van de camera zodat hij kan gebruikt worden om de QR-code waar te nemen. \\
-    Lijn 34 – 41: Een oneindige lus waarin de camera constant probeert om QR-codes te scannen. Als hij een QR-code opmerkt, zal hij deze vertalen en zal de methode ‘decodeCam’ opgeroepen worden. De gescande afbeelding die voorgesteld wordt als QR-code zal hierin meegegeven worden.\\
+    Lijn 10 \ref{lst:pythonPrimary}: Het definiëren van de camera zodat hij kan gebruikt worden om de QR-code waar te nemen. \\
+    Lijn 34 – 41 \ref{lst:pythonPrimary}: Een oneindige lus waarin de camera constant probeert om QR-codes te scannen. Als hij een QR-code opmerkt, zal hij deze vertalen en zal de methode ‘decodeCam’ opgeroepen worden. De gescande afbeelding die voorgesteld wordt als QR-code zal hierin meegegeven worden.\\
+    Lijn 17 \ref{lst:pythonPrimary}: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Het pakket de resulterende grijsvariabelen verwijderen die in de invoerafbeelding zitten. Dit betekent dat als je een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.\\
+    Lijn 18 \ref{lst:pythonPrimary}: PyZbar is een andere bibliotheek die instaat om de QR-codes te gaan detecteren van de grijswaardenafbeelding die zonet met Cv2 bekend zijn gemaakt \autocite{Huang2022}\\
+    Lijn 21 – 30 \ref{lst:pythonPrimary}: Hierin gebeurt de decoding van de parameter code in de URL. Maar uiteraard wordt dit niet rechtstreeks gedaan. Het moet eerst nog gedecodeerd worden, aangezien de QR-code versleuteld is met encryptie. \\
+    Lijn 26 \ref{lst:pythonPrimary}: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. Deze code kan je vinden hieronder \ref{lst:pytho}. Deze server ontvangt een parameter waarin de QR-code data zit.\\
     
-    Lijn 17: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Bij deze code het pakket de resulterende grijsvariabelen verwijdert die in de invoerafbeelding zitten. Dit betekent dat als je een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.
-    Lijn 18: PyZbar is een andere bibliotheek die instaat om de QR-codes te gaan detecteren van de grijswaardenafbeelding die zonet met Cv2 bekend zijn gemaakt \autocite{Huang2022}\\
-    Lijn 21 – 30: Hierin gebeurt de decoding van de parameter code in de URL. Maar uiteraard wordt dit niet rechtstreeks gedaan. Het moet eerst nog gedecodeerd worden, aangezien de QR-code versleuteld is met encryptie. \\
-    Lijn 26: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. Deze code kan je vinden hieronder \ref{lst:pytho}. Deze server ontvangt een parameter waarin de QR-code data zit.\\
-    
-    \newpage
     
      \begin{lstlisting}[language=Python, caption={De node.js server die de nodige validatie zal uitvoeren en de verdere communicatie afronden.}, label=lst:pytho, numbers=left]
         router.post('/qr-code', (request, response) => {
@@ -779,7 +784,8 @@ Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het
         
     \end{lstlisting}
 
-    Lijn 32: Het aanroepen van een voor gedefinieerd ‘decryptor’ script. Zie code in listing \ref{lst:function} De validatie hierbij zal uitmaken of de data die in de QR-code is geplaatst nog steeds correct is.    \begin{lstlisting}[language=Python, caption={ De parameter genaamd ‘code’ wordt verwerkt en ontcijferd, indien de QR-data is aangepast zal het een error terug geven.}, label=lst:function, numbers=left]
+    Lijn 32 \ref{lst:pythonPrimary}: Het aanroepen van een voor gedefinieerd ‘decryptor’ script. Zie code in listing \ref{lst:function} De validatie hierbij zal uitmaken of de data die in de QR-code is geplaatst nog steeds correct is.    
+    \begin{lstlisting}[language=Python, caption={ De parameter genaamd ‘code’ wordt verwerkt en ontcijferd, indien de QR-data is aangepast zal het een error terug geven.}, label=lst:function, numbers=left]
         decrypt: function(url) {
             if (!url) {
                 return new Error();
@@ -838,10 +844,12 @@ Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het
         \end{lstlisting}
         
         
-    Lijn 42 – 62: Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor een aantal verschillende sloten aan te spreken. 
+    Lijn 42 – 62 \ref{lst:pythonPrimary}: Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor een aantal verschillende sloten aan te spreken. 
     
     
 \end{enumerate}
+
+\newpage
 
 \section{Wat is een chatbot}%
 \label{sec:chatbot}
