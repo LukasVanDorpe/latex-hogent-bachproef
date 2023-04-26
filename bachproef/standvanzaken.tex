@@ -7,7 +7,7 @@
 
 % Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
 
-%\lipsum[7-20]
+Zoals in vorige hoofdstuk  \ref{ch:inleiding}  vermeld iszal er onderzoek gevoerd worden naar de mogelijke oplossingen waarmee het bedrijf Lockit Rentals mee kampt. Alvorens we deze oplossingen aanbieden is het van belang om inzicht te verweren van gebruikte technologieën. Aangezien de 2 probleemstelling zich voordoen, is de literatuurstudie onderverdeeld in enerzijds de werking van algemene QR-codes alsook de ontwikkeling van een chatbot. Door deze onderwerpen zorgvuldig te bestuderen kunnen we op basis van verweven kennis het onderzoek starten. 
 
 \section{Wie is Lockit Rentals}%
 \label{sec:lockitRentals}
@@ -247,7 +247,7 @@ Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschik
 \subsubsection{Het betalingsverzoek voor een toegangscode van een locker}%
 \label{sec:opbouwQR-codeVerkoop12}
 
-Wanneer de databank een nieuwe reservatie constateert, word er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen om het betalingsverzoek te gecreëeren. 
+Wanneer de databank een nieuwe reservatie constateert, wordt er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen om het betalingsverzoek te gecreëeren. 
 De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard beschadigd is of als ze hun toegangscode tot de locker verloren zijn. Bij het aanmaken van toegangscodes bij logistieke medewerkers verloopt het proces op een alternatieve wijze.  Deze springen over het betalingsproces en verwerven direct een geldige QR-code. Zonder de aangemaakte betaling veld in de databank op te slaan.  \ref{lst:aanmakenBetaling}
 
 \begin{lstlisting}[caption={Valideert of er een betaling van toepassing is. Indien nodig creëert het een betaling en bewaard deze in de databank}, label={lst:aanmakenBetaling}]
@@ -299,7 +299,7 @@ De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard besc
         });
 \end{lstlisting}
 
-De tool Mollie is een online betalingsservice deze wordt gehanteerd om de betalingen succesvol af te ronden \autocite{docs2023}. Gelijktijdig met de betaling wordt er een interne teller bijgehouden zodat deze locker geblokkeerd wordt voor andere kopers. Als de betaling niet succesvol is, wordt de locker terug vrijgegeven na een bepaalde periode. De betaling word aangemaakt met de gekende informatie over de gewilde locker \ref{lst:aanmakenBetalingMollie}.
+De tool Mollie is een online betalingsservice die wordt gehanteerd om de betalingen succesvol af te ronden \autocite{docs2023}. Gelijktijdig met de betaling wordt er een interne teller bijgehouden zodat deze locker geblokkeerd wordt voor andere kopers. Als de betaling niet succesvol is, wordt de locker terug vrijgegeven na een bepaalde periode. De betaling word aangemaakt met de gekende informatie over de gewenste locker \ref{lst:aanmakenBetalingMollie}.
 
 \begin{lstlisting}[caption={Mollie betaling aanmaken met nodige data.}, label={lst:aanmakenBetalingMollie}]
     async function createMolliePayment(
