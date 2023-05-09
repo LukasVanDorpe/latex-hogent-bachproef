@@ -1,7 +1,7 @@
 \chapter{\IfLanguageName{dutch}{Stand van zaken}{State of the art}}%
 \label{ch:stand-van-zaken}
 
-Zoals vermeld in het vorige hoofdstuk onderzoeken we oplossingen voor de problemen waarmee het bedrijf Lockit Rentals kampt. Alvorens deze oplossingen aangeboden worden is het van belang om inzicht te verweren van gebruikte technologieën. Om deze technologieën goed te doorgronden moet er bestudeerd worden welke hedendaagse technieken gehanteerd worden. De literatuurstudie is onderverdeeld in twee delen. Enerzijds het analyseren van een aangemaakte QR-code. Inclusief de uitwerking en de functionaliteit hoe deze QR-codes geïntegreerd zijn in de locker systemen. Het maken en integreren van een oplossing voor de verloren QR-code zal plaatsvinden in het tweede deel van de literatuurstudie. Door deze technologieën te bestuderen maken we gebruik van de verweven kennis om het oplossingsgericht onderzoek starten.
+Zoals vermeld in het vorige hoofdstuk onderzoeken we oplossingen voor de problemen waarmee het bedrijf Lockit Rentals kampt. Alvorens deze oplossingen aangeboden worden, is het van belang om inzicht te verwerven van gebruikte technologieën. Om deze technologieën goed te doorgronden moet er bestudeerd worden welke hedendaagse technieken gehanteerd worden. De literatuurstudie is onderverdeeld in twee delen. Enerzijds het analyseren van een aangemaakte QR-code. Inclusief de uitwerking en de functionaliteit hoe deze QR-codes geïntegreerd zijn in de locker systemen. Het maken en integreren van een oplossing voor de verloren QR-code zal plaatsvinden in het tweede deel van de literatuurstudie. Door deze technologieën te bestuderen maken we gebruik van de verworven kennis om het oplossingsgericht onderzoek te starten.
 
 \section{Wie is Lockit Rentals}%
 \label{sec:lockitRentals}
@@ -97,14 +97,14 @@ De voordelen van de QR-codes vormen een duidelijk beeld waarom Lockit Rentals vo
 
 De kans op diefstal wordt ook alsmaar kleiner als de toegangscode bestaat uit elementen die niet waarneembaar zijn \autocite{Baharav2013}. Hoe minder de persoon in kwestie weet over de code hoe moeilijker deze is om door te geven aan anderen ook al is het niet hun intentie.
 \newpage
-\subsection{Opbouwen van QR-codes voor verkoop}%
+\subsection{Stappenplan voor de ontwikkeling en verkoop van QR-codes}%
 \label{sec:opbouwQR-codeVerkoop}
 
 De applicatie kan meerdere versies van QR-codes genereren elk met hun eigen doel en eigenschappen. Zo bestaan er QR-codes die de software automatisch updaten of een universele QR-code die automatisch alle lockers kan openen. Deze functionaliteit wordt gebruikt voor de lockers te controleren na elk evenement. 
 
 Hoewel een QR-code een standaard grafische voorstelling is, kan de grootte van een code verschillen. Wanneer een code groter is, ontstaat er meer witruimte tussen de pixels \autocite{Li2018}. Hierdoor kan de camera de code makkelijker en sneller scannen \autocite{Karrach2020}. Ook de foutcorrectie zorgt ervoor dat de resolutie vergroot zal worden. Hoe groter de resolutie van de QR-code hoe meer data gestockeerd kan worden \autocite{Chow2016}. 
 
-\subsubsection{De reservatie voor een toegangscode van een locker}%
+\subsubsection{Stap 1: Gegevens en voorkeur klant verwerven}%
 \label{sec:opbouwQR-codeVerkoop1}
 
 \textit {De toelichting die hieronder weergeven wordt, is een vereenvoudigde voorstelling van de effectieve implementatie. Dit onderdeel van de toepassing is niet het hoofdonderwerp van deze bachelorproef, op deze analogie wordt niet verder ingegaan.}
@@ -194,6 +194,7 @@ Bij het huurproces van een locker moet een huurder het festival aanduiden waar h
     }
 \end{lstlisting}
 
+\subsubsection{Stap 2: De reservatie voor een toegangscode van een locker}%
 Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschikbaar is, zal er een reservatie aangemaakt worden en meteen bewaard worden in een databank. Het code die hiervoor verantwoordelijk is wordt afgebeeld in listing \ref{lst:aanmakenReservatie}.
 
 \begin{lstlisting}[caption={De creatie van een reservatie voor het huren van een locker. Deze reservatie wordt bijgehouden in de databank}, label={lst:aanmakenReservatie}]
@@ -239,7 +240,7 @@ Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschik
 });
 \end{lstlisting}
 
-\subsubsection{Het betalingsverzoek voor een toegangscode van een locker}%
+\subsubsection{Stap 3: Het betalingsverzoek voor een toegangscode van een locker}%
 \label{sec:opbouwQR-codeVerkoop12}
 
 Wanneer de databank een nieuwe reservatie constateert, wordt er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen om het betalingsverzoek te gecreëeren. 
@@ -335,7 +336,7 @@ De tool Mollie is een online betalingsservice die wordt gehanteerd om de betalin
     }
     \end{lstlisting}
 
-Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde locker nummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevindt word aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is \ref{lst:voltooidebetaling}.
+Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde locker nummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevindt ,wordt aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is \ref{lst:voltooidebetaling}.
 
 
 \begin{lstlisting}[caption={Voltooide betaling roept de creatie QR-code methode op. Hierbij gebeurt een status update van de vooraf aangemaakte reservatie.}, label={lst:voltooidebetaling}]
@@ -388,8 +389,8 @@ Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiem
         });
 \end{lstlisting}
 
-
-\subsubsection{Creatie QR-code na succesvolle betaling.}%
+\newpage
+\subsubsection{Stap 4: Creatie QR-code na succesvolle betaling}%
 \label{sec:opbouwQR-codeVerkoop123}
 
 Om de QR-code te tonen op de mobiele applicatie hebben we componenten nodig om de gegenereerde QR-code visueel te tonen zoals op figuur \ref{fig:qrCodeGebruiker} of figuur \ref{fig:qrCodeAdmin}. Hierdoor kan de koper zowel de code scannen op zijn/haar telefoon als op een afgedrukt kaartje \autocite{Chow2016}.
@@ -410,7 +411,6 @@ Om de QR-code te tonen op de mobiele applicatie hebben we componenten nodig om d
     \label{fig:qrCodeAdmin}
 \end{figure}}
 
-\newpage
 Aangezien de generatie van een QR-code dat voorgesteld is als afbeelding wat front-end matige materie is, zal onderstaande code de werking weergeven \ref{lst:qrComponent}. 
 
 \begin{lstlisting}[caption={Typescript code voor een visuele QR-code aan te maken}, label={lst:qrComponent}]
@@ -461,7 +461,7 @@ Lijn 10 – 18: De ingestelde eigenschappen die gedefinieerd zijn om de QR-code 
 Lijn 29– 35: De tool die gehanteerd wordt om de QR-code te genereren is de bibliotheek ‘qrcode’ \autocite{pypi2023}. 
 
 \newpage
-\section{Het incrypteren en decrypteren van QR-codes is een QR-code opgebouwd}%
+\section{Het incrypteren en decrypteren van QR-codes}%
 \label{sec:encryptQR-code}
 
 Eerder in de werking van de QR-units is de validatie NaCL genaamd ‘Networking And Cryptography Library’ aan bod gekomen \autocite{Bernstein}. De hoofdfunctionaliteit van de recente software bibliotheek is het vercijferen en ontcijferen van bestanden. Het biedt alle kernbewerkingen aan die betrekking hebben om cartografische benodigdheden op hoger niveau te bouwen \autocite{Bernsteina}.
@@ -474,7 +474,7 @@ Deze term van algoritme wordt ‘signing’ genoemd. Het algoritme zal verifiër
 
 De documentatie website van TweetNaCl.js laat de verschillende encryptie tool gratis uitproberen \autocite{Bernsteinb}. Een concreet voorbeeld hieronder geeft duiding hoe een specifiek bericht ondertekend kan worden. Hieruit kan aangetoond worden of het bericht al dan niet is aangepast na de creatie \autocite{Bernstein2014}.
 
-\subsubsection{Uitgewerkt voorbeeld van digitale ondertekening op een standaard bericht.}%
+\subsection{Uitgewerkt voorbeeld met digitale ondertekening op een standaard bericht}%
 \label{sec:voorbeeldDigitaleSigning}
 
 Bij het ondertekenen van een bericht heeft het algoritme nood aan één geheime sleutel evenals één publieke sleutel
@@ -488,7 +488,7 @@ Bij het ondertekenen van een bericht heeft het algoritme nood aan één geheime 
     \label{fig:privatePublicKey}
 \end{figure}}
  \newpage
-In deze illustratie wordt een bericht dat afgebeeld staat hieronder \ref{fig:encryptionBericht} meegeven met de functie van TweetNaCl. Met als doel dit bericht te laten ondertekenen aan de hand van de geheime sleutel.
+In deze illustratie wordt een bericht dat afgebeeld staat hieronder \ref{fig:encryptionBericht} meegegeven met de functie van TweetNaCl. Met als doel dit bericht te laten ondertekenen aan de hand van de geheime sleutel.
 
 \begin{figure}[h]
     \centering
@@ -507,6 +507,8 @@ Bij ondertekening van dit bericht ontstaat er een unieke handtekening  \ref{fig:
     \caption{De gegenereerde digitale handtekening aan de hand van TweetNaCL.js}
     \label{fig:signatureQrcode}
 \end{figure}}
+
+\subsection{Verificatie van ondertekend bericht}%
 
 Om na te gaan of dit bericht zijn oorspronkelijke data bevat zal de functie ‘verify’ opgeroepen worden. In het geval dat dit bericht niet in oorspronkelijke status bevindt, zal de functie een foutboodschap retourneren \ref{fig:verifyFailed}. Als de methode geen foutboodschap weergeeft, kan men concluderen dat deze data origineel is \autocite{Bernstein2014}. Zoals word weergegeven in figuur \ref{fig:verified}.
 
@@ -528,7 +530,7 @@ Om na te gaan of dit bericht zijn oorspronkelijke data bevat zal de functie ‘v
 \\
 \newpage
 \newpage
-\subsubsection{Uitgewerkt voorbeeld van digitale ondertekening op een aangemaakte QR-Code.}%
+\subsection{Uitgewerkt voorbeeld van digitale ondertekening op een aangemaakte QR-Code.}%
 \label{sec:voorbeeldDigitaleSigningQRCode}
 
 Bij de implementatie van deze smart locker technologie is het bericht dat standaard meegegeven wordt de QR-code data van type \ac{JSON} object. Deze kan niet ondertekend worden zolang het niet geconverteerd wordt naar een tekstueel gegeven. De omvorming van een \ac{JSON} object naar een string wordt verwerkt door de functie ‘deCodeBase64’. Deze functie zal de reeks decoderen terug naar het oorspronkelijke binair formaat \autocite{Josefsson2006}.
@@ -576,7 +578,7 @@ Door de twee gecreëerde objecten, QR-data en de digitale handtekening samen te 
 \end{lstlisting}
 
 \newpage
-\subsubsection{Uitgewerkt voorbeeld van de verifieer functie op de een aangemaakte QR-Code.}%
+\subsection{Verificatie van QR-code}%
 \label{sec:controleaangemaakteQRcode}
 
 Als illustratie maken we een QR-code aan op de applicatie die bestemd is voor locker nummer één. De geldigheidsduur van de code is tien minuten. Het request kan onderschept worden om zo de data te analyseren. We beelden het object af in figuur \ref{fig:dataobjectQR}.
