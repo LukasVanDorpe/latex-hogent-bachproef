@@ -96,13 +96,17 @@ De fouttolerantie is doorslaggevend indien de QR-code gebruikt wordt als toegang
 De voordelen van de QR-codes vormen een duidelijk beeld waarom Lockit Rentals voor deze technologie gekozen heeft. Niet enkel naar functionaliteit en flexibiliteit toe maar eveneens is het een makkelijk traceerbare tool. Bij verkoop van QR-codes kan men een overzicht opmaken hoeveel QR-codes er effectief gegenereerd zijn. Op basis van deze gegevens kunnen verkoopcijfers makkelijk berekend worden. 
 
 De kans op diefstal wordt ook alsmaar kleiner als de toegangscode bestaat uit elementen die niet waarneembaar zijn \autocite{Baharav2013}. Hoe minder de persoon in kwestie weet over de code hoe moeilijker deze is om door te geven aan anderen ook al is het niet hun intentie.
+
 \newpage
 \subsection{Stappenplan voor de ontwikkeling en verkoop van QR-codes}%
 \label{sec:opbouwQR-codeVerkoop}
 
-De applicatie kan meerdere versies van QR-codes genereren elk met hun eigen doel en eigenschappen. Zo bestaan er QR-codes die de software automatisch updaten of een universele QR-code die automatisch alle lockers kan openen. Deze functionaliteit wordt gebruikt voor de lockers te controleren na elk evenement. 
+Het proces voor het genereren van QR-codes van de mobiele applicatie wordt vooraf gegaan door allerlei fases. De aangekochte QR-code aanmaken en weergeven naar de klant is de laatste fase in het proces. De applicatie kan meerdere versies van QR-codes genereren elk met hun eigen doel en eigenschappen. Zo bestaan er QR-codes die de software automatisch updaten of een universele QR-code die automatisch alle lockers kan openen. Deze QR-codes zal gehanteerd worden door logistieke medewerkers.
 
-Hoewel een QR-code een standaard grafische voorstelling is, kan de grootte van een code verschillen. Wanneer een code groter is, ontstaat er meer witruimte tussen de pixels \autocite{Li2018}. Hierdoor kan de camera de code makkelijker en sneller scannen \autocite{Karrach2020}. Ook de foutcorrectie zorgt ervoor dat de resolutie vergroot zal worden. Hoe groter de resolutie van de QR-code hoe meer data gestockeerd kan worden \autocite{Chow2016}. 
+\begin{comment}
+    Hoewel een QR-code een standaard grafische voorstelling is, kan de grootte van een code verschillen. Wanneer een code groter is, ontstaat er meer witruimte tussen de pixels \autocite{Li2018}. Hierdoor kan de camera de code makkelijker en sneller scannen \autocite{Karrach2020}. Ook de foutcorrectie zorgt ervoor dat de resolutie vergroot zal worden. Hoe groter de resolutie van de QR-code hoe meer data gestockeerd kan worden \autocite{Chow2016}. 
+\end{comment}
+
 
 \subsubsection{Stap 1: Gegevens en voorkeur klant verwerven}%
 \label{sec:opbouwQR-codeVerkoop1}
@@ -666,10 +670,39 @@ Als data zijn originele vorm heeft aangehouden, zal de functie geen foutboodscha
 
 \newpage
 
+\section{Detecteren van QR-codes}
+\label{sec:detecterenQr-codes}
+
+De populariteit van QR-codes verplicht de omgeving zich aan te passen om deze twee dimensionale codes op een veilige en correcte manier snel uit te lezen. Het streven naar betere en snellere QR-code scanners is bij grote bedrijven essentieel \autocite{Ertekin2015}.
+Om de problematiek van Lockit Rentals over de QR-code herkenning onder de loep te nemen, kijken wij naar hun gebruikte technieken om QR-codes te detecteren. 
+
+\newline
+
+TOOOODOOOO
+Figuur x en x toont aan dat het scannen van een QR-code gebeurt aan de hand van een USB camera. Om te scannen in donkere omgevingen hebben ze hierbij ook een lichtbron bij de scanner geplaatst.
+\newline
+Het detecteren en decoderen van een QR-code bestaat uit de bepaling van de grenzen van het symboolgebied. Binnen de grenzen wordt het symbool gemarkeerd en zodoende de QR-code geprojecteerd \autocite{Belussi2011}. Hoewel een QR-code een standaard grafische voorstelling is, kan de grootte van een code verschillen. Wanneer een code groter is, ontstaat er witruimte tussen de pixels \autocite{Li2018}. Hierdoor kan de camera de code makkelijker en sneller scannen \autocite{Karrach2020}. Ook de foutcorrectie zorgt ervoor dat de resolutie vergroot zal worden. Hoe groter de resolutie van de QR-code hoe meer data gestockeerd kan worden \autocite{Chow2016}.
+\newline
+De camera voorziet een herkenningsalgoritme op basis van beeldverwerking. Het scanproces inclusief de beeld kantel correctie, beeldoriëntatie en beeld geometrische correctie kunnen het beeld die onder verlichtingsomstandigheden en opnamehoeken zijn verzameld eenvoudig en snel identificeren \autocite{Gu2011}.
+Experimenten tonen aan dat het gebruik van verbeterde herkenningsalgoritmen bij het scannen van twee dimensionale codes de herkenningssnelheid en nauwkeurigheid kan verbeteren \autocite{Gu2011}.
+\newline
+Niet alleen het herkenningsalgoritme speelt een cruciaal belang in het scannen van QR-codes. Verschillende factoren zoals de grootte, complexiteit van een QR-code, de verlichting tijdens het scannen, de afstand tussen de scanner en de code spelen allemaal een grote rol in het snel detecteren en decoderen van een opgebouwde QR-code \autocite{Liu2008}. Met deze factoren in achting te nemen, wordt er onderzocht welke QR-code scanners geschikt zijn om het bedrijfsproces van Lockit Rentals te verbeteren.
+\newline
+De meest gekende QR-code scanner moet niet vergezocht worden. Elke draagbare telefoon heeft een ingebouwde QR-code scanner om twee dimensionale QR-codes uit te lezen \autocite{Abdulhakeem2014}. Om deze toestellen te gebruiken bij het bedrijfsproces van deze bachelorproef zou dit echter leiden tot een te grote productiekost. De eigenaars hebben een versimpelde USB camera gebruikt als QR-code scanner. Door observaties en experimenten hebben ze opgemerkt dat er negatieve effecten kunnen opduiken bij het gebruiken van zo een USB camera. Hieronder een opsomming van de problemen:
+
+\begin{itemize}
+    \item Raspberry PI heeft enorme prestaties te leveren aangezien het herkenningsalgoritme van de USB camera volledig op de mini computer draait.
+    \item De camera zelf heeft geen lichttoevoer dit maakt het moeilijker bij het uitlezen van een QR-code afgedrukt op papier.
+    \item De camera kan zichzelf onscherp stellen door gevolg van transport of andere factoren. 
+    \item De klant kan de afstand niet inschatten tot waar de scanner de toegangscode detecteert.
+\end{itemize}
+
 \section{De werking van een smart locker systeem.}%
 \label{sec:WerkingUnits}
 
-Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het volledige business model op draait. Figuur \ref{fig:schemaWerkingUnit} is een schematische voorstelling hoe de software in aanraking komt met de hardware. Dit door middel van de QR-code die dient als toegangscode.
+Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het volledige business model op draait. Figuur \ref{fig:schemaWerkingUnit} is een schematische voorstelling hoe de software in aanraking komt met de hardware. Dit door middel van de QR-code die dient als toegangscode. 
+
+Op deze figuur is de werking onderverdeeld in stappen.
 
 \begin{figure}[h]
     \centering
@@ -679,57 +712,21 @@ Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het
     \label{fig:schemaWerkingUnit}
 \end{figure}
 
-\begin{enumerate}
-    \item De QR-code die alvorens is aangemaakt wordt uitgelezen met een USB camera. De software van de camera draait rechtstreeks op de Rasberry PI. Een Raspberry PI is een kleine maar krachtige mini computer die allerlei berekeningen kan uitvoeren \autocite{Richardson2013}. De aangesloten USB camera zal de afbeeldingen renderen en opslaan in zijn geheugen.
-    \item Bij het scannen van de QR-code identificeert de Raspberry PI de URL van de QR-code \autocite{Weir2012}. De applicatie heeft enkel nood aan de parameter ‘code’. Die base64 string wordt uit de link gefilterd door de URL op te splitsen \ref{lst:pythonLinkSplitting}. Eenmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naar een \ac{JSON} object. Hieruit kunnen 3 drie elementen uitgehaald worden: het lockernummer alsook het begin en eind tijdstip dat de QR-code geldig is. Deze tijdstippen worden beide voorgesteld als type Unix. Unix stelt tijdstippen op een correcte en eenvoudige wijze voor. Deze zorgen voor een makkelijke conversie tussen verschillende tijdzones en formaten \autocite{Ritchie1978}.
+\subsubsection{Stap 1: QR-code in bezit}
 
-        \begin{lstlisting}[language=Python, caption={Python script om parameter code uit de link te halen.}, label={lst:pythonLinkSplitting}, numbers=left]
-            if (!url) {
-                return new Error();
-            }
-            const data = url.split("code=")[1]
-            const obj = JSON.parse(Buffer.from(data, 'base64').toString('utf8')); 
-        \end{lstlisting}
+De huurder heeft zich succesvol geregistreerd en een toegangscode verkregen. 
 
+\subsubsection{Stap 2: QR-code scannen}
+
+De QR-code die alvorens is aangemaakt wordt uitgelezen met een USB camera. De software van de camera draait rechtstreeks op de Rasberry PI. 
+ \begin{lstlisting}[language=Python, caption={Het uitvoerbare script van de QR-unit, die de toegangscode zal uitlezen.}, label={lst:pythonPrimary1}, numbers=left]
+    from datetime import datetime, timedelta
+    import time
+    import cv2
     
-    \item 
-    De Raspberry PI is het hart van de hardware installatie, hier bevindt zich alle logica die uitgevoerd wordt na het scannen van de QR-code. Hieronder volgt de Python implementatie dat actief is op de Raspberry PI \ref{lst:pythonPrimary}.
+    camera = cv2.VideoCapture(0)
     
-    \begin{lstlisting}[language=Python, caption={Het primaire uitvoerbare script van de QR-unit.}, label={lst:pythonPrimary}, numbers=left]
-        import cv2
-        import pyzbar.pyzbar as pyzbar
-        from datetime import datetime, timedelta
-        import requests
-        import time
-        
-        #width = 2592
-        #height = 1944
-        
-        camera = cv2.VideoCapture(0)
-        #camera.set(3,width)
-        #camera.set(4,height)
-        
-        
-        def decodeCam(image):
-            try:
-                gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-                barcodes = pyzbar.decode(gray, symbols=[pyzbar.ZBarSymbol.QRCODE])
-                global data
-                global stamp
-                for barcode in barcodes:
-                barcodeData = barcode.data.decode()
-                barcodeType = barcode.type
-                if barcodeData != data or stamp + timedelta(days=0, seconds=5) < datetime.now():
-                print("["+str(datetime.now())+"] Type:{} | Data: {}".format(barcodeType, barcodeData))
-                res = requests.post('http://localhost:5000/qr-code', json = {'tag': barcodeData })
-                print(res)
-                data = barcodeData
-                stamp = datetime.now()
-                return image
-            except Exception as e:
-                print(e)
-        
-        try:
+    try:
         global data
         data = ""
         global stamp
@@ -743,105 +740,180 @@ Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het
             time_elapsed = time.time() - prev
             ret, frame = camera.read()
             if time_elapsed > 1./frame_rate:
-                prev = time.time()
-                im=decodeCam(frame)
-        except KeyboardInterrupt:
-        print('interrupted!')
-        
-    \end{lstlisting}
-    Lijn 10 \ref{lst:pythonPrimary}: Het definiëren van de camera zodat hij kan gebruikt worden om de QR-code waar te nemen. \\
-    Lijn 34 – 41 \ref{lst:pythonPrimary}: Een oneindige lus waarin de camera constant probeert om QR-codes te scannen. Als hij een QR-code opmerkt, zal hij deze vertalen en zal de methode ‘decodeCam’ opgeroepen worden. De gescande afbeelding die voorgesteld wordt als QR-code zal hierin meegegeven worden.\\
-    Lijn 17 \ref{lst:pythonPrimary}: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Het pakket de resulterende grijsvariabelen verwijderen die in de invoerafbeelding zitten. Dit betekent dat als de huurder een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.\\
-    Lijn 18 \ref{lst:pythonPrimary}: PyZbar is een andere bibliotheek die instaat om de QR-codes te gaan detecteren van de grijswaardenafbeelding die zonet met Cv2 bekend zijn gemaakt \autocite{Huang2022}\\
-    Lijn 21 – 30 \ref{lst:pythonPrimary}: Hierin gebeurt de decoding van de parameter code in de URL. Maar uiteraard wordt dit niet rechtstreeks gedaan. Het moet eerst nog gedecodeerd worden, aangezien de QR-code versleuteld is met encryptie. \\
-    Lijn 26 \ref{lst:pythonPrimary}: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. De bijhorende code wordt hieronder \ref{lst:pytho} getoont. Deze server ontvangt een parameter waarin de QR-code data zit.\\
-    
-    
-     \begin{lstlisting}[language=Python, caption={De node.js server die de nodige validatie zal uitvoeren en de verdere communicatie afronden.}, label=lst:pytho, numbers=left]
-        router.post('/qr-code', (request, response) => {
-            try {
-                const decryptedData = decryptor.decrypt(request.body.tag);
-                console.log(decryptedData);
-                const hasErrors = validator.validate(decryptedData, Number(config.unit));
-                if (hasErrors) {
-                    displayError(hasErrors.errorMessage);
-                    return;
-                }
-                expressWs.getWss('/updates').clients.forEach(function (client) {
-                    client.send(JSON.stringify(decryptedData));
-                });
-                if (decryptedData.n) {
-                    pinController.openLock(calculateExactLock(Number(decryptedData.n), Number(config.unit)));
-                } else if(decryptedData.r) {
-                    pinController.openRange(decryptedData.r.map(l => calculateExactLock(Number(l), Number(config.unit))))
-                } else if(decryptedData.u) {
-                    //universal key scanned
-                    
-                    .......
-        
-    \end{lstlisting}
+            prev = time.time()
+            im=decodeCam(frame)
+    except KeyboardInterrupt:
+    print('interrupted!')
+\end{lstlisting}
+Lijn 5 \ref{lst:pythonPrimary1}: Het definiëren van de camera zodat hij kan gebruikt worden om de QR-code waar te nemen. \\    
+Lijn 7 – 22 \ref{lst:pythonPrimary1}: Een oneindige lus waarin de camera constant probeert om QR-codes te scannen. Als hij een QR-code opmerkt, zal hij deze vertalen en zal de methode ‘decodeCam’ opgeroepen worden. De gescande afbeelding die voorgesteld wordt als QR-code zal hierin meegegeven worden.\\
 
-    Lijn 32 \ref{lst:pythonPrimary}: Het aanroepen van een voor gedefinieerd ‘decryptor’ script. Zie code in listing \ref{lst:function} De validatie hierbij zal uitmaken of de data die in de QR-code is geplaatst nog steeds correct is.    
-    \begin{lstlisting}[language=Python, caption={ De parameter genaamd ‘code’ wordt verwerkt en ontcijferd, indien de QR-data is aangepast zal het een error terug geven.}, label=lst:function, numbers=left]
-        decrypt: function(url) {
-            if (!url) {
-                return new Error();
-            }
-            const data = url.split("code=")[1]
-            const obj = JSON.parse(Buffer.from(data, 'base64').toString('utf8'));
+\subsubsection{Stap 3: Raspberry PI leest QR-code}
+Een Raspberry PI is een kleine maar krachtige mini computer die allerlei berekeningen kan uitvoeren \autocite{Richardson2013}. Deze bevat alle logica die uitgevoerd wordt na het scannen van de QR-code.  De aangesloten USB camera zal de afbeeldingen proberen te verwerken zodat de gekoppelde locker geopend wordt.
+
+   \begin{lstlisting}[language=Python, caption={Het primaire uitvoerbare script van de QR-unit.}, label={lst:pythonPrimary2}, numbers=left]
+    import cv2
+    import pyzbar.pyzbar as pyzbar
+    from datetime import datetime, timedelta
+    import requests
+        
+    def decodeCam(image):
+        try:
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            barcodes = pyzbar.decode(gray, symbols=[pyzbar.ZBarSymbol.QRCODE])
+            global data
+            global stamp
+            for barcode in barcodes:
+                barcodeData = barcode.data.decode()
+                barcodeType = barcode.type
+                if barcodeData != data or stamp + timedelta(days=0, seconds=5) < datetime.now():
+                    print("["+str(datetime.now())+"] Type:{} | Data: {}".format(barcodeType, barcodeData))
+                    res = requests.post('http://localhost:5000/qr-code', json = {'tag': barcodeData })
+                    print(res)
+                    data = barcodeData
+                    stamp = datetime.now()
+                    return image
+        except Exception as e:
+        print(e)
+    
+\end{lstlisting}
+
+Lijn 8 \ref{lst:pythonPrimary2}: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Het pakket de resulterende grijsvariabelen verwijderen die in de invoerafbeelding zitten. Dit betekent dat als de huurder een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.\\
+Lijn 9 \ref{lst:pythonPrimary2}: PyZbar is een andere bibliotheek die instaat om de QR-codes te gaan detecteren van de grijswaardenafbeelding die zonet met Cv2 bekend zijn gemaakt \autocite{Huang2022}\\
+Lijn 17 \ref{lst:pythonPrimary2}: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. De bijhorende code wordt hieronder \ref{lst:pytho} getoont. Deze server ontvangt een parameter waarin de QR-code data zit.\\
+
+
+\subsubsection{Stap 4: Parameter code}
+
+Bij het doorsturen van de verkregen URL via de node.js server heeft de applicatie enkel nood aan de parameter 'Code'\autocite{Weir2012}.  Die base64 string wordt uit de link gefilterd door de URL op te splitsen \ref{lst:pythonLinkSplitting}. 
+
+\begin{lstlisting}[language=Python, caption={Python script om parameter code uit de link te halen.}, label={lst:pythonLinkSplitting}, numbers=left]
+    router.post('/qr-code', (request, response) => {
+        try {
+            const decryptedData = decryptor.decrypt(request.body.tag);
+            console.log(decryptedData);
             
-            // Check if the object validates
-            if (!nacl.sign.detached.verify(decodeUTF8(JSON.stringify(obj.d)), decodeBase64(obj.v), decodeBase64(publicKey))) {
-                return new Error();
-            }
-            
-            
-            return obj.d;
+     ...
+    
+    decrypt: function(url) {
+        if (!url) {
+            return new Error();
         }
-                    
-                \end{lstlisting}
-   
-        Validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het aangemaakt \ac{JSON} object. Met deze techniek kan bekeken worden of de gescande QR-code binnen een correcte tijdspanne ligt. Niet enkel controleert hij op correcte geldigheid, ook voert de code hieronder \ref{lst:data-validator} een controle uit of de QR-code wel bij de bijpassende QR-unit hoort.
-        
-        \begin{lstlisting}[language=Python, caption={ Valideer functie van de gescande QR-data op geldigheid en controle om na te gaan of gescande lockernummer in QR-unit zit.}, label=lst:data-validator, numbers=left]
-            const moment = require('moment');
+        const data = url.split("code=")[1]
+\end{lstlisting}
+
+\subsubsection{Stap 5: Parameter decoderen aan de hand van functie 'Base64'}
+Eenmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naar een \ac{JSON} object. Dit bevat twee objecten enerzijds QR-data, waarin drie elementen uitgehaald worden: het lockernummer alsook het begin en eind tijdstip dat de QR-code geldig is. Deze tijdstippen worden beide voorgesteld als type Unix. Deze zorgen voor een makkelijke conversie tussen verschillende tijdzones en formaten \autocite{Ritchie1978}. 
+Anderzijds omvat het \ac{JSON} object ook de verificatie code van het encprytatie proces dat eerder is uitgewerkt in het code voorbeeld \ref{lst:createCode}. 
+
+\begin{lstlisting}[language=Python, caption={Python code om parameter code te decoderen en informatie op te halen uit het object.}, label={lst:pythonLinkSplitting}, numbers=left]
+    const obj = JSON.parse(Buffer.from(data, 'base64').toString('utf8')); 
+\end{lstlisting}
+
+\subsubsection{Stap 6: QR-code verifieren aan de hand van TweetNaCL}
+
+\begin{lstlisting}[language=Python, caption={Python code om QR-code te verifieren op geldige digitale handtekening.}, label={lst:pythonVerifySigning}, numbers=left]
+    router.post('/qr-code', (request, response) => {
+        try {
+            const decryptedData = decryptor.decrypt(request.body.tag);
+            console.log(decryptedData);
             
-            module.exports = {
-                validate: function(data, unit) {
-                    const now = moment(); // create a moment with the current time
-                    const then = moment.unix(data.t); // create a moment with the other time timestamp in seconds
-                    const delta = now.diff(then, 'milliseconds'); // get the millisecond difference
-                    console.log("diff to " + delta)
-                    // Check if number is in range for this unit (number is not mandatory)
-                    if (data.n && (data.n < getFirstLockerNumber(unit) || data.n > getLastLockerNumber(unit))) {
-                        return {errorMessage: 'Locker not in this unit'}
-                    }
-                    // Check if after start time
-                    if (moment().isBefore(moment.unix(data.f))) {
-                        return {errorMessage: "This code is not yet valid"}
-                    }
-                    
-                    // Check if before end time
-                    if (moment().isAfter(moment.unix(data.t))) {
-                        return {errorMessage: "This code is expired"}
-                    }
-                    return false;
+            const hasErrors = validator.validate(decryptedData, Number(config.unit));
+            if (hasErrors) {
+                displayError(hasErrors.errorMessage);
+                return;
+            }
+            
+            ...
+            
+            decrypt: function(url) {
+                const obj = JSON.parse(Buffer.from(data, 'base64').toString('utf8'));
+                
+                // Check if the object validates
+                if (!nacl.sign.detached.verify(decodeUTF8(JSON.stringify(obj.d)), decodeBase64(obj.v), decodeBase64(publicKey))) {
+                    return new Error();
                 }
-            }
-            
-            
-            function getFirstLockerNumber(unit) {
-                return ((unit - 1) * 128) + 1;
-            }
-            
-            function getLastLockerNumber(unit) {
-                return ((unit - 1) * 128) + 128;
-            }
-            
-        \end{lstlisting}
+\end{lstlisting}
+
+
+
+Het aanroepen van een voor gedefinieerd ‘decryptor’ script. Zie code in listing \ref{lst:function} De validatie hierbij zal uitmaken of de data die in de QR-code is geplaatst nog steeds correct is. 
+
+
+\subsubsection{Stap 7: QR-code verifieren op correcte data}           
         
+Validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het aangemaakt \ac{JSON} object. Met deze techniek kan bekeken worden of de gescande QR-code binnen een correcte tijdspanne ligt. Niet enkel controleert hij op correcte geldigheid, ook voert de code hieronder \ref{lst:data-validator} een controle uit of de QR-code wel bij de bijpassende QR-unit hoort.
+
+\begin{lstlisting}[language=Python, caption={ Valideer functie van de gescande QR-data op geldigheid en controle om na te gaan of gescande lockernummer in QR-unit zit.}, label=lst:data-validator, numbers=left]
+    const moment = require('moment');
+    
+    module.exports = {
+        validate: function(data, unit) {
+            const now = moment(); // create a moment with the current time
+            const then = moment.unix(data.t); // create a moment with the other time timestamp in seconds
+            const delta = now.diff(then, 'milliseconds'); // get the millisecond difference
+            console.log("diff to " + delta)
+            // Check if number is in range for this unit (number is not mandatory)
+            if (data.n && (data.n < getFirstLockerNumber(unit) || data.n > getLastLockerNumber(unit))) {
+                return {errorMessage: 'Locker not in this unit'}
+            }
+            // Check if after start time
+            if (moment().isBefore(moment.unix(data.f))) {
+                return {errorMessage: "This code is not yet valid"}
+            }
+            
+            // Check if before end time
+            if (moment().isAfter(moment.unix(data.t))) {
+                return {errorMessage: "This code is expired"}
+            }
+            return false;
+        }
+    }
+    
+    
+    function getFirstLockerNumber(unit) {
+        return ((unit - 1) * 128) + 1;
+    }
+    
+    function getLastLockerNumber(unit) {
+        return ((unit - 1) * 128) + 128;
+    }
+    
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={Openen van juiste locker of foutboodschap.}, label=lst:pythonPinController, numbers=left]
+    if (decryptedData.n) {
+        pinController.openLock(calculateExactLock(Number(decryptedData.n), Number(config.unit)));
+    } else if(decryptedData.r) {
+        pinController.openRange(decryptedData.r.map(l => calculateExactLock(Number(l), Number(config.unit))))
+    } else if(decryptedData.u) {
+        //universal key scanned
+        pinController.openRange(Array.from({length: 128}, (_, i) => i + 1))
+    } else if(decryptedData.fu) {
+        //force update key scanned
+        pinController.update();
+        var yourscript = exec('sh ./updater.sh',
+        (error, stdout, stderr) => {
+            console.log(stdout);
+            console.log(stderr);
+            if (error !== null) {
+                console.log(`exec error: ${error}`);
+            }
+            if(error || stderr || stdout.toLowerCase().indexOf('offline') > -1) {
+                displayError('unit offline');
+            }
+        });
+    }
+    
+    } catch (e) {
+    console.log('foutje: ' + e, e)
+    displayError('Not a valid QR code');
+    } finally {
+    response.send();
+    }
+\end{lstlisting}
         
-    Lijn 42 – 62 \ref{lst:pythonPrimary}: Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor een aantal verschillende sloten aan te spreken. 
+Lijn 1 – 29 \ref{lst:pythonPinController}: Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor een aantal verschillende sloten aan te spreken. 
     
     
 \end{enumerate}

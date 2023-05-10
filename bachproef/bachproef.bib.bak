@@ -332,4 +332,61 @@
   volume       = {22},
 }
 
+@Article{Hien2018,
+  author       = {Ho Thao Hien and Pham-Nguyen Cuong and Le Nguyen Hoai Nam and Ho Le Thi Kim Nhung and Thang Le Dinh},
+  date         = {2018},
+  journaltitle = {Proceedings of the 9th International Symposium on Information and Communication Technology},
+  title        = {Intelligent Assistants in Higher-Education Environments: The FIT-EBot, a Chatbot for Administrative and Learning Support},
+}
+
+@InProceedings{Ertekin2015,
+  author    = {Ertekin, Selcuk and Pelton, Lou E.},
+  booktitle = {Ideas in Marketing: Finding the New and Polishing the Old},
+  date      = {2015},
+  title     = {An Exploratory Study of Consumer Attitudes Towards Qr Code Reader Applications},
+  editor    = {Kubacki, Krzysztof},
+  isbn      = {978-3-319-10951-0},
+  location  = {Cham},
+  pages     = {185--191},
+  publisher = {Springer International Publishing},
+  abstract  = {Wireless communication hardware and software are rapidly changing by advancing technology. This results in a wide variety of telecommunication offerings for consumers. Wireless electronic software applications are developed in many different forms in order to facilitate marketing exchanges. Specifically, QR code reader applications now allow consumers to scan QR codes on virtually any flat surface. QR code scanner applications are expected to offer more creativity and are set to become even more popular. This study focuses on younger segment of retail consumers. By using an exploratory research approach, we concluded that: consumers liked QR codes and would continue to use them in the future; they enjoyed the convenience and speed of information offered by QR codes; and given some time and changes, they would embrace their usage. Convenience, functionality, standardization, information reliability, and security were listed as most important attributes for successful QR the code readers. We also found that QR code readers have the potential to be a viable alternative to cutting out coupons, mail-in promotions, computer screen browsing and physical store visits for researching products.},
+}
+
+@InProceedings{Gu2011,
+  author       = {Gu, Yunhua and Zhang, Weixiang},
+  date         = {2011-04},
+  title        = {QR code recognition based on image processing},
+  doi          = {10.1109/ICIST.2011.5765349},
+  pages        = {733 - 736},
+  journaltitle = {2011 International Conference on Information Science and Technology, ICIST 2011},
+}
+
+@InProceedings{Belussi2011,
+  author    = {Belussi, Luiz and Hirata, Nina},
+  booktitle = {2011 24th SIBGRAPI Conference on Graphics, Patterns and Images},
+  date      = {2011},
+  title     = {Fast QR Code Detection in Arbitrarily Acquired Images},
+  doi       = {10.1109/SIBGRAPI.2011.16},
+  pages     = {281-288},
+}
+
+@InProceedings{Liu2008,
+  author = {Liu, Yue and Yang, Ju and Liu, Mingjun},
+  date   = {2008-08},
+  title  = {Recognition of QR Code with Mobile Phones},
+  doi    = {10.1109/CCDC.2008.4597299},
+  isbn   = {978-1-4244-1733-9},
+  pages  = {203 - 206},
+  file   = {:Liu2008 - Recognition of QR Code with Mobile Phones.bib:bib},
+}
+
+@Article{Abdulhakeem2014,
+  author       = {Abdulhakeem, Wara and Dugga, Sunday},
+  date         = {2014-11},
+  journaltitle = {International Journal of Computer and Information Technology},
+  title        = {Enhancing User Experience using Mobile QR-Code Application},
+  pages        = {1310-1315},
+  volume       = {03},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
