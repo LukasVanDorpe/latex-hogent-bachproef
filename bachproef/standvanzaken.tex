@@ -700,9 +700,7 @@ De meest gekende QR-code scanner moet niet vergezocht worden. Elke draagbare tel
 \section{De werking van een smart locker systeem.}%
 \label{sec:WerkingUnits}
 
-Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het volledige business model op draait. Figuur \ref{fig:schemaWerkingUnit} is een schematische voorstelling hoe de software in aanraking komt met de hardware. Dit door middel van de QR-code die dient als toegangscode. 
-
-Op deze figuur is de werking onderverdeeld in stappen.
+Een stabiele werking van het smart locker systeem is cruciaal aangezien hier het volledige business model op draait. Figuur \ref{fig:schemaWerkingUnit} is een schematische voorstelling hoe de software in aanraking komt met de hardware. Dit door middel van de QR-code die dient als toegangscode. De werking van het smart locker systeem is onderverdeeld in verschillende stappen die hieronder beschreven worden.
 
 \begin{figure}[h]
     \centering
@@ -778,14 +776,14 @@ Een Raspberry PI is een kleine maar krachtige mini computer die allerlei bereken
     
 \end{lstlisting}
 
-Lijn 8 \ref{lst:pythonPrimary2}: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Het pakket de resulterende grijsvariabelen verwijderen die in de invoerafbeelding zitten. Dit betekent dat als de huurder een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.\\
+Lijn 8 \ref{lst:pythonPrimary2}: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Het pakket verwijdert de resulterende grijsvariabelen die in de invoerafbeelding zitten. Dit betekent dat als de huurder een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.\\
 Lijn 9 \ref{lst:pythonPrimary2}: PyZbar is een andere bibliotheek die instaat om de QR-codes te gaan detecteren van de grijswaardenafbeelding die zonet met Cv2 bekend zijn gemaakt \autocite{Huang2022}\\
-Lijn 17 \ref{lst:pythonPrimary2}: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. De bijhorende code wordt hieronder \ref{lst:pytho} getoont. Deze server ontvangt een parameter waarin de QR-code data zit.\\
+Lijn 17 \ref{lst:pythonPrimary2}: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. Deze server ontvangt een parameter waarin de QR-code data zit.\\
 
 
 \subsubsection{Stap 4: Parameter code}
 
-Bij het doorsturen van de verkregen URL via de node.js server heeft de applicatie enkel nood aan de parameter 'Code'\autocite{Weir2012}.  Die base64 string wordt uit de link gefilterd door de URL op te splitsen \ref{lst:pythonLinkSplitting}. 
+Bij het doorsturen van de verkregen URL via de node.js server heeft de applicatie enkel nood aan de parameter 'Code'\autocite{Weir2012}.  Die base64 string wordt uit de link gefilterd door de URL op te splitsen. 
 
 \begin{lstlisting}[language=Python, caption={Python script om parameter code uit de link te halen.}, label={lst:pythonLinkSplitting}, numbers=left]
     router.post('/qr-code', (request, response) => {
@@ -803,14 +801,16 @@ Bij het doorsturen van de verkregen URL via de node.js server heeft de applicati
 \end{lstlisting}
 
 \subsubsection{Stap 5: Parameter decoderen aan de hand van functie 'Base64'}
-Eenmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naar een \ac{JSON} object. Dit bevat twee objecten enerzijds QR-data, waarin drie elementen uitgehaald worden: het lockernummer alsook het begin en eind tijdstip dat de QR-code geldig is. Deze tijdstippen worden beide voorgesteld als type Unix. Deze zorgen voor een makkelijke conversie tussen verschillende tijdzones en formaten \autocite{Ritchie1978}. 
-Anderzijds omvat het \ac{JSON} object ook de verificatie code van het encprytatie proces dat eerder is uitgewerkt in het code voorbeeld \ref{lst:createCode}. 
+Eenmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naar een \ac{JSON} object. Dit bevat twee objecten. Enerzijds QR-data, waarin drie elementen uitgehaald worden: het lockernummer alsook de begin- en einddatum tot wanneer de QR-code geldig is. Deze tijdstippen worden beide voorgesteld als type Unix. Deze zorgen voor een makkelijke conversie tussen verschillende tijdzones en formaten \autocite{Ritchie1978}. Anderzijds omvat het \ac{JSON} object ook de verificatie code van het encryptie proces dat eerder is uitgewerkt in het code voorbeeld \ref{lst:createCode}. 
 
 \begin{lstlisting}[language=Python, caption={Python code om parameter code te decoderen en informatie op te halen uit het object.}, label={lst:pythonLinkSplitting}, numbers=left]
     const obj = JSON.parse(Buffer.from(data, 'base64').toString('utf8')); 
 \end{lstlisting}
 
-\subsubsection{Stap 6: QR-code verifieren aan de hand van TweetNaCL}
+\subsubsection{Stap 6: QR-code verifiëren aan de hand van TweetNaCL}
+
+TODO aanpassen + referen naar ander
+Het aanroepen van een voor gedefinieerd ‘decryptor’ script. Zie code in listing \ref{lst:function} De validatie hierbij zal uitmaken of de data die in de QR-code is geplaatst nog steeds correct is. 
 
 \begin{lstlisting}[language=Python, caption={Python code om QR-code te verifieren op geldige digitale handtekening.}, label={lst:pythonVerifySigning}, numbers=left]
     router.post('/qr-code', (request, response) => {
@@ -835,16 +835,11 @@ Anderzijds omvat het \ac{JSON} object ook de verificatie code van het encprytati
                 }
 \end{lstlisting}
 
-
-
-Het aanroepen van een voor gedefinieerd ‘decryptor’ script. Zie code in listing \ref{lst:function} De validatie hierbij zal uitmaken of de data die in de QR-code is geplaatst nog steeds correct is. 
-
-
-\subsubsection{Stap 7: QR-code verifieren op correcte data}           
+\subsubsection{Stap 7: Validatie van QR-code op tijd en bijpassende QR-unit}           
         
-Validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het aangemaakt \ac{JSON} object. Met deze techniek kan bekeken worden of de gescande QR-code binnen een correcte tijdspanne ligt. Niet enkel controleert hij op correcte geldigheid, ook voert de code hieronder \ref{lst:data-validator} een controle uit of de QR-code wel bij de bijpassende QR-unit hoort.
+De validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het aangemaakt \ac{JSON} object. Met deze techniek kan bekeken worden of de gescande QR-code binnen een correcte tijdspanne ligt. Niet enkel controleert hij op correcte geldigheid, ook voert de code hieronder \ref{lst:data-validator} een controle uit of de QR-code wel bij de bijpassende QR-unit hoort.
 
-\begin{lstlisting}[language=Python, caption={ Valideer functie van de gescande QR-data op geldigheid en controle om na te gaan of gescande lockernummer in QR-unit zit.}, label=lst:data-validator, numbers=left]
+\begin{lstlisting}[language=Python, caption={Validatie van QR-code op tijd en bijpassende QR-unit.}, label=lst:data-validator, numbers=left]
     const moment = require('moment');
     
     module.exports = {
@@ -881,6 +876,8 @@ Validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het aa
     
 \end{lstlisting}
 
+\subsubsection{Stap 8: Openen van juiste locker door het sturen van serieel signaal} 
+TODO bijschrijven
 \begin{lstlisting}[language=Python, caption={Openen van juiste locker of foutboodschap.}, label=lst:pythonPinController, numbers=left]
     if (decryptedData.n) {
         pinController.openLock(calculateExactLock(Number(decryptedData.n), Number(config.unit)));
@@ -913,7 +910,7 @@ Validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het aa
     }
 \end{lstlisting}
         
-Lijn 1 – 29 \ref{lst:pythonPinController}: Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor een aantal verschillende sloten aan te spreken. 
+Lijn 1 – 29 \ref{lst:pythonPinController}: Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor om een aantal verschillende sloten te besturen. 
     
     
 \end{enumerate}
