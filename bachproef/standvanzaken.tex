@@ -674,12 +674,24 @@ Als data zijn originele vorm heeft aangehouden, zal de functie geen foutboodscha
 \label{sec:detecterenQr-codes}
 
 De populariteit van QR-codes verplicht de omgeving zich aan te passen om deze twee dimensionale codes op een veilige en correcte manier snel uit te lezen. Het streven naar betere en snellere QR-code scanners is bij grote bedrijven essentieel \autocite{Ertekin2015}.
-Om de problematiek van Lockit Rentals over de QR-code herkenning onder de loep te nemen, kijken wij naar hun gebruikte technieken om QR-codes te detecteren. 
+Om de problematiek van Lockit Rentals over de QR-code herkenning onder de loep te nemen, kijken wij naar hun gebruikte technieken om QR-codes te detecteren. Figuur \ref{fig:zijkantLocker} en \ref{fig:usbcameraLocker} toont aan dat het scannen van een QR-code gebeurt aan de hand van een USB camera. Om te scannen in donkere omgevingen hebben ze hierbij ook een lichtbron bij de scanner geplaatst.
 
-\newline
+\begin{figure}[h]
+    \centering
+    \includegraphics{F20_ZijkantLocker.jpg}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{Het vooraanzicht van een QR-unit met camera en digitaal scherm.}
+    \label{fig:zijkantLocker}
+\end{figure}
 
-TOOOODOOOO
-Figuur x en x toont aan dat het scannen van een QR-code gebeurt aan de hand van een USB camera. Om te scannen in donkere omgevingen hebben ze hierbij ook een lichtbron bij de scanner geplaatst.
+\begin{figure}[h]
+    \centering
+    \includegraphics{F21_LockerUSBCamera.png}
+    \captionsetup{justification=ce/brntering, singlelinecheck=false}    
+    \caption{De USB camera ingebouwd inclusief verlichting.}
+    \label{fig:usbcameraLocker}
+\end{figure}
+\newpage
 \newline
 Het detecteren en decoderen van een QR-code bestaat uit de bepaling van de grenzen van het symboolgebied. Binnen de grenzen wordt het symbool gemarkeerd en zodoende de QR-code geprojecteerd \autocite{Belussi2011}. Hoewel een QR-code een standaard grafische voorstelling is, kan de grootte van een code verschillen. Wanneer een code groter is, ontstaat er witruimte tussen de pixels \autocite{Li2018}. Hierdoor kan de camera de code makkelijker en sneller scannen \autocite{Karrach2020}. Ook de foutcorrectie zorgt ervoor dat de resolutie vergroot zal worden. Hoe groter de resolutie van de QR-code hoe meer data gestockeerd kan worden \autocite{Chow2016}.
 \newline
@@ -747,7 +759,7 @@ Lijn 5 \ref{lst:pythonPrimary1}: Het definiëren van de camera zodat hij kan geb
 Lijn 7 – 22 \ref{lst:pythonPrimary1}: Een oneindige lus waarin de camera constant probeert om QR-codes te scannen. Als hij een QR-code opmerkt, zal hij deze vertalen en zal de methode ‘decodeCam’ opgeroepen worden. De gescande afbeelding die voorgesteld wordt als QR-code zal hierin meegegeven worden.\\
 
 \subsubsection{Stap 3: Raspberry PI leest QR-code}
-Een Raspberry PI is een kleine maar krachtige mini computer die allerlei berekeningen kan uitvoeren \autocite{Richardson2013}. Deze bevat alle logica die uitgevoerd wordt na het scannen van de QR-code.  De aangesloten USB camera zal de afbeeldingen proberen te verwerken zodat de gekoppelde locker geopend wordt.
+Een Raspberry PI is een kleine maar krachtige mini computer die allerlei berekeningen kan uitvoeren \autocite{Richardson2013}. Deze bevat alle logica die uitgevoerd wordt na het scannen van de QR-code.  De aangesloten USB camera zal de afbeeldingen proberen te verwerken zodat de gekoppelde locker geopend wordt. Niet alleen het uitvoerbaar script draait op de Raspberry PI ook een server die alle verzoeken dat het uitvoerbaar script uitstuurt. Indien er een QR-code goed word uitgelezen stuurt het proces een verzoek naar de node.js server, die op zijn beurt de controle overneemt.
 
    \begin{lstlisting}[language=Python, caption={Het primaire uitvoerbare script van de QR-unit.}, label={lst:pythonPrimary2}, numbers=left]
     import cv2
@@ -809,8 +821,7 @@ Eenmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naa
 
 \subsubsection{Stap 6: QR-code verifiëren aan de hand van TweetNaCL}
 
-TODO aanpassen + referen naar ander
-Het aanroepen van een voor gedefinieerd ‘decryptor’ script. Zie code in listing \ref{lst:function} De validatie hierbij zal uitmaken of de data die in de QR-code is geplaatst nog steeds correct is. 
+Voor de echtheid en correctheid van de QR-code te garanderen moet de ingelezen QR-code gevalideerd worden. De ingelezen QR-code wordt verwerkt en ontcijferd met een zelf gemaakte functie genaamd 'decrypt'. Deze functie zorgt ervoor dat de QR-code omgezet wordt naar een handelbaar formaat. Nadien kunnen we de QR-code gaan valideren met behulp van het extern software pakket TweetNaCL. Voor verdere informatie verwijs ik naar het hoofdstuk \ref{sec:encryptQR-code} met een uitgewerkt voorbeeld in sectie \ref{sec:controleaangemaakteQRcode} . Hierin worden gebruikte technieken verder toegelicht. Als de functie geen foutboodschap terug geeft kunnen we ervanuit gaan dat deze code zich in een veilige staat bezit.
 
 \begin{lstlisting}[language=Python, caption={Python code om QR-code te verifieren op geldige digitale handtekening.}, label={lst:pythonVerifySigning}, numbers=left]
     router.post('/qr-code', (request, response) => {
@@ -877,7 +888,9 @@ De validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het
 \end{lstlisting}
 
 \subsubsection{Stap 8: Openen van juiste locker door het sturen van serieel signaal} 
-TODO bijschrijven
+
+Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor om een aantal verschillende sloten te besturen.
+
 \begin{lstlisting}[language=Python, caption={Openen van juiste locker of foutboodschap.}, label=lst:pythonPinController, numbers=left]
     if (decryptedData.n) {
         pinController.openLock(calculateExactLock(Number(decryptedData.n), Number(config.unit)));
@@ -909,11 +922,9 @@ TODO bijschrijven
     response.send();
     }
 \end{lstlisting}
-        
-Lijn 1 – 29 \ref{lst:pythonPinController}: Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor om een aantal verschillende sloten te besturen. 
+
     
-    
-\end{enumerate}
+Tot hier de werking van een smart locker systeem. ... TOD
 
 \newpage
 
