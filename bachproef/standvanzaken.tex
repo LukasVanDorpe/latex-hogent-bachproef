@@ -759,7 +759,7 @@ Lijn 5 \ref{lst:pythonPrimary1}: Het definiëren van de camera zodat hij kan geb
 Lijn 7 – 22 \ref{lst:pythonPrimary1}: Een oneindige lus waarin de camera constant probeert om QR-codes te scannen. Als hij een QR-code opmerkt, zal hij deze vertalen en zal de methode ‘decodeCam’ opgeroepen worden. De gescande afbeelding die voorgesteld wordt als QR-code zal hierin meegegeven worden.\\
 
 \subsubsection{Stap 3: Raspberry PI leest QR-code}
-Een Raspberry PI is een kleine maar krachtige mini computer die allerlei berekeningen kan uitvoeren \autocite{Richardson2013}. Deze bevat alle logica die uitgevoerd wordt na het scannen van de QR-code.  De aangesloten USB camera zal de afbeeldingen proberen te verwerken zodat de gekoppelde locker geopend wordt. Niet alleen het uitvoerbaar script draait op de Raspberry PI ook een server die alle verzoeken dat het uitvoerbaar script uitstuurt. Indien er een QR-code goed word uitgelezen stuurt het proces een verzoek naar de node.js server, die op zijn beurt de controle overneemt.
+Een Raspberry PI is een kleine maar krachtige mini computer die allerlei berekeningen kan uitvoeren \autocite{Richardson2013}. Deze bevat alle logica die uitgevoerd wordt na het scannen van de QR-code.  De aangesloten USB camera zal de afbeeldingen proberen te verwerken zodat de gekoppelde locker geopend wordt. Niet alleen het uitvoerbaar script draait op de Raspberry PI ook een server die alle verzoeken afhandelt. Indien er een QR-code goed wordt uitgelezen, stuurt het proces een verzoek naar de node.js server, die op zijn beurt de controle overneemt.
 
    \begin{lstlisting}[language=Python, caption={Het primaire uitvoerbare script van de QR-unit.}, label={lst:pythonPrimary2}, numbers=left]
     import cv2
@@ -821,7 +821,7 @@ Eenmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naa
 
 \subsubsection{Stap 6: QR-code verifiëren aan de hand van TweetNaCL}
 
-Voor de echtheid en correctheid van de QR-code te garanderen moet de ingelezen QR-code gevalideerd worden. De ingelezen QR-code wordt verwerkt en ontcijferd met een zelf gemaakte functie genaamd 'decrypt'. Deze functie zorgt ervoor dat de QR-code omgezet wordt naar een handelbaar formaat. Nadien kunnen we de QR-code gaan valideren met behulp van het extern software pakket TweetNaCL. Voor verdere informatie verwijs ik naar het hoofdstuk \ref{sec:encryptQR-code} met een uitgewerkt voorbeeld in sectie \ref{sec:controleaangemaakteQRcode} . Hierin worden gebruikte technieken verder toegelicht. Als de functie geen foutboodschap terug geeft kunnen we ervanuit gaan dat deze code zich in een veilige staat bezit.
+Om de echtheid en correctheid van de QR-code te garanderen moet de ingelezen QR-code gevalideerd worden. De ingelezen QR-code wordt verwerkt en ontcijferd met een zelf gemaakte functie genaamd 'decrypt'. Deze functie zorgt ervoor dat de QR-code omgezet wordt naar een handelbaar formaat. Nadien kunnen we de QR-code gaan valideren met behulp van het extern software pakket TweetNaCL. Voor verdere informatie verwijs ik naar het hoofdstuk \ref{sec:encryptQR-code} met een uitgewerkt voorbeeld in sectie \ref{sec:controleaangemaakteQRcode}. Als de functie geen foutboodschap teruggeeft, kunnen we ervanuit gaan dat deze code zich in een veilige staat bezit.
 
 \begin{lstlisting}[language=Python, caption={Python code om QR-code te verifieren op geldige digitale handtekening.}, label={lst:pythonVerifySigning}, numbers=left]
     router.post('/qr-code', (request, response) => {
@@ -886,10 +886,10 @@ De validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het
     }
     
 \end{lstlisting}
-
+\newpage
 \subsubsection{Stap 8: Openen van juiste locker door het sturen van serieel signaal} 
 
-Op basis van de correcte originele ontcijferde data kan de server van node.js de juiste sloten aansturen. De Raspberry Pi stuurt met een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn voor om een aantal verschillende sloten te besturen.
+Op basis van de correcte originele ontcijferde data kan de server de juiste sloten aansturen. De Raspberry Pi stuurt een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn om een aantal verschillende sloten te besturen.
 
 \begin{lstlisting}[language=Python, caption={Openen van juiste locker of foutboodschap.}, label=lst:pythonPinController, numbers=left]
     if (decryptedData.n) {
@@ -922,9 +922,6 @@ Op basis van de correcte originele ontcijferde data kan de server van node.js de
     response.send();
     }
 \end{lstlisting}
-
-    
-Tot hier de werking van een smart locker systeem. ... TOD
 
 \newpage
 
@@ -989,6 +986,12 @@ De drie modellen die geklasseerd onder ‘respons en generation method’ stelle
 Voor het aanmaken van een chatbot die verloren QR-codes zal terugwinnen, kan de chatbot onderverdeeld worden in een juiste classificatie. De technologie die van toepassing is op Lockit Rentals zal gebaseerd zijn op een gesloten domein. Hierdoor zal de chatbot niet op alle vragen een gepast antwoord kunnen geven. De chatbot zal op vooraf geprogrammeerde vragen de juiste informatie geven. Het dialoog systeem zal de antwoorden verschaffen aan de hand van een ‘intrapersonal service’. Hij verzamelt correct gefilterde informatie uit de databank en verschaft deze aan de eindgebruiker. De chatbot voert een specifieke opdracht uit waardoor de klant weer toegang krijgt tot zijn eigen persoonlijke locker. De laatste classificatie maakt gebruik van rule based methodes om de chatbot zo goed mogelijk te ontwikkelen. Deze regels zijn vooraf gedefinieerd en begeleiden de klant in de juiste richting waardoor het terugkrijgen van een verloren QR-code een vereenvoudigd proces wordt.
 \subsection{Platformen om chatbots te bouwen}%
 \label{sec:chatbotBouwen}
+
+De manieren om een chatbot te ontwikkelen hangt af van enkele factoren. Het keuze ontwerp wordt beïnvloed door welk type bot en door welke specifieke verwachtingen van de gebruiker \autocite{Rahman2017}.
+
+Chatbots die niet ontworpen zijn aan de hand van een platvorm behoren tot de categorie ‘No coding chatbot’ \autocite{Tamrakar2021}. Een andere techniek dat gehanteerd wordt om chatbots te ontwikkelen zijn platvormen die vooraf geprogrammeerde algoritmes en modules bevatten. Het gebruik van deze platvormen zijn eenvoudig omdat er geen kennis van programmeervaardigheden vereist zijn. Deze platvormen worden gebruikt voor het ontwerpen van kleine en versimpelde chatbots  \autocite{Rahman2017}. Enkele voorbeelden van veelgebruikte ‘no coding chatbot’ platvormen zijn Chatfuel, manychat and Mothian.ai, botpress, etc.  \autocite{Rahman2017}. 
+Chatbots worden ook ontwikkeld door platvormen van technologiegiganten zoals Google, Amazon, Microsoft, etc. \autocite{Gkikas2021}. Deze platvormen zijn robuust van aard en worden gebruikt om complexe bots te ontwerpen. De robuuste structuur heeft als gevolg dat er een conversatie stroomdiagram moet worden aangebracht op het platvorm \autocite{Tamrakar2021}. In deze diagrammen worden er verschillende stappen of interacties tussen een gebruiker en chatbot gedefinieerd. Deze vormen paden die de gebruiker kan nemen bij het stellen van vragen. Dit stroomdiagram zorgt ervoor dat de verzoeken van de gebruiker nooit verkeerd of slecht geïnterpreteerd kunnen worden.  De ontwikkelaars van de bot zullen aan de hand van deze diagram de chatconversatie kunnen structureren en nauwkeurig gaan controleren \autocite{CotyM.CollinsColumbus2019}. Voorbeelden van technologiegiganten chatbot platvormen zijn Google DialogFlow, Facebook’s Wit.ai, Miocrosoft’s LUIS, Aamzon’s Lex en IBM’s Watson, etc \autocite{Tamrakar2021}.
+
 
 
 

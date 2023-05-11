@@ -407,4 +407,58 @@
   volume    = {21},
 }
 
+@InProceedings{Ou2014,
+  author    = {Ou, Fu Chao and Jiang, Wei},
+  booktitle = {Advances in Applied Sciences and Manufacturing},
+  date      = {2014-02},
+  title     = {Research of the QR Code Based on Image Preprocessing},
+  doi       = {10.4028/www.scientific.net/AMR.850-851.835},
+  pages     = {835--838},
+  publisher = {Trans Tech Publications Ltd},
+  series    = {Advanced Materials Research},
+  volume    = {850},
+  abstract  = {With the development of information technology, the QR code technology in the application of information technology industry has become more and more widely, its action also is particularly important. In modern business activities, with the popularity of smart phones and all kinds of mobile intelligent device, which can realize the application is very extensive. But in practice, influenced by acquisition equipment, collections of images tend to have all kinds of noise, affect later decoding result. Late in order to decode the reliability and stability, based on the smart phone and mobile equipment acquisition have shadows and space of tilt of the QR code image as an example, discusses the gray, filtering, binaryzation, edge detection and image preprocessing technology such as geometric correction. Especially the closing operations in the application of morphology in image processing on the image to get rid of the shadow and corrosion expansion, extraction of the target area the edge of the straight line obtained very good effect, in addition to get rid of the shadow, the four control points using morphological expansion corrosion and correction of the QR code.},
+  keywords  = {Image Processing, Erosion, Edge Detection, Dilation, QR Code, Close Operation},
+}
+
+@Online{Paavola2023,
+  author = {Alia Paavola},
+  date   = {2023-04-07},
+  title  = {SMS marketing vs. email marketing: The ultimate comparison},
+}
+
+@Article{folstad2021investigating,
+  author    = {F{\o}lstad, Asbj{\o}rn and Taylor, Cameron},
+  title     = {Investigating the user experience of customer service chatbot interaction: a framework for qualitative analysis of chatbot dialogues},
+  number    = {1},
+  pages     = {6},
+  volume    = {6},
+  journal   = {Quality and User Experience},
+  publisher = {Springer},
+  year      = {2021},
+}
+
+@Online{Mercir2022,
+  author  = {Marc Mercir},
+  date    = {2022-11-29},
+  title   = {Three Key Advantages of Using a Framework BotPress},
+  url     = {https://botpress.com/blog/three-key-advantages-of-using-a-framework},
+  urldate = {2023-05-10},
+}
+
+@InProceedings{Rahman2017,
+  author = {Rahman, Al and Mamun, Abdullah and Islam, Alma},
+  date   = {2017-12},
+  title  = {Programming challenges of chatbot: Current and future prospective},
+  doi    = {10.1109/R10-HTC.2017.8288910},
+  pages  = {75-78},
+}
+
+@InProceedings{Gkikas2021,
+  author = {Gkikas, Dimitris and Theodoridis, Prokopis and Tzavella, Georgia and Vlachopoulou, Georgia and Kondyli, Isidora and Tzioli, Melpomeni},
+  date   = {2021-01},
+  title  = {Chatbot Tools Evaluation},
+  doi    = {10.6084/m9.figshare.16950700.v1},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
