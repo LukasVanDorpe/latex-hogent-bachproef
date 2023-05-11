@@ -127,19 +127,22 @@ Het experiment invullen aan de hand van tabel
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ c|c c }
+    \begin{tabular}{ c|c|c }
+        \cline{2-3}
+        & \textbf{\textit{QR-code op papier}} & \textbf{\textit{QR-code op gsm}} \\
+        \cline{2-3}        
         \hline
-        & \textbf{\textit{Kolom 2}} & \textbf{\textit{Kolom 3}} \\
+        \textbf{\textit{1. Normaal}} & a & b \\
         \hline
-        \textbf{\textit{Rij 1}} & Rij 1, Kolom 2 & Rij 1, Kolom 3 \\
-        \textit{Rij 2} & Rij 2, Kolom 2 & Rij 2, Kolom 3 \\
-        \textit{Rij 3} & Rij 3, Kolom 2 & Rij 3, Kolom 3 \\
-        \textit{Rij 4} & Rij 4, Kolom 2 & Rij 4, Kolom 3 \\
-        \textit{Rij 5} & Rij 5, Kolom 2 & Rij 5, Kolom 3 \\
-        \textit{Rij 6} & Rij 6, Kolom 2 & Rij 6, Kolom 3 \\
+        \textbf{\textit{2. Lichtinval}} & a & b \\
+        \hline
+        \textbf{\textit{3. Donker}} & a & b \\
+        \hline
+        \textbf{\textit{4. Beschadigd}} & a & b \\
         \hline
     \end{tabular}
-    \caption{Voorbeeldtabel met headers in vetgedrukte tekst.}
+    \captionsetup{justification=centering}
+    \caption{Voorbeeldtabel met aangepaste rijen en headers in vetgedrukte tekst en cellen gevuld met "a" en "b".}
     \label{tab:voorbeeldtabel}
 \end{table}
 
