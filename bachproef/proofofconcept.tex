@@ -9,12 +9,32 @@
 
 In dit hoofdstuk wordt omschreven op welke manier we onderzochte technologieën hebben toegepast op de probleemstelling van het bedrijf Lockit Rentals. De werking van eigen ontwikkelde toepassingen worden specifiek toegelicht op basis van gedocumenteerde informatie. Op vlak van de QR-codes is het doel om de huidige scan software te optimaliseren. Hierbij gaan er experimenten uitgevoerd worden om deze grondig te vergelijken. In het tweede deel zal de chatbot ontwikkeld worden aan de hand van het gekozen platvorm. Om aan te tonen dat nieuwe technieken een oplossing kunnen bieden, verwijs ik door naar de verwerkte resultaten \ref{ch:verwerkingresultaten}.
 
-\section{Toepassingen QR-code scanners}%
+\section{Opbouw experimenten}%
 \label{sec:toepassingenQR-coce scanners}
 
-In dit onderzoek wordt dieper ingegaan op de QR-code camera’s. We nemen het script dat  op de locker units draait onder de loep. Het primair doel van deze aanpassing is het optimaliseren van de scanervaring voor toegangscodes. Door deze sneller en efficiënter te laten verlopen, gaan er zich minder problemen voordoen.
+Zowel de nieuwe als de oude opstelling worden grondig getest in vier verschillende scenario’s. Daarnaast zijn er ook twee manieren om de toegangscode te bezitten. Allereerst kan de klant in het bezit zijn van een QR-code op papier. Alsook kunnen ze deze digitaal op de Lockit Rentals mobiele applicatie registreren. Beide manieren laat scan mogelijkheden toe. Dit zal een rol spelen in de aantal uitgevoerde experimenten waarbij constante variabelen van toepassing zijn. De QR-code dat gescand wordt door dezelfde testpersoon op hetzelfde apparaat zorgen voor betrouwbaar eindresultaat. 
+Aangezien sommige omgevingsfactoren veranderen doorheen het proces zullen we ook de verlichtingssterkte meten uitgedrukt in lux. Deze waarde zal niet meegenomen worden bij de conclusie maar is gewoon ter illustratie. 
+Op het einde van elke test wordt er een \ac{XLSX} bestand gecreëerd. Een voorbeeld hiervan is te zien op figuur \ref{fig:xlsxBestandExperiment}. Deze bestanden hebben steeds een logische naamgeving zodat we dit later kunnen verwerken in een duidelijke conclusie. In figuur x zien we de oplijsting van alle bestanden.
 
-\subsection{Huidige toepassing QR-camera}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/F27_QR-data_uitlezing.jpg}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{Voorbeeld \ac{XLSX} bestand na uitvoeren van QR-code camera programma.}
+    \label{fig:xlsxBestandExperiment}
+\end{figure}}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/F28_XLSX_opsomming.jpg}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{Opsomming alle \ac{XLSX} bestanden na uitvoeren van QR-code camera programma.}
+    \label{fig:opsomming}
+\end{figure}}
+
+
+\section{Experiment 1: Huidige QR-camera}
 \label{sec:huidigeToepassingScanners}
 
 In het hoofdstuk \ref{sec:WerkingUnits} wordt aangetoond welk script er effectief actief is op de locker units. Na grondig onderzoek van de gebruikte camera’s kunnen we concluderen dat deze geen specifieke toestellen zijn om QR-codes te scannen. De camera op zich heeft veel configuratie en rekenkracht nodig om de QR-code waar te nemen en te kunnen capteren in bruikbare data. 
@@ -36,12 +56,10 @@ Om deze experimenten uit te voeren, ga ik gebruik maken van een eigen opstelling
         \caption{Achteraanzicht USB QR-camera}
         \label{fig:achteraanzichtUSBCamera}
     \end{minipage}
-    
 \end{figure}
 
 
-
-\begin{lstlisting}[language=Python, caption={Validatie van QR-code op tijd en bijpassende QR-unit.}, label=lst:huidigeQR-codeData, numbers=left]
+\begin{lstlisting}[language=Python, caption={Python script voor experiment van QR-code camera.}, label=lst:huidigeQR-codeData, numbers=left]
     import cv2  # Importeer de cv2-bibliotheek voor het werken met beeldverwerking
     import time  # Importeer de time-bibliotheek om pauzes in de uitvoering van het programma te creëren
     import pyzbar.pyzbar as pyzbar  # Importeer de pyzbar-bibliotheek voor het decoderen van QR-codes
@@ -99,6 +117,186 @@ Om deze experimenten uit te voeren, ga ik gebruik maken van een eigen opstelling
     workbook.save('qr_codes_records_camera_normaal_gsm_120lux.xlsx')
     
     print(f"Counter reached {counter - 1}. Exiting program. Final time of scanning: {end_time - start_time}")
-    camera.release() # Beëindig het gebruik van de camera   
-    
+    camera.release() # Beëindig het gebruik van de camera    
 \end{lstlisting}
+
+\subsection{Resultaten huidig QR-camera experiment}
+\label{sec:huidigeToepassingScannersExperiment}
+
+Het experiment invullen aan de hand van tabel
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c|c c }
+        \hline
+        & \textbf{\textit{Kolom 2}} & \textbf{\textit{Kolom 3}} \\
+        \hline
+        \textbf{\textit{Rij 1}} & Rij 1, Kolom 2 & Rij 1, Kolom 3 \\
+        \textit{Rij 2} & Rij 2, Kolom 2 & Rij 2, Kolom 3 \\
+        \textit{Rij 3} & Rij 3, Kolom 2 & Rij 3, Kolom 3 \\
+        \textit{Rij 4} & Rij 4, Kolom 2 & Rij 4, Kolom 3 \\
+        \textit{Rij 5} & Rij 5, Kolom 2 & Rij 5, Kolom 3 \\
+        \textit{Rij 6} & Rij 6, Kolom 2 & Rij 6, Kolom 3 \\
+        \hline
+    \end{tabular}
+    \caption{Voorbeeldtabel met headers in vetgedrukte tekst.}
+    \label{tab:voorbeeldtabel}
+\end{table}
+
+
+
+\section{Experiment 2: Uitwerking nieuwe QR-scanner}
+\label{sec:nieuweToepassing}
+
+Wat opvalt bij het herschrijven en aanpassen van de bestaande scanner software is dat deze camera heel veel configuratie nodig heeft. We moeten de camera gaan initialiseren. Daarna moet de camera voortdurend de frames opnemen en bekijken of er een QR-code in beeld gekomen is. Dit proces neemt echter veel middelen in beslag waardoor de Raspberry PI oververhit kan worden zeker bij langdurige operaties in warme omgevingen.
+
+Als we kijken naar hedendaagse scanners zoals kassasystemen en toegangscontrolesystemen bevatten deze vaste gespecialiseerde QR-code scanners. Na onderzoek heb ik een QR-code scanner gevonden en aangekocht die gespecialiseerd is in zowel ééndimensionale als tweedimensionale barcodes uit te lezen. De aangekochte scanner is afgebeeld op figuur \ref{fig:scannerBack}, \ref{fig:scannerFront} en \ref{fig:scannerSide}. In figuur \ref{fig:handleidingNieuweQRScanner} bevinden zich alle technische specificaties van de aangekochte QR-scanner. Bij de aankoop van deze QR-code scanner is er een handleiding met daarin alle mogelijke configuraties. Deze zijn zeer divers en kunnen een positieve invloed hebben op het scannen van QR-codes. Hieronder volgt een lijst met een aantal belangrijke configuratiemogelijkheden van dit toestel.
+
+\begin{itemize}
+    \item Het instellen van de USB virtuele poort, hierdoor kan de computer de USB poort herkennen en initialiseren. 
+    \item De vertraging instellen als we éénzelfde QR-code na elkaar proberen te scannen. Deze is op het gebruikte toestel ingesteld op 3000 milliseconden. (TODO verwijzing figuur)
+    \item Het toestel is geconfigureerd opdat er geen periode verstrijkt waarin we geen module kunnen lezen na het inlezen van een eerder gescande QR-code. (TODO verwijzing figuur)
+    \item De lichten kunnen aan -of uitgezet worden.
+    \item Een piepsignaal kan aan -of uitgezet worden wanneer de QR-code succesvol is uitgelezen.
+    \item ...
+\end{itemize}
+
+
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \rotatebox{-90}{\includegraphics[width=\textwidth]{graphics/F24_scanner_back.jpeg}}
+        \caption{Achterkant QR-scanner}
+        \label{fig:scannerBack}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \rotatebox{-90}{\includegraphics[width=\textwidth]{graphics/F25_scanner_front.jpeg}}
+        \caption{Vooraanzicht QR-scanner}
+        \label{fig:scannerFront}
+    \end{minipage}
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \rotatebox{-90}{\includegraphics[width=\textwidth]{graphics/F26_scanner_side.jpeg}}
+        \caption{Zijaanzicht QR-scanner}
+        \label{fig:scannerSide}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/F29_aangekochteQRScannerHandleiding.jpg}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{Handleiding aangekochte QR-code scanner.}
+    \label{fig:handleidingNieuweQRScanner}
+\end{figure}}
+
+Om het experiment van de nieuwe QR-scanner zo goed mogelijk uit te voeren heb ik een nieuw script geschreven, dit script staat vermeld in listing \ref{lst:nieuweQR-codeData}. Deze gaat op dezelfde manier te werk als de huidige QR-code camera en gaat achteraf ook de opgehaalde data opslaan in een \ac{XLSX} bestand. Aan de hand van deze bestanden kunnen we de oude software en hardware vergelijken met de nieuwe om een duidelijke conclusie te maken in het hoofdstuk verwerking van resultaten.
+
+\newpage
+
+\begin{lstlisting}[language=Python, caption={Python script voor experiment van nieuwe QR-code scanner.}, label=lst:nieuweQR-codeData, numbers=left]
+    import serial
+    import time
+    import pyzbar.pyzbar as pyzbar
+    from datetime import datetime
+    from datetime import timedelta
+    from openpyxl import Workbook
+    
+    # De code opent de seriele poort van de scanner, in dit geval '/dev/tty.usbmodem2027300413411', op een baudrate van 9600
+    port = '/dev/tty.usbmodem2027300413411'
+    baud = 9600
+    ser = serial.Serial(port, baud, timeout=1)
+    
+    # De variabele 'counter' houdt bij hoeveel QR-codes gescand zijn. De starttijd wordt vastgelegd met datetime.now().
+    counter = 1
+    start_time = datetime.now()
+    
+    # Een nieuw werkboek wordt aangemaakt met openpyxl.
+    workbook = Workbook()
+    worksheet = workbook.active
+    
+    # De eerste rijen van het werkblad krijgen labels voor de kolommen.
+    worksheet['A1'] = 'Counter'
+    worksheet['B1'] = 'Timestamp'
+    worksheet['C1'] = 'Data'
+    
+    # Er wordt een while loop uitgevoerd die stopt nadat er 10 QR-codes zijn gescand.
+    while counter <= 8:
+        # De scanner leest de QR-code en de data wordt in de variabele 'data' opgeslagen.
+        data = ser.readline().rstrip()
+        if data:
+            # De data wordt gedecodeerd met UTF-8 en opgeslagen in de variabele 'message'.
+            message = data.decode('utf-8')
+            # De huidige tijd wordt vastgelegd met datetime.now().
+            timestamp = datetime.now()
+            # De verstreken tijd sinds het begin van het scannen wordt berekend.
+            elapsed_time = timestamp - start_time
+            # Er wordt een datetime object aangemaakt met de huidige datum en de verstreken tijd.
+            midnight = datetime.combine(datetime.today(), datetime.min.time())
+            elapsed_datetime = midnight + elapsed_time
+            # De tijd wordt in een leesbaar formaat opgeslagen in de variabele 'timestamp_str'.
+            timestamp_str = elapsed_datetime.strftime('%H:%M:%S:%f')[:-3]
+            # De data wordt geprint op het scherm.
+            print(f'{counter} | {timestamp_str} | Data: {message}')
+            # De data wordt toegevoegd aan het werkblad.
+            worksheet.append([counter, timestamp_str, message])
+            # De teller wordt verhoogd met 1.
+            counter += 1
+    
+    # Het werkblad wordt opgeslagen als 'qr_codes_records_scanner.xlsx'.
+    workbook.save('qr_codes_records_scanner_beschadigd_kaartje_120lux.xlsx')
+    # De eindtijd van het scannen wordt vastgelegd met datetime.now() en geprint op het scherm.
+    end_time = datetime.now()
+    print(f"Counter reached {counter - 1}. Exiting program. Final time of scanning: {end_time - start_time}")
+\end{lstlisting}
+
+\subsection{Resultaten nieuwe QR-scanner experiment}
+\label{sec:nieuweUitwerkingExperiment}
+
+Het experiment nieuwe uitwerking
+
+\section{Ontwikkeling van chatbot}%
+
+De chatbot maken was een uitdaging binnen de requirements analyse en de tijdslimiet van deze bachelorproef. Echter wou ik deze wel uitwerken zodat er een QR-code op de eenvoudigste manier kan gerecupereerd worden. Om dit doel te bereiken waren twee eigenschappen enorm belangrijk. Een gebruiksvriendelijke interface hanteren alsook een makkelijke integratie in eender welk mediaplatform is noodzakelijk. Met deze twee cruciale kenmerken in het achterhoofd, ben ik naar chatbot platformen gaan zoeken. Veel bedrijven zoals Google of Microsoft bieden interessante dienstverleningen aan om een eigen chatbot te ontwikkelen, maar de prijsklasse van deze platformen liggen buiten het opgegeven budget.
+
+Het zoeken van een chatbot service die aan de vooraf opgestelde eisen en voorwaarden voldoet, was niet eenvoudig. Voor deze Proof-Of-Concept heb ik de service genaamd ‘BotPress’ gekozen. BotPress maakt gebruik van Node.js en een modulaire architectuur. Dit maakt het ons eenvoudiger aangezien de business logica en de back-end van de Lockit Rentals applicatie ook gecodeerd is in dezelfde taal. Het biedt ook functies aan, zoals machine learning, natuurlijke taalverwerking, contextuele dialoogbeheer, integratie met externe services en analyse van gebruikersgedrag. Dit alles binnen een gratis opstartkost met maximaal 1000 conversaties per maand. Dankzij deze voordelen kunnen we de kennis verder zetten en de aangepaste modules integreren.
+
+Het gebruik van BotPress is eenvoudig maar kan indien nodig voor genoeg diepgang zorgen. De conversatie of workflow bestaat uit verschillende blokken wat ‘Nodes’ wordt genoemd. Hierin kunnen vijf types van acties gebeuren zoals weergegeven in figuur \ref{fig:botpressActies}. Als eerste actie kan de eindgebruiker een voorgeprogrammeerd bericht ontvangen. Dit bericht kan uit verschillende types bestaan: tekst, video, audio, afbeeldingen of locatie zijn hier voorbeelden van. In een tweede actie binnen een Node blok kan er een interactie aangegaan worden met de eindgebruiker. Bij deze optie kan of mag de gebruiker een antwoord geven op een vooraf gedefinieerde vraag. Dit antwoord wordt nadien bewaard in een variabele die aangemaakt is binnen de workflow figuur \ref{fig:botpressVariables}. Het laten uitvoeren van eigen geschreven of \ac{AI} gegenereerde code is de derde actie die binnen de werkomgeving kan worden aangemaakt. Dit laat toe om opdrachten uit te sturen naar andere externe diensten buiten het platform. Bij de implementatie van de Lockit Rentals Chatbot maken wij hier uitgebreid gebruik van om te kunnen communiceren met de Lockit Rentals applicatie. De voorlaatste stap markeert de overgang tussen verschillende 'Nodes', waarbij er meerdere mogelijkheden zijn om verder te gaan met het gesprek. Hierdoor krijgt de eindgebruiker de vrijheid om verschillende routes te verkennen en het gesprek verder op maat te maken om zoveel mogelijk informatie te vergaren. De laatste actie die het minst gebruikt is binnen onze toepassing is een \ac{AI} task. 
+Belangrijk om weten is dat er geen beperkingen zijn met betrekking tot de volgorde waarin de vijf acties uitgevoerd worden. Aan de hand van een gestructureerd stroomdiagram heb ik de chatbot opgebouwd weergegeven in figuur x. 
+
+%todo: figuur aanvullen van volledig model botpress
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \rotatebox{-90}{\includegraphics[width=\textwidth]{graphics/F31_botpress_Acties.jpg}}
+        \caption{Representatie BotPress Node en vijf verschillende acties.}
+        \label{fig:botpressActies}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \rotatebox{-90}{\includegraphics[width=\textwidth]{graphics/F32_botpress_Variables.jpg}}
+        \caption{Alle variabelen die binnen de workflow zitten voor de Lockit Rentals chatbot.}
+        \label{fig:botpressVariables}
+    \end{minipage}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
