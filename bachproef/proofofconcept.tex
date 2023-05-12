@@ -123,30 +123,64 @@ Om deze experimenten uit te voeren, ga ik gebruik maken van een eigen opstelling
 \subsection{Resultaten huidig QR-camera experiment}
 \label{sec:huidigeToepassingScannersExperiment}
 
-Het experiment invullen aan de hand van tabel
+Hieronder bevinden zich de tabellen met daarin de eindresultaten van het experiment met de huidige QR-camera. Er zijn telkens 50 QR-codes gescand met uitzondering van QR-codes in de beschadigde situatie.
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ c|c|c }
-        \cline{2-3}
-        & \textbf{\textit{QR-code op papier}} & \textbf{\textit{QR-code op gsm}} \\
-        \cline{2-3}        
+    \begin{tabular}{ c|c|c|c }
+        \cline{2-4}
+        & \textbf{\textit{QR-code op papier}} & \textbf{\textit{QR-code op gsm}} & \textbf{\textit{Verlichtingssterkte}} \\
+        \cline{2-4}        
         \hline
-        \textbf{\textit{1. Normaal}} & a & b \\
+        \textbf{\textit{1. Normaal}} &  230,402 s & 189,09 s & 120 lux \\
         \hline
-        \textbf{\textit{2. Lichtinval}} & a & b \\
+        \textbf{\textit{2. Lichtinval}} & 204,729 s & 275,128 & 100.000 lux \\
         \hline
-        \textbf{\textit{3. Donker}} & a & b \\
-        \hline
-        \textbf{\textit{4. Beschadigd}} & a & b \\
-        \hline
+        \textbf{\textit{3. Donker}} & 517,394 s & 166,856 s & 5 lux \\
+        \hline        
     \end{tabular}
     \captionsetup{justification=centering}
-    \caption{Voorbeeldtabel met aangepaste rijen en headers in vetgedrukte tekst en cellen gevuld met "a" en "b".}
-    \label{tab:voorbeeldtabel}
+    \caption{De waarden in de tabel zijn uitgedrukt in milliseconden (ms). Geef de resultaten weer van de huidige QR-camera experiment.}
+    \label{tab:3expeQR-camera}
 \end{table}
 
+Het experiment dat beschadigde QR-codes omvat zal doorgaan met een set van acht QR-codes die beschadigd of onleesbaar gemaakt zijn. Deze QR-codes zijn zichtbaar op figuur \ref{fig:beschadigdeQR-codes} en zijn gerangschikt op basis van toenemende mate van beschadiging.
 
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c|c }
+        \cline{2-2}
+        & \textbf{\textit{Beschadigd}} \
+        \cline{2-2}
+        \textbf{\textit{QR-code 1}} & 3,178 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 2}} & 15,588 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 3}} & 21,788 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 4}} & 99,403 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 5}} & / \
+        \cline{2-2}
+        \textbf{\textit{QR-code 6}} & / \
+        \cline{2-2}
+        \textbf{\textit{QR-code 7}} & / \
+        \cline{2-2}
+        \textbf{\textit{QR-code 8}} & 158,377 s \
+        \cline{2-2}
+    \end{tabular}
+    \captionsetup{justification=centering}
+    \caption{De waarden in de tabel zijn uitgedrukt in seconden (s). De verlichtingssterkte bij deze uitwerking is 120lux. De QR-codes in kwestie zijn te vinden in figuur \ref{fig:beschadigdeQR-codes}.}
+    \label{tab:omgezette_tabel_seconds}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/F33_setBeschadigdeQR-codes.jpeg}
+    \captionsetup{justification=centering, singlelinecheck=false}    
+    \caption{Set van acht beschadigde QR-codes gerangschikt op basis van toenemende mate van beschadigde.}
+    \label{fig:beschadigdeQR-codes}
+\end{figure}}
 
 \section{Experiment 2: Uitwerking nieuwe QR-scanner}
 \label{sec:nieuweToepassing}
@@ -260,7 +294,58 @@ Om het experiment van de nieuwe QR-scanner zo goed mogelijk uit te voeren heb ik
 \subsection{Resultaten nieuwe QR-scanner experiment}
 \label{sec:nieuweUitwerkingExperiment}
 
-Het experiment nieuwe uitwerking
+Hieronder bevinden zich de tabellen met daarin de eindresultaten van het experiment met de nieuwe QR-scanner. Er zijn telkens 50 QR-codes gescand met uitzondering van QR-codes in de beschadigde situatie.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c|c|c|c }
+        \cline{2-4}
+        & \textbf{\textit{QR-code op papier}} & \textbf{\textit{QR-code op gsm}} & \textbf{\textit{Verlichtingssterkte}} \\
+        \cline{2-4}        
+        \hline
+        \textbf{\textit{1. Normaal}} & 157.496 s & 176.180 s & 120 lux \\
+        \hline
+        \textbf{\textit{2. Lichtinval}} & 177.737 s & 186.605 s & 100000 lux \\
+        \hline
+        \textbf{\textit{3. Donker}} & 158.847 s & 161.284 s & 5 lux \\
+        \hline        
+    \end{tabular}
+    \captionsetup{justification=centering}
+    \caption{De waarden in de tabel zijn uitgedrukt in seconden (s). Geef de resultaten weer van de nieuwe QR-scanner experiment.}
+    \label{tab:3expeQR-scanner}
+\end{table}
+
+Het experiment dat beschadigde QR-codes omvat zal doorgaan met een set van acht QR-codes die beschadigd of onleesbaar gemaakt zijn. Deze QR-codes zijn zichtbaar op figuur \ref{fig:beschadigdeQR-codes} en zijn gerangschikt op basis van toenemende mate van beschadiging.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c|c }
+        \cline{2-2}
+        & \textbf{\textit{Beschadigd}} \
+        \cline{2-2}
+        \textbf{\textit{QR-code 1}} & 3,777 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 2}} & 11,953 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 3}} & 14,995 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 4}} & 14,995 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 5}} & 22,390 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 6}} & 22,390 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 7}} & 22,390 s \
+        \cline{2-2}
+        \textbf{\textit{QR-code 8}} & 22,390 s \
+        \cline{2-2}
+    \end{tabular}
+    \captionsetup{justification=centering}
+    \caption{De waarden in de tabel zijn uitgedrukt in seconden (s). De verlichtingssterkte bij deze uitwerking is 120 lux. De QR-codes in kwestie zijn te vinden in figuur \ref{fig:beschadigdeQR-codes}.}
+    \label{tab:omgezette_tabel2}
+\end{table}
+
+\newpage
 
 \section{Ontwikkeling van chatbot}%
 
@@ -277,14 +362,14 @@ Belangrijk om weten is dat er geen beperkingen zijn met betrekking tot de volgor
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \rotatebox{-90}{\includegraphics[width=\textwidth]{graphics/F31_botpress_Acties.jpg}}
+        \includegraphics[width=\textwidth]{graphics/F31_botpress_Acties.jpg}
         \caption{Representatie BotPress Node en vijf verschillende acties.}
         \label{fig:botpressActies}
     \end{minipage}
     \hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \rotatebox{-90}{\includegraphics[width=\textwidth]{graphics/F32_botpress_Variables.jpg}}
+        \includegraphics[width=\textwidth]{graphics/F32_botpress_Variables.jpg}
         \caption{Alle variabelen die binnen de workflow zitten voor de Lockit Rentals chatbot.}
         \label{fig:botpressVariables}
     \end{minipage}
