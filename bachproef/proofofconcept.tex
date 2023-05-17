@@ -333,11 +333,11 @@ Het experiment dat beschadigde QR-codes omvat zal doorgaan met een set van acht 
         \cline{2-2}
         \textbf{\textit{QR-code 5}} & 22,390 s \
         \cline{2-2}
-        \textbf{\textit{QR-code 6}} & 22,390 s \
+        \textbf{\textit{QR-code 6}} & 25,340 s \
         \cline{2-2}
-        \textbf{\textit{QR-code 7}} & 22,390 s \
+        \textbf{\textit{QR-code 7}} & 29,454 s \
         \cline{2-2}
-        \textbf{\textit{QR-code 8}} & 22,390 s \
+        \textbf{\textit{QR-code 8}} & 32,495 s \
         \cline{2-2}
     \end{tabular}
     \captionsetup{justification=centering}
@@ -356,9 +356,9 @@ Het zoeken van een chatbot service die aan de vooraf opgestelde eisen en voorwaa
 Het gebruik van BotPress is eenvoudig maar kan indien nodig voor genoeg diepgang zorgen. De conversatie of workflow bestaat uit verschillende blokken wat ‘Nodes’ wordt genoemd. Hierin kunnen vijf types van acties gebeuren zoals weergegeven in figuur \ref{fig:botpressActies}. Als eerste actie kan de eindgebruiker een voorgeprogrammeerd bericht ontvangen. Dit bericht kan uit verschillende types bestaan: tekst, video, audio, afbeeldingen of locatie zijn hier voorbeelden van. In een tweede actie binnen een Node blok kan er een interactie aangegaan worden met de eindgebruiker. Bij deze optie kan of mag de gebruiker een antwoord geven op een vooraf gedefinieerde vraag. Dit antwoord wordt nadien bewaard in een variabele die aangemaakt is binnen de workflow figuur \ref{fig:botpressVariables}. Het laten uitvoeren van eigen geschreven of \ac{AI} gegenereerde code is de derde actie die binnen de werkomgeving kan worden aangemaakt. Dit laat toe om opdrachten uit te sturen naar andere externe diensten buiten het platform. Bij de implementatie van de Lockit Rentals Chatbot maken wij hier uitgebreid gebruik van om te kunnen communiceren met de Lockit Rentals applicatie. De voorlaatste stap markeert de overgang tussen verschillende 'Nodes', waarbij er meerdere mogelijkheden zijn om verder te gaan met het gesprek. Hierdoor krijgt de eindgebruiker de vrijheid om verschillende routes te verkennen en het gesprek verder op maat te maken om zoveel mogelijk informatie te vergaren. De laatste actie die het minst gebruikt is binnen onze toepassing is een \ac{AI} task. 
 Belangrijk om weten is dat er geen beperkingen zijn met betrekking tot de volgorde waarin de vijf acties uitgevoerd worden. Aan de hand van een gestructureerd stroomdiagram heb ik de chatbot opgebouwd weergegeven in figuur \ref{fig:workflowBotPress}. 
 
-\subsection{Stappenplan om QR-code terug te winnen via chatbot}
+\subsection{Stappen om QR-code terug te winnen via chatbot}
 
-Hieronder volgt een voorbeeld hoe je als festivalganger een QR-code zal terugwinnen via de chatbot. Deze stappen worden later gevisualiseerd in sectie \ref{sec:resultatenChatbot}
+Hieronder volgt een voorbeeld hoe je als festivalganger een QR-code kan terugwinnen via de chatbot. Deze stappen worden later gevisualiseerd in sectie \ref{sec:resultatenChatbot}
 \newline
 
 Primaire actor: Festivalganger die zijn of haar locker niet kan openen vanwege een verloren QR-code.
@@ -385,9 +385,9 @@ Alternatieve verlopen:
 \newline
 Hierbij zal de chatbot een gepaste foutmelding geven en de vraag opnieuw stellen. De chatbot zal er alles aan doen om de eindgebruiker genoeg informatie te verschaffen zodanig hij/zij zijn weg vindt in de conversatie.
 
-\subsubsection{Ophalen evenemnten waarop lockers actief zijn}
+\subsection{Ophalen evenementen waarop lockers actief zijn}
 \label{ophalenActieveFestivals}
-De chatbot zal de vraag stellen om een evenement aan te duiden in de chat. Een lijst van alle actieve enementen waarop de lockers actief staan is hiervoor nodig. Deze actie word uitgevoerd in een stroomdiagram aan de hand eigen geschreven code. Het antwoord op dit verzoek wordt bewaard in vooraf gedefinieerde lijsten. Deze code is voorgesteld in listing \ref{lst:botpressActie1}.
+De chatbot zal de vraag stellen om een evenement aan te duiden in de chat. Een lijst van alle actieve evenementen waarop de lockers actief staan is hiervoor nodig. Deze actie wordt uitgevoerd in een stroomdiagram aan de hand van eigen geschreven code. Het antwoord op dit verzoek wordt bewaard in vooraf gedefinieerde lijsten. Deze code is voorgesteld in listing \ref{lst:botpressActie1}.
 
 \begin{lstlisting}[language=Python, caption={Code blok geschreven in javascript om een actie van botpress uit te voeren.}, label=lst:botpressActie1, numbers=left]
     const response = await axios.get('https://europe-west2-lockit-testing.cloudfunctions.net/getActiveShops')
@@ -399,8 +399,8 @@ De chatbot zal de vraag stellen om een evenement aan te duiden in de chat. Een l
     workflow.ListOfFestivalsObj = response.data
 \end{lstlisting}
 
-De ophaling van alle actieve evenementen verloopt in de backend van de Lockit Rentals applicatie. Deze worden geconverteerd naar duidelijke objecten om zo weer te geven in de chat. \ref{lst:botpressActie2}.
-Methode waarin festivals worden ogpehaald waar lockers actie zijn.
+De ophaling van alle actieve evenementen verloopt in de backend van de Lockit Rentals applicatie. Dit wordt geconverteerd naar duidelijke objecten om zo weer te geven in de chat.
+Methode \ref{lst:botpressActie2}, waarin men informatie verkrijgt van festivals waar lockers actief staan.
 \begin{lstlisting}[language=JavaScript, caption={Methode waarin festivals worden ogpehaald waar lockers actie zijn.}, label=lst:botpressActie2, numbers=left]
     import * as functions from 'firebase-functions';
     import * as admin from 'firebase-admin';
@@ -421,10 +421,10 @@ Methode waarin festivals worden ogpehaald waar lockers actie zijn.
     });
 \end{lstlisting}
 
-\subsubsection{Verzoek sturen voor verloren QR-code op te halen}
+\subsection{Verzoek sturen naar backend om verloren QR-code op te halen}
 \label{versturenRequestEmail}
 
-Vervolgens zal de chat moeten vragen achter het juiste media kanaal waarin hij de QR-code wil terug geven. Bij de uitwerking van deze bachelorproef zal de communicatie lopen aan de hand van een email adres. Eénmaal de chatbot het email adres goed heeft ontvangen kan het proces van het terugwinnen van een QR-code in werking treden. De chatbot voert een taak uit dat weergegeven wordt in listing \ref{lst:botpressActie3}. 
+Eénmaal de chatbot het e-mailadres goed heeft ontvangen kan het proces van het terugwinnen van een QR-code in werking treden. De chatbot voert een taak uit dat weergegeven wordt in listing \ref{lst:botpressActie3}. 
 
 \begin{lstlisting}[language=JavaScript, caption={Een blok uitvoerbare code geschreven in javascript in een actie van Botpress. Deze code zal een verzoek uitsturen en het antwoord hiervan capteren.}, label=lst:botpressActie3, numbers=left]
     const response = await axios
@@ -446,10 +446,10 @@ Vervolgens zal de chat moeten vragen achter het juiste media kanaal waarin hij d
     })
 \end{lstlisting}
 
-\subsubsection{Ophalen van QR-code en aanmaken email }
+\subsection{Ophalen van QR-code en aanmaken e-mail}
 \label{ophalenQR}
 
-Dit verzoek zal opnieuw afgehandeld worden in de backend van de Lockit Rentals applicatie. Het uitvoeren van onderstaande code \ref{lst:botpressActie4} zal de QR-code ophalen uit de reservatie tabel. Hierbij maakt hij een antwoord waarin hij aangeeft dat de QR-code succesvol is opgehaald en de herstel email is verzonden. Op deze manier kan de chatbot een gepaste actie voorzien om de gebruiker erop te wijzen dat deze email onderweg is. 
+Dit verzoek zal opnieuw afgehandeld worden in de backend van de Lockit Rentals applicatie. Het uitvoeren van onderstaande code \ref{lst:botpressActie4} zal de QR-code ophalen uit de reservatie tabel. Het antwoord waarin hij aangeeft dat de QR-code succesvol is opgehaald en de herstel email zullen verzonden worden. Op deze manier kan de chatbot een gepaste actie voorzien om de gebruiker erop te wijzen dat deze email onderweg is. 
 
 \begin{lstlisting}[language=JavaScript, caption={Het ophalen van de bijhorende QR-code, indien dit gelukt is een opmaken en bewaren in de databank.}, label=lst:botpressActie4, numbers=left]
     const shopSnap = await db.collection('shop').doc(recoveryData.shopId).get();
@@ -501,10 +501,10 @@ Dit verzoek zal opnieuw afgehandeld worden in de backend van de Lockit Rentals a
 });
 \end{lstlisting}
 
-\subsubsection{Versturen van verloren QR-code}
+\subsection{Versturen van aangemaakte herstel email}
 \label{versturenQRcode}
 
-Om de aangemaakte mail met daarin de gerecupereerde QR-code te verzenden naar de eindgebruiker is echter een ander verhaal. De aangemaakte mail word bewaard in een tabel ‘customerEmail’. Om deze mail automatisch te detecteren gebruiken we de extentie binnenin Firebase genaamd ‘Tigger email’. Deze extentie zorgt voor het detecteren van email die aangemaakt zijn binnen de tabel ‘customerEmail’. De extentie kan zo nog een derde provider aanspreken genaamd ‘Mail Sender’ die ervoor zal zorgen dat de email naar de desbetreffende corresponend verstuurd word. Via deze tool kunnen we alles analayseren wat er precies met de verstuurde mail gebeurt. 
+Om de aangemaakte email met daarin de gerecupereerde QR-code te verzenden naar de eindgebruiker is echter een ander verhaal. De aangemaakte email wordt bewaard in een tabel ‘customerEmail’. Om deze mail automatisch te detecteren gebruiken we de extentie binnenin Firebase genaamd ‘Tigger email’. Deze extentie zorgt voor het detecteren van emails die aangemaakt zijn binnen de tabel ‘customerEmail’. De extentie kan zo nog een derde provider aanspreken genaamd ‘Mail Sender’ die ervoor zal zorgen dat de email naar de desbetreffende correspondent verstuurd wordt. Via deze tool kunnen we alles analayseren wat er precies  gebeurt met de verstuurde email. 
 
 \begin{figure}[h]
     \centering
