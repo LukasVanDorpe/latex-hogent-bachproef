@@ -504,7 +504,16 @@ Dit verzoek zal opnieuw afgehandeld worden in de backend van de Lockit Rentals a
 \subsection{Versturen van aangemaakte herstel email}
 \label{versturenQRcode}
 
-Om de aangemaakte email met daarin de gerecupereerde QR-code te verzenden naar de eindgebruiker is echter een ander verhaal. De aangemaakte email wordt bewaard in een tabel ‘customerEmail’. Om deze mail automatisch te detecteren gebruiken we de extentie binnenin Firebase genaamd ‘Tigger email’. Deze extentie zorgt voor het detecteren van emails die aangemaakt zijn binnen de tabel ‘customerEmail’. De extentie kan zo nog een derde provider aanspreken genaamd ‘Mail Sender’ die ervoor zal zorgen dat de email naar de desbetreffende correspondent verstuurd wordt. Via deze tool kunnen we alles analayseren wat er precies  gebeurt met de verstuurde email. 
+Om de aangemaakte email met daarin de gerecupereerde QR-code te verzenden naar de eindgebruiker is echter een ander verhaal. De aangemaakte email wordt bewaard in een tabel ‘customerEmail’. Om deze mail automatisch te detecteren gebruiken we de extentie binnenin Firebase genaamd ‘Tigger email’. Deze extentie zorgt voor het detecteren van emails die aangemaakt zijn binnen de tabel ‘customerEmail’. De extentie kan zo nog een derde provider aanspreken genaamd ‘Mail Sender’ die ervoor zal zorgen dat de email naar de desbetreffende correspondent verstuurd wordt \ref{fig:resultaatEmailSender}. Via deze tool kunnen we alles analayseren wat er precies  gebeurt met de verstuurde email. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/F35_mailSender.png}
+    \captionsetup{justification=centering,singlelinecheck=false}
+    \caption{De tool 'Mail Sender' waarop we de verzonden mail kunnen traceren.}
+    \label{fig:resultaatEmailSender}
+\end{figure}
+
 
 \begin{figure}[h]
     \centering
