@@ -178,7 +178,7 @@ Het experiment dat beschadigde QR-codes omvat zal doorgaan met een set van acht 
     \centering
     \includegraphics[width=0.8\textwidth]{graphics/F33_setBeschadigdeQR-codes.jpeg}
     \captionsetup{justification=centering, singlelinecheck=false}    
-    \caption{Set van acht beschadigde QR-codes gerangschikt op basis van toenemende mate van beschadigde.}
+    \caption{Set van acht beschadigde QR-codes gerangschikt op basis van toenemende mate van beschadiging.}
     \label{fig:beschadigdeQR-codes}
 \end{figure}}
 
@@ -187,7 +187,7 @@ Het experiment dat beschadigde QR-codes omvat zal doorgaan met een set van acht 
 
 Wat opvalt bij het herschrijven en aanpassen van de bestaande scanner software is dat deze camera heel veel configuratie nodig heeft. We moeten de camera gaan initialiseren. Daarna moet de camera voortdurend de frames opnemen en bekijken of er een QR-code in beeld gekomen is. Dit proces neemt echter veel middelen in beslag waardoor de Raspberry PI oververhit kan worden zeker bij langdurige operaties in warme omgevingen.
 
-Als we kijken naar hedendaagse scanners zoals kassasystemen en toegangscontrolesystemen bevatten deze vaste gespecialiseerde QR-code scanners. Na onderzoek heb ik een QR-code scanner gevonden en aangekocht die gespecialiseerd is in zowel ééndimensionale als tweedimensionale barcodes uit te lezen. De aangekochte scanner is afgebeeld op figuur \ref{fig:scannerBack}, \ref{fig:scannerFront} en \ref{fig:scannerSide}. In figuur \ref{fig:handleidingNieuweQRScanner} bevinden zich alle technische specificaties van de aangekochte QR-scanner. Bij de aankoop van deze QR-code scanner is er een handleiding met daarin alle mogelijke configuraties. Deze zijn zeer divers en kunnen een positieve invloed hebben op het scannen van QR-codes. Hieronder volgt een lijst met een aantal belangrijke configuratiemogelijkheden van dit toestel.
+Als we kijken naar hedendaagse scanners zoals kassasystemen en toegangscontrolesystemen bevatten deze vaste gespecialiseerde QR-code scanners. Na onderzoek heb ik een QR-code scanner gevonden en aangekocht die gespecialiseerd is om zowel ééndimensionale als tweedimensionale barcodes uit te lezen. De aangekochte scanner is afgebeeld op figuur \ref{fig:scannerBack}, \ref{fig:scannerFront} en \ref{fig:scannerSide}. In figuur \ref{fig:handleidingNieuweQRScanner} bevinden zich alle technische specificaties van de aangekochte QR-scanner. Bij de aankoop van deze QR-code scanner is er een handleiding met daarin alle mogelijke configuraties. Deze zijn zeer divers en kunnen een positieve invloed hebben op het scannen van QR-codes. Hieronder volgt een lijst met een aantal belangrijke configuratiemogelijkheden van dit toestel.
 
 \begin{itemize}
     \item Het instellen van de USB virtuele poort, hierdoor kan de computer de USB poort herkennen en initialiseren. 
@@ -349,7 +349,7 @@ Het experiment dat beschadigde QR-codes omvat zal doorgaan met een set van acht 
 
 \section{Ontwikkeling van chatbot}%
 
-De chatbot maken was een uitdaging binnen de requirements analyse en de tijdslimiet van deze bachelorproef. Echter wou ik deze wel uitwerken zodat er een QR-code op de eenvoudigste manier kan gerecupereerd worden. Om dit doel te bereiken waren twee eigenschappen enorm belangrijk. Een gebruiksvriendelijke interface hanteren alsook een makkelijke integratie in eender welk mediaplatform is noodzakelijk. Met deze twee cruciale kenmerken in het achterhoofd, ben ik naar chatbot platformen gaan zoeken. Veel bedrijven zoals Google of Microsoft bieden interessante dienstverleningen aan om een eigen chatbot te ontwikkelen, maar de prijsklasse van deze platformen liggen buiten het opgegeven budget.
+De chatbot maken was een uitdaging binnen de requirements analyse en de tijdslimiet van deze bachelorproef. Echter wou ik deze wel uitwerken zodat er een QR-code op de eenvoudigste manier kan gerecupereerd worden. Om dit doel te bereiken waren twee eigenschappen enorm belangrijk. Een gebruiksvriendelijke interface hanteren alsook een makkelijke integratie in eender welk mediaplatform is noodzakelijk. Met deze twee cruciale kenmerken in het achterhoofd, ben ik naar chatbot platformen gaan zoeken. Veel bedrijven zoals Google of Microsoft bieden interessante dienstverleningen aan om een eigen chatbot te ontwikkelen, maar de prijsklasse van deze platformen ligt buiten het opgegeven budget.
 
 Het zoeken van een chatbot service die aan de vooraf opgestelde eisen en voorwaarden voldoet, was niet eenvoudig. Voor deze Proof-Of-Concept heb ik de service genaamd ‘BotPress’ gekozen. BotPress maakt gebruik van Node.js en een modulaire architectuur. Dit maakt het ons eenvoudiger aangezien de business logica en de back-end van de Lockit Rentals applicatie ook gecodeerd is in dezelfde taal. Het biedt ook functies aan, zoals machine learning, natuurlijke taalverwerking, contextuele dialoogbeheer, integratie met externe services en analyse van gebruikersgedrag. Dit alles binnen een gratis opstartkost met maximaal 1000 conversaties per maand. Dankzij deze voordelen kunnen we de kennis verder zetten en de aangepaste modules integreren.
 
@@ -358,7 +358,7 @@ Belangrijk om weten is dat er geen beperkingen zijn met betrekking tot de volgor
 
 \subsection{Stappen om QR-code terug te winnen via chatbot}
 
-Hieronder volgt een voorbeeld hoe je als festivalganger een QR-code kan terugwinnen via de chatbot. Deze stappen worden later gevisualiseerd in sectie \ref{sec:resultatenChatbot}
+Hieronder volgt een voorbeeld hoe je als festivalganger een QR-code kan terugwinnen via de chatbot. Deze stappen worden later gevisualiseerd in sectie \ref{sec:resultatenChatbot}.
 \newline
 
 Primaire actor: Festivalganger die zijn of haar locker niet kan openen vanwege een verloren QR-code.
@@ -377,13 +377,12 @@ Normaal verloop:
     \item De chatbot stuurt een verzoek naar de achterliggende service met het zonet ingegeven emailadres. \ref{versturenRequestEmail}
     \item Het systeem zal de QR-code ophalen en een mail versturen. \ref{ophalenQR}
     \item De chatbot krijgt het antwoord van het verzoek binnen en geef een gepaste melding.
-ac
     \item De festivalganger ontvangt de QR-code en kan deze gebruiken om zijn of haar locker te openen.
 \end{enumerate}
 
 Alternatieve verlopen:
 \newline
-Hierbij zal de chatbot een gepaste foutmelding geven en de vraag opnieuw stellen. De chatbot zal er alles aan doen om de eindgebruiker genoeg informatie te verschaffen zodanig hij/zij zijn weg vindt in de conversatie.
+Hierbij zal de chatbot een gepaste foutmelding geven en de vraag opnieuw stellen. De chatbot zal er alles aan doen om de eindgebruiker genoeg informatie te verschaffen zodanig dat hij/zij zijn weg vindt in de conversatie.
 
 \subsection{Ophalen evenementen waarop lockers actief zijn}
 \label{ophalenActieveFestivals}
@@ -451,7 +450,7 @@ Eénmaal de chatbot het e-mailadres goed heeft ontvangen kan het proces van het 
 
 Dit verzoek zal opnieuw afgehandeld worden in de backend van de Lockit Rentals applicatie. Het uitvoeren van onderstaande code \ref{lst:botpressActie4} zal de QR-code ophalen uit de reservatie tabel. Het antwoord waarin hij aangeeft dat de QR-code succesvol is opgehaald en de herstel email zullen verzonden worden. Op deze manier kan de chatbot een gepaste actie voorzien om de gebruiker erop te wijzen dat deze email onderweg is. 
 
-\begin{lstlisting}[language=JavaScript, caption={Het ophalen van de bijhorende QR-code, indien dit gelukt is een opmaken en bewaren in de databank.}, label=lst:botpressActie4, numbers=left]
+\begin{lstlisting}[language=JavaScript, caption={Het ophalen van de bijhorende QR-code, indien dit gelukt is, opmaken en bewaren in de databank.}, label=lst:botpressActie4, numbers=left]
     const shopSnap = await db.collection('shop').doc(recoveryData.shopId).get();
     
     /**
@@ -504,7 +503,7 @@ Dit verzoek zal opnieuw afgehandeld worden in de backend van de Lockit Rentals a
 \subsection{Versturen van aangemaakte herstel email}
 \label{versturenQRcode}
 
-Om de aangemaakte email met daarin de gerecupereerde QR-code te verzenden naar de eindgebruiker is echter een ander verhaal. De aangemaakte email wordt bewaard in een tabel ‘customerEmail’. Om deze mail automatisch te detecteren gebruiken we de extentie binnenin Firebase genaamd ‘Tigger email’. Deze extentie zorgt voor het detecteren van emails die aangemaakt zijn binnen de tabel ‘customerEmail’. De extentie kan zo nog een derde provider aanspreken genaamd ‘Mail Sender’ die ervoor zal zorgen dat de email naar de desbetreffende correspondent verstuurd wordt \ref{fig:resultaatEmailSender}. Via deze tool kunnen we alles analayseren wat er precies  gebeurt met de verstuurde email. 
+Om de aangemaakte email met daarin de gerecupereerde QR-code te verzenden naar de eindgebruiker is echter een ander verhaal. De aangemaakte email wordt bewaard in een tabel ‘customerEmail’. Om deze mail automatisch te detecteren gebruiken we de extentie binnenin Firebase genaamd ‘Tigger email’. Deze extentie zorgt voor het detecteren van emails die aangemaakt zijn binnen de tabel ‘customerEmail’. De extentie kan zo nog een derde provider aanspreken genaamd ‘Mail Sender’ die ervoor zal zorgen dat de email naar de desbetreffende correspondent verstuurd wordt \ref{fig:resultaatEmailSender}. Via deze tool kunnen we alles analayseren wat er precies gebeurt met de verstuurde email. 
 
 \begin{figure}[h]
     \centering
