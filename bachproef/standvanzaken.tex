@@ -9,7 +9,7 @@ Zoals vermeld in het vorige hoofdstuk onderzoeken we oplossingen voor de problem
 
 Lockit Rentals is een naam onder het bedrijf VD Group BV. Deze is opgericht op 6 november 2019 door Sébastien Vandenhouten en Wannes Van Dorpe met als doel lockers te verhuren op evenementen. Enkele maanden na de oprichting begon de covid-19 crisis die de volledige sector tot stilstand deed komen. Na de crisis werd er direct geïnvesteerd in nieuwe lockers. Niet de gewone traditionele lockers, maar speciale technologische lockers die nog niet beschikbaar waren in België. De lockers werden in een mum van tijd omgebouwd tot QR-smart locker units met daarin lockers. Zo zijn er in het voorjaar van 2022, 13 units geproduceerd door Lockit Rentals. Op de dag van vandaag wordt er ijverig gezocht naar nieuwe investeerders om hun vloot van units uit te breiden.
 
-Er zijn verschillende manieren om smart lockers systemen te gaan produceren. Hieronder volgt een opsomming van de verschillende smart lockers systemen elk met hun eigenschappen. Deze methodes zijn opgesteld door Lockit Rentals om hun marktonderzoek te starten.
+Er zijn verschillende manieren om smart locker systemen te gaan produceren. Hieronder volgt een opsomming van de verschillende smart locker systemen elk met hun eigenschappen. Deze methodes zijn opgesteld door Lockit Rentals om hun marktonderzoek te starten.
 \\
 \textbf{Pincode:}
 \begin{itemize}
@@ -17,7 +17,7 @@ Er zijn verschillende manieren om smart lockers systemen te gaan produceren. Hie
     \item Manuele verkoop mogelijk
     \item 100\% online verkoop mogelijk
     \item Trage verwerking bij openen van locker (pincode moet manueel worden ingetypt)
-    \item Spieken is mogelijk waardoor er risico’s tot diefstal    
+    \item Spieken is mogelijk waardoor er risico is tot diefstal    
 \end{itemize}
 
 \textbf{Rfid Badge:}
@@ -41,15 +41,15 @@ Er zijn verschillende manieren om smart lockers systemen te gaan produceren. Hie
 \end{itemize}
 
 Uit deze korte opsomming van eigenschappen heeft Lockit Rentals besloten om zich te richten op het maken van lockers die openen op basis van een correcte QR code. Het gebruik van een QR code is vandaag de dag ook geen onbekend terrein. Door het mainstream maken van QR codes in betalingen, doorlinken van websites, covidsafe app, etc. zijn veel mensen al eens in aanraking gekomen met een QR-code \autocite{Belle2023}. Het gebruik van een QR code voor het openen van lockers is de logische stap voorwaarts \autocite{Lo2014}.
-Uiteraard zijn ze niet de enige die smart locker systemen op de markt hebben. Enkele bedrijven die hier ook bij aanschuiven zijn, mobile lockers, LockerKing en Rental Group.
+Uiteraard zijn ze niet de enige die smart locker systemen op de markt hebben. Enkele bedrijven die hier ook bij aanschuiven zijn, Mobile Locker, LockerKing en Rental Group.
 
 \section{Hoe zijn de QR-units opgebouwd}%
 \label{sec:QR-units}
 De smart locker systemen zijn toegankelijk met een geldige toegangscode die voorgesteld wordt als een QR-code. Het systeem bestaat uit verschillende soorten technologieën en elektronische componenten. De combinatie van hardware en software die nauw met elkaar samenwerken, vormen gezamenlijk één QR-unit \autocite{Jadhav2016} . De units hebben enkel 230 volt nodig om volledig operationeel te zijn. 
 
-De hardware bestaat uit mechanische onderdelen zoals een deurslot \ref{fig:lockerSlot}, het volledige frame van de unit maar ook uit elektronische onderdelen zoals een camera, Raspberry Pi, digitaal scherm, etc. De mobiele applicatie waar de QR-codes kan verkocht worden en zo ook genereren, heeft geen verband met de interne werking van een QR-unit. Het enige dat de QR-unit nodig heeft, is een correct opgebouwde QR-code. Hiermee krijgt de festivalganger toegang tot zijn/haar gehuurde locker.
+De hardware bestaat uit mechanische onderdelen zoals een deurslot \ref{fig:lockerSlot}, het volledige frame van de unit maar ook uit elektronische onderdelen zoals een camera, Raspberry Pi, digitaal scherm, etc. De mobiele applicatie waar de QR-codes kunnen verkocht worden en zo ook genereren, heeft geen verband met de interne werking van een QR-unit. Het enige dat de QR-unit nodig heeft, is een correct opgebouwde QR-code. Hiermee krijgt de festivalganger toegang tot zijn/haar gehuurde locker.
 
-Elke unit bevat 128 lockers verspreid over 4 kasten zoals te zien op figuur \ref{fig:lockerUnit}. De locker units zijn waterdicht en dus optimaal voor plaatsing in niet overdekte locaties. Eén locker kast bevat 24 lockers, 4 grote die zich op de bovenste rij bevinden. De 20 overige zijn een iets kleiner formaat en situeren zich onderaan. De lange zijden van een QR-unit zijn uitklapbare luiken met aan elke kant twee kasten. Er zijn 4 kasten per unit aanwezig wat een totaal geeft van 128 lockers voorgesteld op figuur \ref{fig:lockerUnit} en  \ref{fig:lockerUnit2}.
+Elke unit bevat 128 lockers die verspreid zijn over 4 kasten zoals te zien op figuur \ref{fig:lockerUnit}. De locker units zijn waterdicht en dus optimaal voor plaatsing in niet overdekte locaties. Eén lockerkast bevat 24 lockers, 4 grote die zich op de bovenste rij bevinden. De 20 overige zijn een iets kleiner formaat en situeren zich onderaan. De lange zijden van een QR-unit zijn uitklapbare luiken met aan elke kant twee kasten. Er zijn 4 kasten per unit aanwezig wat een totaal geeft van 128 lockers voorgesteld op figuur \ref{fig:lockerUnit} en  \ref{fig:lockerUnit2}.
 
 \begin{figure}[h]
     \centering
@@ -111,7 +111,7 @@ Het proces voor het genereren van QR-codes van de mobiele applicatie wordt voora
 \subsubsection{Stap 1: Gegevens en voorkeur klant verwerven}%
 \label{sec:opbouwQR-codeVerkoop1}
 
-\textit {De toelichting die hieronder weergeven wordt, is een vereenvoudigde voorstelling van de effectieve implementatie. Dit onderdeel van de toepassing is niet het hoofdonderwerp van deze bachelorproef, op deze analogie wordt niet verder ingegaan.}
+\textit {De toelichting die hieronder weergegeven wordt, is een vereenvoudigde voorstelling van de effectieve implementatie. Dit onderdeel van de toepassing is niet het hoofdonderwerp van deze bachelorproef, op deze analogie wordt niet verder ingegaan.}
 
 \vspace{7}
 De gegevens van de klant worden opgevraagd als hij/zij een QR-code wenst te kopen. Aan de hand van deze gegevens wordt er een gebruikersaccount automatisch aangemaakt en worden de gegevens bijgehouden \ref{lst:ophalenUser}. Deze aanpak maakt het mogelijk om nadien een koppeling te leggen tussen lockernummer en gebruiker. De reservatie en tot stand brengen van een QR-code zijn twee aparte concepten.
@@ -139,7 +139,7 @@ De gegevens van de klant worden opgevraagd als hij/zij een QR-code wenst te kope
     }
 \end{lstlisting}
 
-Bij het huurproces van een locker moet een huurder het festival aanduiden waar hij/zij de locker wil huren. Niets sluit uit dat de lockers operationeel zijn op twee verschillende locaties. Daarna heeft de huurder de keuze om het formaat te selecteren en als deze optie beschikbaar is hoelang de huurtijd zal zijn. Echter is het verstrijken van deze details over het geselecteerde evenement noodzakelijk voor de opbouw van de QR-code. De QR-code wordt gegenereerd op basis van de beschikbare lockers die aanwezig zijn op het geselecteerde evenement \ref{lst:ophalenEventInfo}.
+Bij het huurproces van een locker moet een huurder het festival aanduiden waar hij/zij de locker wil huren. Niets sluit uit dat de lockers operationeel zijn op twee verschillende locaties. Daarna heeft de huurder de keuze om het formaat te selecteren en als deze optie beschikbaar is hoelang de huurtijd zal zijn. Echter zijn het verstrekken van deze details over het geselecteerde evenement noodzakelijk voor de opbouw van de QR-code. De QR-code wordt gegenereerd op basis van de beschikbare lockers die aanwezig zijn op het geselecteerde evenement \ref{lst:ophalenEventInfo}.
 
 \begin{lstlisting}[caption={Het informatie ophalen van de geselecteerde locatie. Aan de hand van geselecteerde evenement kan er gegevens uit de databank gehaald worden.}, label={lst:ophalenEventInfo}]
     /**
@@ -199,7 +199,7 @@ Bij het huurproces van een locker moet een huurder het festival aanduiden waar h
 \end{lstlisting}
 
 \subsubsection{Stap 2: De reservatie voor een toegangscode van een locker}%
-Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschikbaar is, zal er een reservatie aangemaakt worden en meteen bewaard worden in een databank. Het code die hiervoor verantwoordelijk is wordt afgebeeld in listing \ref{lst:aanmakenReservatie}.
+Op voorwaarde dat de gebruikersinformatie geldig is en er nog een locker beschikbaar is, zal er een reservatie aangemaakt worden en meteen bewaard worden in een databank. Het code die hiervoor verantwoordelijk is wordt afgebeeld in listing \ref{lst:aanmakenReservatie}.
 
 \begin{lstlisting}[caption={De creatie van een reservatie voor het huren van een locker. Deze reservatie wordt bijgehouden in de databank}, label={lst:aanmakenReservatie}]
     /**
@@ -247,8 +247,8 @@ Op voorwaarde dat de gebruiker informatie geldig is en er nog een locker beschik
 \subsubsection{Stap 3: Het betalingsverzoek voor een toegangscode van een locker}%
 \label{sec:opbouwQR-codeVerkoop12}
 
-Wanneer de databank een nieuwe reservatie constateert, wordt er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen om het betalingsverzoek te gecreëeren. 
-De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard beschadigd is of als ze hun toegangscode tot de locker verloren zijn. Bij het aanmaken van toegangscodes bij logistieke medewerkers verloopt het proces op een alternatieve wijze.  Deze springen over het betalingsproces en verwerven direct een geldige QR-code. Zonder de aangemaakte betaling veld in de databank op te slaan.  \ref{lst:aanmakenBetaling}
+Wanneer de databank een nieuwe reservatie constateert, wordt er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen om het betalingsverzoek te creëren.
+De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard beschadigd is of als ze hun toegangscode tot de locker verloren zijn. Bij het aanmaken van toegangscodes bij logistieke medewerkers verloopt het proces op een alternatieve wijze.  Deze springen over het betalingsproces en verwerven direct een geldige QR-code. Zonder een aangemaakt betalingsveld in de databank op te slaan.  \ref{lst:aanmakenBetaling}
 
 \begin{lstlisting}[caption={Valideert of er een betaling van toepassing is. Indien nodig creëert het een betaling en bewaard deze in de databank}, label={lst:aanmakenBetaling}]
     /**
@@ -299,7 +299,7 @@ De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard besc
         });
 \end{lstlisting}
 
-De tool Mollie is een online betalingsservice die wordt gehanteerd om de betalingen succesvol af te ronden \autocite{docs2023}. Gelijktijdig met de betaling wordt er een interne teller bijgehouden zodat deze locker geblokkeerd wordt voor andere kopers. Als de betaling niet succesvol is, wordt de locker terug vrijgegeven na een bepaalde periode. De betaling word aangemaakt met de gekende informatie over de gewenste locker \ref{lst:aanmakenBetalingMollie}.
+De tool Mollie is een online betalingsservice die wordt gehanteerd om de betalingen succesvol af te ronden \autocite{docs2023}. Gelijktijdig met de betaling wordt er een interne teller bijgehouden zodat deze locker geblokkeerd wordt voor andere kopers. Als de betaling niet succesvol is, wordt de locker terug vrijgegeven na een bepaalde periode. De betaling wordt aangemaakt met de gekende informatie over de gewenste locker \ref{lst:aanmakenBetalingMollie}.
 
 \begin{lstlisting}[caption={Mollie betaling aanmaken met nodige data.}, label={lst:aanmakenBetalingMollie}]
     async function createMolliePayment(
@@ -340,7 +340,7 @@ De tool Mollie is een online betalingsservice die wordt gehanteerd om de betalin
     }
     \end{lstlisting}
 
-Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde locker nummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevindt ,wordt aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is \ref{lst:voltooidebetaling}.
+Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde lockernummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevindt ,wordt aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is \ref{lst:voltooidebetaling}.
 
 
 \begin{lstlisting}[caption={Voltooide betaling roept de creatie QR-code methode op. Hierbij gebeurt een status update van de vooraf aangemaakte reservatie.}, label={lst:voltooidebetaling}]
@@ -461,18 +461,18 @@ Aangezien de generatie van een QR-code dat voorgesteld is als afbeelding wat fro
     \end{lstlisting}
 
 Lijn 3: De variabele ‘activeQrCode’ van type string is de publieke sleutel die wordt gebruikt om de QR-code te ontcijferen. \\
-Lijn 10 – 18: De ingestelde eigenschappen die gedefinieerd zijn om de QR-code aan te maken. Men kan de code naar zijn behoefte configureren \autocite{Sutheebanjard2010}. Een belangrijke waarde is hierbij de ‘ErrorCorrectionLevel’, deze veranderd doorheen de applicatie op basis waar de QR-code afgebeeld moet worden. Hierdoor mag de QR-code voor 30\% beschadigd of gescheurd zijn. De scanner zal alsnog de afbeelding succesvol kunnen detecteren \autocite{Tiwari2016}. \\
+Lijn 10 – 18: De ingestelde eigenschappen die gedefinieerd zijn om de QR-code aan te maken. Men kan de code naar zijn behoefte configureren \autocite{Sutheebanjard2010}. Een belangrijke waarde is hierbij de ‘ErrorCorrectionLevel’, deze verandert doorheen de applicatie op basis waar de QR-code afgebeeld moet worden. Hierdoor mag de QR-code voor 30\% beschadigd of gescheurd zijn. De scanner zal alsnog de afbeelding succesvol kunnen detecteren \autocite{Tiwari2016}. \\
 Lijn 29– 35: De tool die gehanteerd wordt om de QR-code te genereren is de bibliotheek ‘qrcode’ \autocite{pypi2023}. 
 
 \newpage
 \section{Het incrypteren en decrypteren van QR-codes}%
 \label{sec:encryptQR-code}
 
-Eerder in de werking van de QR-units is de validatie NaCL genaamd ‘Networking And Cryptography Library’ aan bod gekomen \autocite{Bernstein}. De hoofdfunctionaliteit van de recente software bibliotheek is het vercijferen en ontcijferen van bestanden. Het biedt alle kernbewerkingen aan die betrekking hebben om cartografische benodigdheden op hoger niveau te bouwen \autocite{Bernsteina}.
+Eerder in de werking van de QR-units is de validatie NaCL genaamd ‘Networking And Cryptography Library’ aan bod gekomen \autocite{Bernstein}. De hoofdfunctionaliteit van de recente software bibliotheek is het vercijferen en ontcijferen van bestanden. Het biedt alle kernbewerkingen aan die betrekking hebben om cryptografische benodigdheden op hoger niveau te bouwen \autocite{Bernsteina}.
 
 In de applicatie van Lockit Rentals is er gebruik gemaakt van TweetNaCl.js. TweetNaCl is een compacte versie van de implementatie bibliotheek NaCL \autocite{Bernstein2014} \autocite{Bernsteinb}. Deze bevat verschillende encryptie en onderteken algoritmes op basis van ed25519 \autocite{Bernstein2011}. \\
-Ed25519 gebruikt het onderliggende algoritme Curve25519. Curve25519 is vooral ontworpen om snel, efficiënt en op een effectieve manier sleutelwisseling te gaan uitvoeren. Zo worden beide partijen op de hoogte gesteld van hun gezamenlijke sleutel \autocite{Bernstein2006}. Ed25519 aan de andere kant heeft andere prioriteiten. Deze zal op een betere en sneller manier algoritmen uitvoeren specifiek voor digitale ondertekeningen gaan uitvoeren. \autocite{Bernstein2011}. \\
-In het kader van smart locker systemen wordt de encryptie gebruikt om de QR-codes digitaal te ondertekenen. De reden van gebruik ligt bij een voordeel van TweetNaCL.js die heel voordelig uitkomt bij de gegeven implementatie. Het heeft namelijk als voordeel dat deze beschikt over kleine onderteken sleutels ook wel ‘signatures’ genoemd \autocite{Bernstein2011}. Hoe minder gestockeerde data in de QR-code kleiner de afdruk is van de code \autocite{Chow2016}.
+Ed25519 gebruikt het onderliggende algoritme Curve25519. Curve25519 is vooral ontworpen om snel, efficiënt en op een effectieve manier sleutelwisseling te gaan uitvoeren. Zo worden beide partijen op de hoogte gesteld van hun gezamenlijke sleutel \autocite{Bernstein2006}. Ed25519 aan de andere kant heeft andere prioriteiten. Deze zal op een betere en snellere manier algoritmen uitvoeren specifiek voor digitale ondertekeningen. \autocite{Bernstein2011}. \\
+In het kader van smart locker systemen wordt de encryptie gebruikt om de QR-codes digitaal te ondertekenen. De reden van gebruik ligt bij een voordeel van TweetNaCL.js die heel voordelig uitkomt bij de gegeven implementatie. Het heeft namelijk als voordeel dat deze beschikt over kleine onderteken sleutels ook wel ‘signatures’ genoemd \autocite{Bernstein2011}. Hoe minder gestockeerde data in de QR-code hoe kleiner de afdruk is van de code \autocite{Chow2016}.
 
 Deze term van algoritme wordt ‘signing’ genoemd. Het algoritme zal verifiëren of de data in de QR-code onveranderd blijft gedurende het gehele proces \autocite{Bernsteinb}. Het proces begint bij het tot stand brengen van een QR-code tot aan het scannen ervan.
 
@@ -514,7 +514,7 @@ Bij ondertekening van dit bericht ontstaat er een unieke handtekening  \ref{fig:
 
 \subsection{Verificatie van ondertekend bericht}%
 
-Om na te gaan of dit bericht zijn oorspronkelijke data bevat zal de functie ‘verify’ opgeroepen worden. In het geval dat dit bericht niet in oorspronkelijke status bevindt, zal de functie een foutboodschap retourneren \ref{fig:verifyFailed}. Als de methode geen foutboodschap weergeeft, kan men concluderen dat deze data origineel is \autocite{Bernstein2014}. Zoals word weergegeven in figuur \ref{fig:verified}.
+Om na te gaan of dit bericht zijn oorspronkelijke data bevat zal de functie ‘verify’ opgeroepen worden. In het geval dat dit bericht zich niet in oorspronkelijke status bevindt, zal de functie een foutboodschap retourneren \ref{fig:verifyFailed}. Als de methode geen foutboodschap weergeeft, kan men concluderen dat deze data origineel is \autocite{Bernstein2014}. Zoals wordt weergegeven in figuur \ref{fig:verified}.
 
 \begin{figure}[h]
     \centering
@@ -559,7 +559,7 @@ Bij de implementatie van deze smart locker technologie is het bericht dat standa
         );
 \end{lstlisting}
 
-Lijn 11 - 15 \ref{lst:essentieleQrdata} :  De data die essentieel is om toegang te hebben tot de locker wordt gedefinieerd als de variabele ‘smallItem’. Aangezien de eigenschappen zoals kleur, locatie en afbeelding niets te maken heeft met de scanfunctie van de QR-unit. Word deze informatie hiervan gescheiden.
+Lijn 11 - 15 \ref{lst:essentieleQrdata} :  De data die essentieel is om toegang te hebben tot de locker wordt gedefinieerd als de variabele ‘smallItem’. Aangezien de eigenschappen zoals kleur, locatie en afbeelding niets te maken hebben met de scanfunctie van de QR-unit wordt deze informatie hiervan gescheiden.
 
 De functie ‘NaCL. Sign()’ aanvaardt twee parameters \ref{lst:encryptionCode}. In de eerste plaats nemen we de locker informatie op. Deze informatie beschikt over de locker nummer, creatiedatum QR-code en verval datum QR-code \ref{lst:essentieleQrdata}. Het is noodzakelijk dat het tekstbericht het juiste type is daarom wordt ‘smallItem’ omgezet naar een JSON object en daarna geconverteerd naar byte door de functie ‘decodeUTF8()’. Vervolgens heeft de functie een geheime sleutel nodig om de ondertekening te kunnen uitvoeren.
 
@@ -602,7 +602,7 @@ Als we dieper in de materie duiken is de aangemaakte code zichtbaar als antwoord
  
 \vspace{7}
 
-Deze code wordt achter een vaste ingestelde URL geplaatst zodanig dat de QR-code gemakkelijk gedeeld kan worden. Het delen of doorsturen van een QR-code is een eenvoudig proces voor de huurder \ref{lst:shareQR}. Bij het delen van een QR-code wordt er een link gecreëerd dat verwijst naar de web applicatie van Lockit Rentals \ref{lst:createQRLink}. De applicatie zal de base64 string ontvangen en de link ontcijferen om zo een afbeelding van de QR-code genereren.
+Deze code wordt achter een vaste ingestelde URL geplaatst zodanig dat de QR-code gemakkelijk gedeeld kan worden. Het delen of doorsturen van een QR-code is een eenvoudig proces voor de huurder \ref{lst:shareQR}. Bij het delen van een QR-code wordt er een link gecreëerd dat verwijst naar de web applicatie van Lockit Rentals \ref{lst:createQRLink}. De applicatie zal de base64 string ontvangen en de link ontcijferen om zo een afbeelding van de QR-code te genereren.
 
 \begin{lstlisting}[caption={Het doorsturen van een QR-code in de vorm van een link.}, label={lst:shareQR}]
     handler: async () => {  
@@ -631,7 +631,7 @@ Op de figuur \ref{fig:decoderBase64ToJson} wordt een base64 van het type string 
     \label{fig:decoderBase64ToJson}
 \end{figure}}
 
-Voor eenvoud van het illustratief voorbeeld vormen we dit om naar een gestandaardiseerd \ac{JSON} object \autocite{Concept}. Het geformatteerd \ac{JSON} object geeft een visueel beeld van de twee variabelen in de genereerde QR-code. Het visueel beeld word afgedrukt in de figuur \ref{fig:formattedJsonData}.
+Voor eenvoud van het illustratief voorbeeld vormen we dit om naar een gestandaardiseerd \ac{JSON} object \autocite{Concept}. Het geformatteerd \ac{JSON} object geeft een visueel beeld van de twee variabelen in de genereerde QR-code. Het visueel beeld wordt afgedrukt in de figuur \ref{fig:formattedJsonData}.
 
 \begin{figure}[h]
     \centering
@@ -788,14 +788,14 @@ Een Raspberry PI is een kleine maar krachtige mini computer die allerlei bereken
     
 \end{lstlisting}
 
-Lijn 8 \ref{lst:pythonPrimary2}: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerking in de taal Python. Het pakket verwijdert de resulterende grijsvariabelen die in de invoerafbeelding zitten. Dit betekent dat als de huurder een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.\\
+Lijn 8 \ref{lst:pythonPrimary2}: Cv2 is een software pakket dat visuele afbeeldingen kan laden en verwerken in de taal Python. Het pakket verwijdert de resulterende grijsvariabelen die in de invoerafbeelding zitten. Dit betekent dat als de huurder een afbeelding scant hij enkel specifieke kleuren zal overhouden. Hierdoor kan het primaire Python script verder werken met één informatiekanaal, in plaats van meerdere in geval van een kleurenafbeelding \autocite{developmentteam}.\\
 Lijn 9 \ref{lst:pythonPrimary2}: PyZbar is een andere bibliotheek die instaat om de QR-codes te gaan detecteren van de grijswaardenafbeelding die zonet met Cv2 bekend zijn gemaakt \autocite{Huang2022}\\
 Lijn 17 \ref{lst:pythonPrimary2}: De Rasberry PI zal een request sturen naar de Node.js server die rechtstreeks draait op de PI. Deze server ontvangt een parameter waarin de QR-code data zit.\\
 
 
 \subsubsection{Stap 4: Parameter code}
 
-Bij het doorsturen van de verkregen URL via de node.js server heeft de applicatie enkel nood aan de parameter 'Code'\autocite{Weir2012}.  Die base64 string wordt uit de link gefilterd door de URL op te splitsen. 
+Bij het doorsturen van de verkregen URL via de node.js server heeft de applicatie enkel nood aan de parameter 'Code' \autocite{Weir2012}.  Die base64 string wordt uit de link gefilterd door de URL op te splitsen. 
 
 \begin{lstlisting}[language=Python, caption={Python script om parameter code uit de link te halen.}, label={lst:pythonLinkSplitting}, numbers=left]
     router.post('/qr-code', (request, response) => {
@@ -813,7 +813,7 @@ Bij het doorsturen van de verkregen URL via de node.js server heeft de applicati
 \end{lstlisting}
 
 \subsubsection{Stap 5: Parameter decoderen aan de hand van functie 'Base64'}
-Eenmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naar een \ac{JSON} object. Dit bevat twee objecten. Enerzijds QR-data, waarin drie elementen uitgehaald worden: het lockernummer alsook de begin- en einddatum tot wanneer de QR-code geldig is. Deze tijdstippen worden beide voorgesteld als type Unix. Deze zorgen voor een makkelijke conversie tussen verschillende tijdzones en formaten \autocite{Ritchie1978}. Anderzijds omvat het \ac{JSON} object ook de verificatie code van het encryptie proces dat eerder is uitgewerkt in het code voorbeeld \ref{lst:createCode}. 
+Eénmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naar een \ac{JSON} object. Dit bevat twee objecten. Enerzijds QR-data, waarin drie elementen uitgehaald worden: het lockernummer alsook de begin- en einddatum tot wanneer de QR-code geldig is. Deze tijdstippen worden beide voorgesteld als type Unix. Deze zorgen voor een makkelijke conversie tussen verschillende tijdzones en formaten \autocite{Ritchie1978}. Anderzijds omvat het \ac{JSON} object ook de verificatie code van het encryptie proces dat eerder is uitgewerkt in het code voorbeeld \ref{lst:createCode}. 
 
 \begin{lstlisting}[language=Python, caption={Python code om parameter code te decoderen en informatie op te halen uit het object.}, label={lst:pythonLinkSplitting}, numbers=left]
     const obj = JSON.parse(Buffer.from(data, 'base64').toString('utf8')); 
@@ -929,7 +929,7 @@ Op basis van de correcte originele ontcijferde data kan de server de juiste slot
 \section{Wat is een chatbot}%
 \label{sec:chatbot}
 
-De term chatbot is heel snel geëvolueerd doorheen de voorbije jaren. Een chatbot is een "online mens-computer dialoogsysteem met natuurlijke taal" \autocite{Jia2003}. Dit wordt gebruikt om veel systemen te ondersteunen alsook om vragen van klanten automatisch te laten beantwoorden \autocite{Adamopoulou2020}. Ze maken gebruik van artificiële intelligentie die de vraagstelling van klanten analyseren. Op basis van de benodigdheden probeert de chatbot zo goed mogelijk te helpen \autocite{Khanna2015}. Dit concept waarbij de mens de computer om een gunst vraagt, wordt ‘Human-computer interaction’ (HCI) genoemd \autocite{Adamopoulou2020}. De interactie tussen de mens en een gestuurde computer loopt via tekst of stem. De computer probeert één of meerdere talen te begrijpen aan de hand van ‘Natural Language Understanding’ (NLP) \autocite{Khanna2015a}. Deze techniek is ontworpen voor het begrijpen van menselijke noden. Het uiteindelijk doel van de eindgebruiker zal hieruit geëxtraheerd worden.  Chatbots zijn niet enkel gebouwd om conversaties op te vangen of om mensen te entertainen. Deze zijn ook ontworpen voor leer-, informatie- en bedrijfsdoeleinden \autocite{Shawar2007}. 
+De term chatbot is heel snel geëvolueerd doorheen de voorbije jaren. Een chatbot is een online mens-computer dialoogsysteem met natuurlijke taal" \autocite{Jia2003}. Dit wordt gebruikt om veel systemen te ondersteunen alsook om vragen van klanten automatisch te laten beantwoorden \autocite{Adamopoulou2020}. Ze maken gebruik van artificiële intelligentie die de vraagstelling van klanten analyseren. Op basis van de benodigdheden probeert de chatbot zo goed mogelijk te helpen \autocite{Khanna2015}. Dit concept waarbij de mens de computer om een gunst vraagt, wordt ‘Human-computer interaction’ (HCI) genoemd \autocite{Adamopoulou2020}. De interactie tussen de mens en een gestuurde computer loopt via tekst of stem. De computer probeert één of meerdere talen te begrijpen aan de hand van ‘Natural Language Understanding’ (NLP) \autocite{Khanna2015a}. Deze techniek is ontworpen voor het begrijpen van menselijke noden. Het uiteindelijk doel van de eindgebruiker zal hieruit geëxtraheerd worden.  Chatbots zijn niet enkel gebouwd om conversaties op te vangen of om mensen te entertainen. Deze zijn ook ontworpen voor leer-, informatie- en bedrijfsdoeleinden \autocite{Shawar2007}. 
 
 \subsection{Historie van een chatbot}%
 \label{sec:chatbotHistorie}
@@ -948,7 +948,7 @@ Het idee van een chatbot werd het eerst gepubliceerd in 1950 \autocite{Turing200
 \subsection{Architectuur  van een chatbot}%
 \label{sec:chatbotArchitectuur}
 
-De start van de menselijke vraag tot een gegenereerde chatbot antwoord wordt voorgesteld als de architectuur van een chatbot. Als illustrerend voorbeeld vragen we als chatbot zijn/haar verloren QR-code op. De huurder heeft een specifieke vraag die de chatbot kan verwerken. Na het krijgen van de huurder zijn bericht zal de ‘Natural Language Understanding’ (NLUs) \autocite{Khanna2015} component de vraag analyseren en classificeren wat de gebruiker zijn intenties zijn \autocite{Tamrakar2021}. Wanneer er een duidelijk geformuleerde vraag gesteld is, kan de chatbot acties ondernemen. In het geval met de verloren QR-code zal hij een API oproep aanspreken om externe informatie op te vragen. Nadien kan de data worden vrijgegeven aan de gebruiker indien de huurder zich juist kan identificeren als het gaat om gevoelige informatie \autocite{Adamopoulou2020}. De architectuur kan voorgesteld worden op figuur \ref{fig:chatbotArchitectuur}.
+De start van de menselijke vraag tot een gegenereerd chatbot antwoord wordt voorgesteld als de architectuur van een chatbot. Als illustrerend voorbeeld vragen we als chatbot zijn/haar verloren QR-code op. De huurder heeft een specifieke vraag die de chatbot kan verwerken. Na het krijgen van de huurder zijn bericht zal de ‘Natural Language Understanding’ (NLUs) \autocite{Khanna2015} component de vraag analyseren en classificeren wat de gebruiker zijn intenties zijn \autocite{Tamrakar2021}. Wanneer er een duidelijk geformuleerde vraag gesteld is, kan de chatbot acties ondernemen. In het geval met de verloren QR-code zal hij een API oproep aanspreken om externe informatie op te vragen. Nadien kan de data worden vrijgegeven aan de gebruiker indien de huurder zich juist kan identificeren als het gaat om gevoelige informatie \autocite{Adamopoulou2020}. De architectuur kan voorgesteld worden op figuur \ref{fig:chatbotArchitectuur}.
 
 \begin{figure}[h]
     \centering
@@ -977,7 +977,7 @@ Chatbots worden onderverdeeld in categorieën door gebruik te maken van enkele p
 
 Twee grote categorieën waarin de soort chatbot verschillen zijn open domeinen en gesloten domeinen. Open domein chatbots vertellen ons meer over algemene onderwerpen die een zo goed mogelijk antwoord geven op de vraag van de gebruiker. Gesloten domein chatbots werken aan de hand van algemene domein kennis van de chatbot \autocite{Adamopoulou2020}. Nadelig hieraan is dat niet alle vragen even goed kunnen beantwoord worden \autocite{Kucherbaev2018}.
 
-Een verdere onderscheid van chatbots zijn de soorten aangeboden diensten: ‘Interpersonal, ‘Intrapersonal en ‘Inter-agent’. Met een ‘Intrapersonal’ service communiceert hij de gekende informatie zoals openingsuren van een winkel, of trein boekingen met de eindgebruiker \autocite{Adamopoulou2020}. ‘Intrapersonal’ bots proberen de gebruiker te verstaan en te helpen zoals een echte mens. Deze gaan opzoek naar persoonlijke domein data van de gebruiker. Als laatste onderverdeling van dienstverlening bestaat de ‘Inter-agent’ chatbot. Deze bots communiceren met andere bots om hun informatie te delen. Op deze manier kunnen ze het best passende antwoorden schenken \autocite{Nimavat2017}.
+Een verder onderscheid van chatbots zijn de soorten aangeboden diensten: ‘Interpersonal, ‘Intrapersonal en ‘Inter-agent’. Met een ‘Intrapersonal’ service communiceert hij de gekende informatie zoals openingsuren van een winkel, of trein boekingen met de eindgebruiker \autocite{Adamopoulou2020}. ‘Intrapersonal’ bots proberen de gebruiker te verstaan en te helpen zoals een echte mens. Deze gaan opzoek naar persoonlijke domein data van de gebruiker. Als laatste onderverdeling van dienstverlening bestaat de ‘Inter-agent’ chatbot. Deze bots communiceren met andere bots om hun informatie te delen. Op deze manier kunnen ze de best passende antwoorden schenken \autocite{Nimavat2017}.
 
 De bots hebben altijd een specifiek doel. Daarvoor wordt er gekeken naar wat de chatbot wil bereiken. Wil de chatbot informatie verschaffen aan de gebruiker aan de hand van vaste middelen dan spreken we over informatieve chatbots. Bij het geval van ‘Task based’ zal de chatbot effectief een taak uitvoeren aan de hand van specifieke eisen. Als meest gebruikte vorm van chatbot is er de chat gebaseerde of conversatie chatbot. Deze is puur gericht om het juiste antwoord te verschaffen op de gestelde vraag (\autocite{Nimavat2017} \autocite{Adamopoulou2020}. 
 
@@ -989,7 +989,7 @@ Voor het aanmaken van een chatbot die verloren QR-codes zal terugwinnen, kan de 
 
 De manieren om een chatbot te ontwikkelen hangt af van enkele factoren. Het keuze ontwerp wordt beïnvloed door welk type bot en door welke specifieke verwachtingen van de gebruiker \autocite{Rahman2017}.
 
-Chatbots die niet ontworpen zijn aan de hand van een platvorm behoren tot de categorie ‘No coding chatbot’ \autocite{Tamrakar2021}. Een andere techniek dat gehanteerd wordt om chatbots te ontwikkelen zijn platvormen die vooraf geprogrammeerde algoritmes en modules bevatten. Het gebruik van deze platvormen zijn eenvoudig omdat er geen kennis van programmeervaardigheden vereist zijn. Deze platvormen worden gebruikt voor het ontwerpen van kleine en versimpelde chatbots  \autocite{Rahman2017}. Enkele voorbeelden van veelgebruikte ‘no coding chatbot’ platvormen zijn Chatfuel, manychat and Mothian.ai, botpress, etc.  \autocite{Rahman2017}. 
+Chatbots die niet ontworpen zijn aan de hand van een platvorm behoren tot de categorie ‘No coding chatbot’ \autocite{Tamrakar2021}. Een andere techniek dat gehanteerd wordt om chatbots te ontwikkelen zijn platvormen die vooraf geprogrammeerde algoritmes en modules bevatten. Het gebruik van deze platvormen zijn eenvoudig omdat er geen kennis van programmeervaardigheden vereist zijn. Deze platvormen worden gebruikt voor het ontwerpen van kleine en versimpelde chatbots  \autocite{Rahman2017}. Enkele voorbeelden van veelgebruikte ‘no coding chatbot’ platvormen zijn Chatfuel, Manychat, Mothian.ai, botpress, etc.  \autocite{Rahman2017}. 
 Chatbots worden ook ontwikkeld door platvormen van technologiegiganten zoals Google, Amazon, Microsoft, etc. \autocite{Gkikas2021}. Deze platvormen zijn robuust van aard en worden gebruikt om complexe bots te ontwerpen. De robuuste structuur heeft als gevolg dat er een conversatie stroomdiagram moet worden aangebracht op het platvorm \autocite{Tamrakar2021}. In deze diagrammen worden er verschillende stappen of interacties tussen een gebruiker en chatbot gedefinieerd. Deze vormen paden die de gebruiker kan nemen bij het stellen van vragen. Dit stroomdiagram zorgt ervoor dat de verzoeken van de gebruiker nooit verkeerd of slecht geïnterpreteerd kunnen worden.  De ontwikkelaars van de bot zullen aan de hand van deze diagram de chatconversatie kunnen structureren en nauwkeurig gaan controleren \autocite{CotyM.CollinsColumbus2019}. Voorbeelden van technologiegiganten chatbot platvormen zijn Google DialogFlow, Facebook’s Wit.ai, Miocrosoft’s LUIS, Aamzon’s Lex en IBM’s Watson, etc \autocite{Tamrakar2021}.
 
 
