@@ -461,4 +461,14 @@
   doi    = {10.6084/m9.figshare.16950700.v1},
 }
 
+@Patent{CotyM.CollinsColumbus2019,
+  author = {Coty M. Collins (Columbus, OH)},
+  date   = {2019-03-07},
+  number = {10817265},
+  title  = {CHATBOT DEVELOPMENT AND DEPLOYMENT PLATFORM},
+}
+
+@Misc{,
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
