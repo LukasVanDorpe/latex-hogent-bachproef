@@ -468,7 +468,10 @@
   title  = {CHATBOT DEVELOPMENT AND DEPLOYMENT PLATFORM},
 }
 
-@Misc{,
+@Unpublished{LockitRentals,
+  author  = {Lockit Rentals, VD Group BV},
+  title   = {Lockit-app},
+  urldate = {2023-03-21},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

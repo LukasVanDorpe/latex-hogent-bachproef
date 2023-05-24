@@ -71,7 +71,7 @@ Elke unit bevat 128 lockers die verspreid zijn over 4 kasten zoals te zien op fi
     \centering
     \includegraphics[height=7cm]{F3_lockerUnit2.jpg}
     \captionsetup{justification=centering, singlelinecheck=false}    
-    \caption{Een uitgetekende weergave van een locker unit.}
+    \caption{Een uitgetekende weergave van een locker unit \autocite{LockitRentals}.}
     \label{fig:lockerUnit2}
 \end{figure}}
 
@@ -89,7 +89,7 @@ De fouttolerantie is doorslaggevend indien de QR-code gebruikt wordt als toegang
     \centering
     \includegraphics[width=0.8\textwidth]{F4_voorstellingQrCode.jpg}
     \captionsetup{justification=centering, singlelinecheck=false}    
-    \caption{Een technische voorstelling van een QR-code.}
+    \caption{Een technische voorstelling van een QR-code \autocite{Li2018}.}
     \label{fig:voorstellingQR}
 \end{figure}}
 
@@ -115,7 +115,7 @@ Het proces voor het genereren van QR-codes van de mobiele applicatie wordt voora
 
 \vspace{7}
 De gegevens van de klant worden opgevraagd als hij/zij een QR-code wenst te kopen. Aan de hand van deze gegevens wordt er een gebruikersaccount automatisch aangemaakt en worden de gegevens bijgehouden \ref{lst:ophalenUser}. Deze aanpak maakt het mogelijk om nadien een koppeling te leggen tussen lockernummer en gebruiker. De reservatie en tot stand brengen van een QR-code zijn twee aparte concepten.
-\begin{lstlisting}[caption={Ophalen de zopas aangemaakte gebruiker zijn gegevens indien hij in het huur proces terecht gekomen is.}, label={lst:ophalenUser}]
+\begin{lstlisting}[caption={Ophalen de zopas aangemaakte gebruiker zijn gegevens indien hij in het huur proces terecht gekomen is \autocite{LockitRentals}.}, label={lst:ophalenUser}]
     /**
     * Get the user auth uid
     */
@@ -141,7 +141,7 @@ De gegevens van de klant worden opgevraagd als hij/zij een QR-code wenst te kope
 
 Bij het huurproces van een locker moet een huurder het festival aanduiden waar hij/zij de locker wil huren. Niets sluit uit dat de lockers operationeel zijn op twee verschillende locaties. Daarna heeft de huurder de keuze om het formaat te selecteren en als deze optie beschikbaar is hoelang de huurtijd zal zijn. Echter zijn het verstrekken van deze details over het geselecteerde evenement noodzakelijk voor de opbouw van de QR-code. De QR-code wordt gegenereerd op basis van de beschikbare lockers die aanwezig zijn op het geselecteerde evenement \ref{lst:ophalenEventInfo}.
 
-\begin{lstlisting}[caption={Het informatie ophalen van de geselecteerde locatie. Aan de hand van geselecteerde evenement kan er gegevens uit de databank gehaald worden.}, label={lst:ophalenEventInfo}]
+\begin{lstlisting}[caption={Het informatie ophalen van de geselecteerde locatie. Aan de hand van geselecteerde evenement kan er gegevens uit de databank gehaald worden \autocite{LockitRentals}.}, label={lst:ophalenEventInfo}]
     /**
     * Get more info about the shop
     */
@@ -201,7 +201,7 @@ Bij het huurproces van een locker moet een huurder het festival aanduiden waar h
 \subsubsection{Stap 2: De reservatie voor een toegangscode van een locker}%
 Op voorwaarde dat de gebruikersinformatie geldig is en er nog een locker beschikbaar is, zal er een reservatie aangemaakt worden en meteen bewaard worden in een databank. Het code die hiervoor verantwoordelijk is wordt afgebeeld in listing \ref{lst:aanmakenReservatie}.
 
-\begin{lstlisting}[caption={De creatie van een reservatie voor het huren van een locker. Deze reservatie wordt bijgehouden in de databank}, label={lst:aanmakenReservatie}]
+\begin{lstlisting}[caption={De creatie van een reservatie voor het huren van een locker. Deze reservatie wordt bijgehouden in de databank \autocite{LockitRentals}.}, label={lst:aanmakenReservatie}]
     /**
     * Create the reservation
     */
@@ -250,7 +250,7 @@ Op voorwaarde dat de gebruikersinformatie geldig is en er nog een locker beschik
 Wanneer de databank een nieuwe reservatie constateert, wordt er een trigger uitgevoerd. Een trigger is een procedure die verplicht uitgevoerd wordt als een welbepaalde tabel een aanpassing ondergaat \autocite{documentation}. In dit geval is het de tabel ‘reservations’. Deze trigger zal een methode aanroepen om het betalingsverzoek te creëren.
 De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard beschadigd is of als ze hun toegangscode tot de locker verloren zijn. Bij het aanmaken van toegangscodes bij logistieke medewerkers verloopt het proces op een alternatieve wijze.  Deze springen over het betalingsproces en verwerven direct een geldige QR-code. Zonder een aangemaakt betalingsveld in de databank op te slaan.  \ref{lst:aanmakenBetaling}
 
-\begin{lstlisting}[caption={Valideert of er een betaling van toepassing is. Indien nodig creëert het een betaling en bewaard deze in de databank}, label={lst:aanmakenBetaling}]
+\begin{lstlisting}[caption={Valideert of er een betaling van toepassing is. Indien nodig creëert het een betaling en bewaard deze in de databank \autocite{LockitRentals}.}, label={lst:aanmakenBetaling}]
     /**
     * No action is needed but to move the status along
     */
@@ -301,7 +301,7 @@ De logistieke medewerkers kunnen huurders helpen indien hun QR-code te hard besc
 
 De tool Mollie is een online betalingsservice die wordt gehanteerd om de betalingen succesvol af te ronden \autocite{docs2023}. Gelijktijdig met de betaling wordt er een interne teller bijgehouden zodat deze locker geblokkeerd wordt voor andere kopers. Als de betaling niet succesvol is, wordt de locker terug vrijgegeven na een bepaalde periode. De betaling wordt aangemaakt met de gekende informatie over de gewenste locker \ref{lst:aanmakenBetalingMollie}.
 
-\begin{lstlisting}[caption={Mollie betaling aanmaken met nodige data.}, label={lst:aanmakenBetalingMollie}]
+\begin{lstlisting}[caption={Mollie betaling aanmaken met nodige data \autocite{LockitRentals}.}, label={lst:aanmakenBetalingMollie}]
     async function createMolliePayment(
     mollieApiKey: string,
     reservation: ShopReservation
@@ -343,7 +343,7 @@ De tool Mollie is een online betalingsservice die wordt gehanteerd om de betalin
 Bij correcte betaling van de klant, zal de applicatie de desbetreffende creatiemethode aanspreken om dergelijke QR-code te genereren. Deze QR-code bevat een random geselecteerde lockernummer inclusief een tijdspanne waarin de toegangscode geldig is. De status van de reservatie die zich al in de databank bevindt ,wordt aangepast. Hierdoor weet heel de applicatie dat die bepaalde reservatie betaald is \ref{lst:voltooidebetaling}.
 
 
-\begin{lstlisting}[caption={Voltooide betaling roept de creatie QR-code methode op. Hierbij gebeurt een status update van de vooraf aangemaakte reservatie.}, label={lst:voltooidebetaling}]
+\begin{lstlisting}[caption={Voltooide betaling roept de creatie QR-code methode op. Hierbij gebeurt een status update van de vooraf aangemaakte reservatie \autocite{LockitRentals}.}, label={lst:voltooidebetaling}]
     await db.runTransaction(async (transaction) => {
         /**
         * Find a valid available locker
@@ -403,7 +403,7 @@ Om de QR-code te tonen op de mobiele applicatie hebben we componenten nodig om d
     \centering
     \includegraphics{F5_qrcodeKoper.png}
     \captionsetup{justification=centering, singlelinecheck=false}    
-    \caption{Een voorbeeld van een QR-code die gekocht is door een gebruiker voor specifieke lockertoegang op een evenement.}
+    \caption{Een voorbeeld van een QR-code die gekocht is door een gebruiker voor specifieke lockertoegang op een evenement \autocite{Dorpe2023}.}
     \label{fig:qrCodeGebruiker}
 \end{figure}}
 
@@ -411,13 +411,13 @@ Om de QR-code te tonen op de mobiele applicatie hebben we componenten nodig om d
     \centering
     \includegraphics[width=0.35\textwidth]{F6_qrcodeAdmin.jpg}
     \captionsetup{justification=centering, singlelinecheck=false}    
-    \caption{Een voorbeeld van een QR-code die gegeneerd is door een logistieke medewerker met de juiste bevoegdheden voor specifieke lockertoegang op een evenement.}
+    \caption{Een voorbeeld van een QR-code die gegeneerd is door een logistieke medewerker met de juiste bevoegdheden voor specifieke lockertoegang op een evenement \autocite{Dorpe2023}.}
     \label{fig:qrCodeAdmin}
 \end{figure}}
 
 Aangezien de generatie van een QR-code dat voorgesteld is als afbeelding wat front-end matige materie is, zal onderstaande code de werking weergeven \ref{lst:qrComponent}. 
 
-\begin{lstlisting}[caption={Typescript code voor een visuele QR-code aan te maken}, label={lst:qrComponent}]
+\begin{lstlisting}[caption={Typescript code voor een visuele QR-code aan te maken \autocite{LockitRentals}.}, label={lst:qrComponent}]
     await db.runTransaction(async (transaction) => {
         export class QrcodeViewerComponent implements OnInit {
             activeQrCode: string = 'EjIQT51wpdf6Is1r+R5+mt8aU0waHVKVK9lzvhXRV4w=';
@@ -541,7 +541,7 @@ Bij de implementatie van deze smart locker technologie is het bericht dat standa
 
 
 
-\begin{lstlisting}[caption={Data object met de naam smallItem bevat de essentiele data om een locker te openen.}, label={lst:essentieleQrdata}]
+\begin{lstlisting}[caption={Data object met de naam smallItem bevat de essentiele data om een locker te openen \autocite{LockitRentals}.}, label={lst:essentieleQrdata}]
     export async function generateQrCodeWithRecord(qrData: {
         lockerNumber: any;
         start: number;
@@ -563,7 +563,7 @@ Lijn 11 - 15 \ref{lst:essentieleQrdata} :  De data die essentieel is om toegang 
 
 De functie ‘NaCL. Sign()’ aanvaardt twee parameters \ref{lst:encryptionCode}. In de eerste plaats nemen we de locker informatie op. Deze informatie beschikt over de locker nummer, creatiedatum QR-code en verval datum QR-code \ref{lst:essentieleQrdata}. Het is noodzakelijk dat het tekstbericht het juiste type is daarom wordt ‘smallItem’ omgezet naar een JSON object en daarna geconverteerd naar byte door de functie ‘decodeUTF8()’. Vervolgens heeft de functie een geheime sleutel nodig om de ondertekening te kunnen uitvoeren.
 
-\begin{lstlisting}[caption={Digitale ondertekening van QR-code data.}, label={lst:encryptionCode}]
+\begin{lstlisting}[caption={Digitale ondertekening van QR-code data \autocite{LockitRentals}.}, label={lst:encryptionCode}]
     const data = nacl.sign.detached(
     decodeUTF8(JSON.stringify(smallItem)),
     decodeBase64(
@@ -575,7 +575,7 @@ De functie ‘NaCL. Sign()’ aanvaardt twee parameters \ref{lst:encryptionCode}
 
 Door de twee gecreëerde objecten, QR-data en de digitale handtekening samen te voegen ontstaat er een \ac{JSON} object genaamd ‘createdCode’ \ref{lst:createCode}. De code wordt achteraf omgevormd naar een tekstueel formaat.
 
-\begin{lstlisting}[caption={Samenstellen van object, locker informatie en verificatie code.}, label={lst:createCode}]
+\begin{lstlisting}[caption={Samenstellen van object, locker informatie en verificatie code \autocite{LockitRentals}.}, label={lst:createCode}]
     const createdCode = Buffer.from(
     JSON.stringify({ d: smallItem, v: encodeBase64(data) })
     ).toString('base64');
@@ -604,7 +604,7 @@ Als we dieper in de materie duiken is de aangemaakte code zichtbaar als antwoord
 
 Deze code wordt achter een vaste ingestelde URL geplaatst zodanig dat de QR-code gemakkelijk gedeeld kan worden. Het delen of doorsturen van een QR-code is een eenvoudig proces voor de huurder \ref{lst:shareQR}. Bij het delen van een QR-code wordt er een link gecreëerd dat verwijst naar de web applicatie van Lockit Rentals \ref{lst:createQRLink}. De applicatie zal de base64 string ontvangen en de link ontcijferen om zo een afbeelding van de QR-code te genereren.
 
-\begin{lstlisting}[caption={Het doorsturen van een QR-code in de vorm van een link.}, label={lst:shareQR}]
+\begin{lstlisting}[caption={Het doorsturen van een QR-code in de vorm van een link \autocite{LockitRentals}.}, label={lst:shareQR}]
     handler: async () => {  
         await Share.share({
             title: 'Have access to my locker',
@@ -614,7 +614,7 @@ Deze code wordt achter een vaste ingestelde URL geplaatst zodanig dat de QR-code
         });
 \end{lstlisting}
 
-\begin{lstlisting}[caption={De manier hoe de link van de QR-code is gestructureerd.}, label={lst:createQRLink}]
+\begin{lstlisting}[caption={De manier hoe de link van de QR-code is gestructureerd \autocite{LockitRentals}.}, label={lst:createQRLink}]
     constructQRCodeData(encryptedPart: string): string {
         return location.protocol + '//' + location.host + '/?code=' + encryptedPart;
     }
@@ -645,7 +645,7 @@ Voor eenvoud van het illustratief voorbeeld vormen we dit om naar een gestandaar
 Om de data te controleren wordt de functie ‘verify’ aangeroepen \ref{lst:verifyMethode}, deze heeft 3 parameters nodig. Als eerste het object waarin de QR-code data zit. Vervolgens geven we de verificatie code mee. De publieke sleutel is de laatste parameter om te decrypteren.
 
 
-\begin{lstlisting}[caption={De controle van QR-code data met de TweetNaCL.js verifieer functie.}, label={lst:verifyMethode}]
+\begin{lstlisting}[caption={De controle van QR-code data met de TweetNaCL.js verifieer functie \autocite{LockitRentals}.}, label={lst:verifyMethode}]
     // Check if the object validates
     if (
     !nacl.sign.detached.verify(
@@ -729,7 +729,7 @@ De huurder heeft zich succesvol geregistreerd en een toegangscode verkregen.
 \subsubsection{Stap 2: QR-code scannen}
 
 De QR-code die alvorens is aangemaakt wordt uitgelezen met een USB camera. De software van de camera draait rechtstreeks op de Rasberry PI. 
- \begin{lstlisting}[language=Python, caption={Het uitvoerbare script van de QR-unit, die de toegangscode zal uitlezen.}, label={lst:pythonPrimary1}, numbers=left]
+ \begin{lstlisting}[language=Python, caption={Het uitvoerbare script van de QR-unit, die de toegangscode zal uitlezen \autocite{LockitRentals}.}, label={lst:pythonPrimary1}, numbers=left]
     from datetime import datetime, timedelta
     import time
     import cv2
@@ -761,7 +761,7 @@ Lijn 7 – 22 \ref{lst:pythonPrimary1}: Een oneindige lus waarin de camera const
 \subsubsection{Stap 3: Raspberry PI leest QR-code}
 Een Raspberry PI is een kleine maar krachtige mini computer die allerlei berekeningen kan uitvoeren \autocite{Richardson2013}. Deze bevat alle logica die uitgevoerd wordt na het scannen van de QR-code.  De aangesloten USB camera zal de afbeeldingen proberen te verwerken zodat de gekoppelde locker geopend wordt. Niet alleen het uitvoerbaar script draait op de Raspberry PI ook een server die alle verzoeken afhandelt. Indien er een QR-code goed wordt uitgelezen, stuurt het proces een verzoek naar de node.js server, die op zijn beurt de controle overneemt.
 
-   \begin{lstlisting}[language=Python, caption={Het primaire uitvoerbare script van de QR-unit.}, label={lst:pythonPrimary2}, numbers=left]
+   \begin{lstlisting}[language=Python, caption={Het primaire uitvoerbare script van de QR-unit \autocite{LockitRentals}.}, label={lst:pythonPrimary2}, numbers=left]
     import cv2
     import pyzbar.pyzbar as pyzbar
     from datetime import datetime, timedelta
@@ -797,7 +797,7 @@ Lijn 17 \ref{lst:pythonPrimary2}: De Rasberry PI zal een request sturen naar de 
 
 Bij het doorsturen van de verkregen URL via de node.js server heeft de applicatie enkel nood aan de parameter 'Code' \autocite{Weir2012}.  Die base64 string wordt uit de link gefilterd door de URL op te splitsen. 
 
-\begin{lstlisting}[language=Python, caption={Python script om parameter code uit de link te halen.}, label={lst:pythonLinkSplitting}, numbers=left]
+\begin{lstlisting}[language=Python, caption={Python script om parameter code uit de link te halen \autocite{LockitRentals}.}, label={lst:pythonLinkSplitting}, numbers=left]
     router.post('/qr-code', (request, response) => {
         try {
             const decryptedData = decryptor.decrypt(request.body.tag);
@@ -815,7 +815,7 @@ Bij het doorsturen van de verkregen URL via de node.js server heeft de applicati
 \subsubsection{Stap 5: Parameter decoderen aan de hand van functie 'Base64'}
 Eénmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden naar een \ac{JSON} object. Dit bevat twee objecten. Enerzijds QR-data, waarin drie elementen uitgehaald worden: het lockernummer alsook de begin- en einddatum tot wanneer de QR-code geldig is. Deze tijdstippen worden beide voorgesteld als type Unix. Deze zorgen voor een makkelijke conversie tussen verschillende tijdzones en formaten \autocite{Ritchie1978}. Anderzijds omvat het \ac{JSON} object ook de verificatie code van het encryptie proces dat eerder is uitgewerkt in het code voorbeeld \ref{lst:createCode}. 
 
-\begin{lstlisting}[language=Python, caption={Python code om parameter code te decoderen en informatie op te halen uit het object.}, label={lst:pythonLinkSplitting}, numbers=left]
+\begin{lstlisting}[language=Python, caption={Python code om parameter code te decoderen en informatie op te halen uit het object \autocite{LockitRentals}.}, label={lst:pythonLinkSplitting}, numbers=left]
     const obj = JSON.parse(Buffer.from(data, 'base64').toString('utf8')); 
 \end{lstlisting}
 
@@ -823,7 +823,7 @@ Eénmaal dat de base64 string gevonden is, zal dit terug geconverteerd worden na
 
 Om de echtheid en correctheid van de QR-code te garanderen moet de ingelezen QR-code gevalideerd worden. De ingelezen QR-code wordt verwerkt en ontcijferd met een zelf gemaakte functie genaamd 'decrypt'. Deze functie zorgt ervoor dat de QR-code omgezet wordt naar een handelbaar formaat. Nadien kunnen we de QR-code gaan valideren met behulp van het extern software pakket TweetNaCL. Voor verdere informatie verwijs ik naar het hoofdstuk \ref{sec:encryptQR-code} met een uitgewerkt voorbeeld in sectie \ref{sec:controleaangemaakteQRcode}. Als de functie geen foutboodschap teruggeeft, kunnen we ervanuit gaan dat deze code zich in een veilige staat bezit.
 
-\begin{lstlisting}[language=Python, caption={Python code om QR-code te verifieren op geldige digitale handtekening.}, label={lst:pythonVerifySigning}, numbers=left]
+\begin{lstlisting}[language=Python, caption={Python code om QR-code te verifieren op geldige digitale handtekening \autocite{LockitRentals}.}, label={lst:pythonVerifySigning}, numbers=left]
     router.post('/qr-code', (request, response) => {
         try {
             const decryptedData = decryptor.decrypt(request.body.tag);
@@ -850,7 +850,7 @@ Om de echtheid en correctheid van de QR-code te garanderen moet de ingelezen QR-
         
 De validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het aangemaakt \ac{JSON} object. Met deze techniek kan bekeken worden of de gescande QR-code binnen een correcte tijdspanne ligt. Niet enkel controleert hij op correcte geldigheid, ook voert de code hieronder \ref{lst:data-validator} een controle uit of de QR-code wel bij de bijpassende QR-unit hoort.
 
-\begin{lstlisting}[language=Python, caption={Validatie van QR-code op tijd en bijpassende QR-unit.}, label=lst:data-validator, numbers=left]
+\begin{lstlisting}[language=Python, caption={Validatie van QR-code op tijd en bijpassende QR-unit \autocite{LockitRentals}.}, label=lst:data-validator, numbers=left]
     const moment = require('moment');
     
     module.exports = {
@@ -891,7 +891,7 @@ De validatie functie is gebaseerd op de twee tijdspanne die aanwezig zijn in het
 
 Op basis van de correcte originele ontcijferde data kan de server de juiste sloten aansturen. De Raspberry Pi stuurt een serieel signaal naar de verschillende shift registers, die elk op zich verantwoordelijk zijn om een aantal verschillende sloten te besturen.
 
-\begin{lstlisting}[language=Python, caption={Openen van juiste locker of foutboodschap.}, label=lst:pythonPinController, numbers=left]
+\begin{lstlisting}[language=Python, caption={Openen van juiste locker of foutboodschap \autocite{LockitRentals}.}, label=lst:pythonPinController, numbers=left]
     if (decryptedData.n) {
         pinController.openLock(calculateExactLock(Number(decryptedData.n), Number(config.unit)));
     } else if(decryptedData.r) {

@@ -59,7 +59,7 @@ Om deze experimenten uit te voeren, ga ik gebruik maken van een eigen opstelling
 \end{figure}
 
 
-\begin{lstlisting}[language=Python, caption={Python script voor experiment van QR-code camera.}, label=lst:huidigeQR-codeData, numbers=left]
+\begin{lstlisting}[language=Python, caption={Python script voor experiment van QR-code camera \autocite{LockitRentals}.}, label=lst:huidigeQR-codeData, numbers=left]
     import cv2  # Importeer de cv2-bibliotheek voor het werken met beeldverwerking
     import time  # Importeer de time-bibliotheek om pauzes in de uitvoering van het programma te creëren
     import pyzbar.pyzbar as pyzbar  # Importeer de pyzbar-bibliotheek voor het decoderen van QR-codes
@@ -235,7 +235,7 @@ Om het experiment van de nieuwe QR-scanner zo goed mogelijk uit te voeren heb ik
 
 \newpage
 
-\begin{lstlisting}[language=Python, caption={Python script voor experiment van nieuwe QR-code scanner.}, label=lst:nieuweQR-codeData, numbers=left]
+\begin{lstlisting}[language=Python, caption={Python script voor experiment van nieuwe QR-code scanner \autocite{LockitRentals}.}, label=lst:nieuweQR-codeData, numbers=left]
     import serial
     import time
     import pyzbar.pyzbar as pyzbar
@@ -400,7 +400,7 @@ De chatbot zal de vraag stellen om een evenement aan te duiden in de chat. Een l
 
 De ophaling van alle actieve evenementen verloopt in de backend van de Lockit Rentals applicatie. Dit wordt geconverteerd naar duidelijke objecten om zo weer te geven in de chat.
 Methode \ref{lst:botpressActie2}, waarin men informatie verkrijgt van festivals waar lockers actief staan.
-\begin{lstlisting}[language=JavaScript, caption={Methode waarin festivals worden ogpehaald waar lockers actie zijn.}, label=lst:botpressActie2, numbers=left]
+\begin{lstlisting}[language=JavaScript, caption={Methode waarin festivals worden ogpehaald waar lockers actie zijn \autocite{LockitRentals}.}, label=lst:botpressActie2, numbers=left]
     import * as functions from 'firebase-functions';
     import * as admin from 'firebase-admin';
     
@@ -425,7 +425,7 @@ Methode \ref{lst:botpressActie2}, waarin men informatie verkrijgt van festivals 
 
 Eénmaal de chatbot het e-mailadres goed heeft ontvangen kan het proces van het terugwinnen van een QR-code in werking treden. De chatbot voert een taak uit dat weergegeven wordt in listing \ref{lst:botpressActie3}. 
 
-\begin{lstlisting}[language=JavaScript, caption={Een blok uitvoerbare code geschreven in javascript in een actie van Botpress. Deze code zal een verzoek uitsturen en het antwoord hiervan capteren.}, label=lst:botpressActie3, numbers=left]
+\begin{lstlisting}[language=JavaScript, caption={Een blok uitvoerbare code geschreven in javascript in een actie van Botpress. Deze code zal een verzoek uitsturen en het antwoord hiervan capteren \autocite{LockitRentals}.}, label=lst:botpressActie3, numbers=left]
     const response = await axios
     .post('https://europe-west2-lockit-testing.cloudfunctions.net/recoverLostCode', {
         shopId: workflow.FestivalNameObj['id'],
@@ -450,7 +450,7 @@ Eénmaal de chatbot het e-mailadres goed heeft ontvangen kan het proces van het 
 
 Dit verzoek zal opnieuw afgehandeld worden in de backend van de Lockit Rentals applicatie. Het uitvoeren van onderstaande code \ref{lst:botpressActie4} zal de QR-code ophalen uit de reservatie tabel. Het antwoord waarin hij aangeeft dat de QR-code succesvol is opgehaald en de herstel email zullen verzonden worden. Op deze manier kan de chatbot een gepaste actie voorzien om de gebruiker erop te wijzen dat deze email onderweg is. 
 
-\begin{lstlisting}[language=JavaScript, caption={Het ophalen van de bijhorende QR-code, indien dit gelukt is, opmaken en bewaren in de databank.}, label=lst:botpressActie4, numbers=left]
+\begin{lstlisting}[language=JavaScript, caption={Het ophalen van de bijhorende QR-code, indien dit gelukt is, opmaken en bewaren in de databank \autocite{LockitRentals}.}, label=lst:botpressActie4, numbers=left]
     const shopSnap = await db.collection('shop').doc(recoveryData.shopId).get();
     
     /**
