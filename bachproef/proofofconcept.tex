@@ -14,7 +14,7 @@ In dit hoofdstuk wordt omschreven op welke manier we onderzochte technologieën 
 
 Zowel de nieuwe als de oude opstelling worden grondig getest in vier verschillende scenario’s. Daarnaast zijn er ook twee manieren om de toegangscode te bezitten. Allereerst kan de klant in het bezit zijn van een QR-code op papier. Alsook kunnen ze deze digitaal op de Lockit Rentals mobiele applicatie registreren. Beide manieren laat scan mogelijkheden toe. Dit zal een rol spelen in de aantal uitgevoerde experimenten waarbij constante variabelen van toepassing zijn. De QR-code dat gescand wordt door dezelfde testpersoon op hetzelfde apparaat zorgen voor betrouwbaar eindresultaat. 
 Aangezien sommige omgevingsfactoren veranderen doorheen het proces zullen we ook de verlichtingssterkte meten uitgedrukt in lux. Deze waarde zal niet meegenomen worden bij de conclusie maar is gewoon ter illustratie. 
-Op het einde van elke test wordt er een \ac{XLSX} bestand gecreëerd. Een voorbeeld hiervan is te zien op figuur \ref{fig:xlsxBestandExperiment}. Deze bestanden hebben steeds een logische naamgeving zodat we dit later kunnen verwerken in een duidelijke conclusie. In figuur x zien we de oplijsting van alle bestanden.
+Op het einde van elke test wordt er een \ac{XLSX} bestand gecreëerd. Een voorbeeld hiervan is te zien op figuur \ref{fig:xlsxBestandExperiment}. Deze bestanden hebben steeds een logische naamgeving zodat we dit later kunnen verwerken in een duidelijke conclusie. In figuur \ref{fig:opsomming} zien we de oplijsting van alle bestanden.
 
 
 \begin{figure}
@@ -191,8 +191,8 @@ Als we kijken naar hedendaagse scanners zoals kassasystemen en toegangscontroles
 
 \begin{itemize}
     \item Het instellen van de USB virtuele poort, hierdoor kan de computer de USB poort herkennen en initialiseren. 
-    \item De vertraging instellen als we éénzelfde QR-code na elkaar proberen te scannen. Deze is op het gebruikte toestel ingesteld op 3000 milliseconden. (TODO verwijzing figuur)
-    \item Het toestel is geconfigureerd opdat er geen periode verstrijkt waarin we geen module kunnen lezen na het inlezen van een eerder gescande QR-code. (TODO verwijzing figuur)
+    \item De vertraging instellen als we éénzelfde QR-code na elkaar proberen te scannen. Deze is op het gebruikte toestel ingesteld op 3000 milliseconden.
+    \item Het toestel is geconfigureerd opdat er geen periode verstrijkt waarin we geen module kunnen lezen na het inlezen van een eerder gescande QR-code.
     \item De lichten kunnen aan -of uitgezet worden.
     \item Een piepsignaal kan aan -of uitgezet worden wanneer de QR-code succesvol is uitgelezen.
     \item ...
@@ -357,7 +357,7 @@ Het gebruik van BotPress is eenvoudig maar kan indien nodig voor genoeg diepgang
 Belangrijk om weten is dat er geen beperkingen zijn met betrekking tot de volgorde waarin de vijf acties uitgevoerd worden. Aan de hand van een gestructureerd stroomdiagram heb ik de chatbot opgebouwd weergegeven in figuur \ref{fig:workflowBotPress}. 
 
 \subsection{Stappen om QR-code terug te winnen via chatbot}
-
+\label{sec:stappenChatbot}
 Hieronder volgt een voorbeeld hoe je als festivalganger een QR-code kan terugwinnen via de chatbot. Deze stappen worden later gevisualiseerd in sectie \ref{sec:resultatenChatbot}.
 \newline
 
